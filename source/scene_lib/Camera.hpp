@@ -1,5 +1,5 @@
 //
-//  Object.hpp
+//  Camera.hpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 1/24/19.
@@ -10,12 +10,13 @@
 
 namespace scene {
 
-class Object {
+class Camera {
 
 public:
 
     Vector3 position;
-    Vector3 rotation { 1, 0, 0 };
+    Vector3 direction { 1, 0, 0 };
+    float fov = 1;
 
 };
 

@@ -1,5 +1,5 @@
 //
-//  Object.cpp
+//  Camera.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 1/24/19.
@@ -8,4 +8,4 @@
 
 #include <iostream>
 
-#include "Object.hpp"
+#include "Camera.hpp"
