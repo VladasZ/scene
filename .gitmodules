@@ -1,6 +1,0 @@
-[submodule "build_tools"]
-	path = build_tools
-	url = git@github.com:VladasZ/build_tools.git
-[submodule "source/geometry"]
-	path = source/geometry
-	url = git@github.com:VladasZ/geometry.git
