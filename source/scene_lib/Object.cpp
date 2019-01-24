@@ -21,6 +21,6 @@ Object::~Object() {
     delete _mesh;
 }
 
-Mesh* Object::get_mesh() const {
+Mesh* Object::mesh() const {
     return _mesh;
 }

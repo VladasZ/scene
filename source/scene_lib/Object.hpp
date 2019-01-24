@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#pragma once
+
 #include "Vector3.hpp"
 
 namespace scene {
@@ -26,7 +28,7 @@ public:
     Object(Mesh*);
     virtual ~Object();
 
-    Mesh* get_mesh() const;
+    Mesh* mesh() const;
 
 };
 

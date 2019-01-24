@@ -22,6 +22,8 @@ public:
     Mesh() = default;
     Mesh(const std::vector<Vector3>&, const std::vector<uint8_t>&);
 
+    const char* to_string() const;
+
 };
 
 }
