@@ -1,5 +1,5 @@
 //
-//  Scene.cpp
+//  Box.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 1/24/19.
@@ -8,11 +8,4 @@
 
 #include <iostream>
 
-#include "Scene.hpp"
-
-using namespace std;
-using namespace scene;
-
-void scene::test() {
-  cout << "Hello" << endl;
-}
+#include "Box.hpp"
