@@ -11,4 +11,8 @@ namespace scene {
   void test();
 
 
+  class Scene {
+
+  };
+
 }
