@@ -12,6 +12,15 @@ namespace scene {
 
 class Box : public Object {
 
+public:
+
+    float length;
+    float width;
+    float height;
+
+    Box(float, float, float);
+
+    void refresh_mesh();
 };
 
 }

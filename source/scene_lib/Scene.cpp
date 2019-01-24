@@ -7,12 +7,21 @@
 //
 
 #include <iostream>
+using namespace std;
 
 #include "Scene.hpp"
+#include "Camera.hpp"
+#include "Object.hpp"
 
-using namespace std;
 using namespace scene;
 
-void scene::test() {
-  cout << "Hello" << endl;
+
+Scene::Scene() : camera(new Camera()) {
+
+}
+
+Scene::~Scene() {
+    delete camera;
+    for (auto obj : objects)
+        delete obj;
 }

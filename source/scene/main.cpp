@@ -11,7 +11,4 @@
 
 int main() {
 
-
-    scene::test();
-
 }

@@ -1,5 +1,5 @@
 //
-//  Object.cpp
+//  Mesh.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 1/24/19.
@@ -9,18 +9,9 @@
 #include <iostream>
 
 #include "Mesh.hpp"
-#include "Object.hpp"
 
 using namespace scene;
 
-Object::Object(Mesh* mesh) : _mesh(mesh) {
+Mesh::Mesh(const std::vector<Vector3>& vertices, const std::vector<uint8_t>& indices) : vertices(vertices), indices(indices) {
 
-}
-
-Object::~Object() {
-    delete _mesh;
-}
-
-Mesh* Object::get_mesh() const {
-    return _mesh;
 }

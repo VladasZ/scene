@@ -6,13 +6,21 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include <vector>
+
 namespace scene {
 
-  void test();
+class Camera;
+class Object;
 
+class Scene {
+public:
 
-  class Scene {
+    Camera* const camera;
+    std::vector<Object*> objects;
 
-  };
+    Scene();
+    virtual ~Scene();
+};
 
 }
