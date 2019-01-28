@@ -8,17 +8,24 @@
 
 #pragma once
 
-#include "Vector3.hpp"
+#include "Matrix4.hpp"
 
 namespace scene {
 
 class Mesh;
+class Scene;
 
 class Object {
 
+    friend Scene;
+
 protected:
 
-    Mesh* _mesh;
+    Matrix4 _model_matrix;
+    Matrix4 _mvp_matrix;
+
+    Mesh*  _mesh;
+    Scene* _scene;
 
 public:
 
@@ -29,6 +36,12 @@ public:
     virtual ~Object();
 
     Mesh* mesh() const;
+
+    const Matrix4& model_matrix() const;
+    void calculate_model_matrix();
+
+    const Matrix4& mvp_matrix() const;
+    void calculate_mvp_matrix();
 
 };
 

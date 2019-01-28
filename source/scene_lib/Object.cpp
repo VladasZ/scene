@@ -8,7 +8,12 @@
 
 #include <iostream>
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include "Mesh.hpp"
+#include "Scene.hpp"
+#include "Camera.hpp"
 #include "Object.hpp"
 
 using namespace scene;
@@ -23,4 +28,25 @@ Object::~Object() {
 
 Mesh* Object::mesh() const {
     return _mesh;
+}
+
+const Matrix4& Object::model_matrix() const {
+    return _model_matrix;
+}
+
+void Object::calculate_model_matrix() {
+    glm::mat4 model;
+    glm::translate(model, { position.x, position.y, position.z });
+    _model_matrix = model;
+}
+
+const Matrix4& Object::mvp_matrix() const {
+    return _mvp_matrix;
+}
+
+void Object::calculate_mvp_matrix() {
+    _scene->camera->update_view_matrix();
+    _scene->camera->update_projection_matrix();
+    calculate_model_matrix();
+    _mvp_matrix = _scene->camera->projection_matrix() * _scene->camera->view_matrix() * _model_matrix;
 }

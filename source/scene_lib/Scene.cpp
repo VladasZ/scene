@@ -22,6 +22,11 @@ Scene::Scene() : camera(new Camera()) {
 
 Scene::~Scene() {
     delete camera;
-    for (auto obj : objects)
+    for (auto obj : _objects)
         delete obj;
+}
+
+void Scene::add_object(Object* obj) {
+    _objects.push_back(obj);
+    obj->_scene = this;
 }

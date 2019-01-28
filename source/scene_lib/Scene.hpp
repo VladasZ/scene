@@ -8,19 +8,25 @@
 
 #include <vector>
 
+#include "Matrix4.hpp"
+
 namespace scene {
 
 class Camera;
 class Object;
 
 class Scene {
+
 public:
 
     Camera* const camera;
-    std::vector<Object*> objects;
+    std::vector<Object*> _objects;
 
     Scene();
     virtual ~Scene();
+
+    void add_object(Object*);
+
 };
 
 }
