@@ -12,7 +12,7 @@
 
 using namespace scene;
 
-Mesh::Mesh(const std::vector<Vector3>& vertices, const std::vector<uint8_t>& indices) : vertices(vertices), indices(indices) {
+Mesh::Mesh(const std::vector<Vector3>& vertices, const std::vector<unsigned short>& indices) : vertices(vertices), indices(indices) {
 
 }
 
@@ -20,6 +20,9 @@ const char* Mesh::to_string() const {
     static std::string string;
     for (auto& ver : vertices)
         string += std::string() + ver.to_string() + "\n";
+    string += "\n";
     string.pop_back();
+    for (auto& ind : indices)
+        string += std::string() + std::to_string(ind) + "\n";
     return string.c_str();
 }

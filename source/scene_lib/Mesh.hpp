@@ -17,10 +17,10 @@ class Mesh {
 public:
 
     std::vector<Vector3> vertices;
-    std::vector<uint8_t> indices;
+    std::vector<unsigned short> indices;
 
     Mesh() = default;
-    Mesh(const std::vector<Vector3>&, const std::vector<uint8_t>&);
+    Mesh(const std::vector<Vector3>&, const std::vector<unsigned short>&);
 
     const char* to_string() const;
 
