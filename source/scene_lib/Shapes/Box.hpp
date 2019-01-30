@@ -18,7 +18,8 @@ public:
     float width;
     float height;
 
-    Box(float = 1, float = 1, float = 1);
+    Box(float size = 1);
+    Box(float, float, float);
 
     void refresh_mesh();
 };

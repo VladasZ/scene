@@ -35,9 +35,8 @@ const Matrix4& Object::model_matrix() const {
 }
 
 void Object::calculate_model_matrix() {
-    glm::mat4 model;
-    glm::translate(model, { position.x, position.y, position.z });
-    _model_matrix = model;
+    static const glm::mat4 model;
+    _model_matrix = glm::translate(model, { position.x, position.y, position.z });
 }
 
 const Matrix4& Object::mvp_matrix() const {
