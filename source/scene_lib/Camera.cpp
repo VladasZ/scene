@@ -25,10 +25,15 @@ const Matrix4& Camera::projection_matrix() const {
 
 void Camera::update_view_matrix() {
     glm::mat4 view;
-    //glm::translate(view, { position.x, position.y, position.z });
-    _view_matrix = view;
+
+    _view_matrix = glm::lookAt(
+                glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
+                glm::vec3(0,0,0), // and looks at the origin
+                glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
+                );
 }
 
 void Camera::update_projection_matrix() {
+    //_projection_matrix = glm::perspective(glm::radians(45.0f), (float) 500 / (float)500, 0.1f, 50.0f);
     _projection_matrix = glm::perspective(fov, resolution.width / resolution.height, z_near, z_far);
 }

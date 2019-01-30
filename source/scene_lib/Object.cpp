@@ -48,5 +48,6 @@ void Object::calculate_mvp_matrix() {
     _scene->camera->update_view_matrix();
     _scene->camera->update_projection_matrix();
     calculate_model_matrix();
-    _mvp_matrix = _scene->camera->projection_matrix() * _model_matrix * _scene->camera->view_matrix();
+    _mvp_matrix = _scene->camera->projection_matrix() * _scene->camera->view_matrix() * _model_matrix;
+
 }
