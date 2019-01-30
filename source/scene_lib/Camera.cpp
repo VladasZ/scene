@@ -25,7 +25,7 @@ const Matrix4& Camera::projection_matrix() const {
 
 void Camera::update_view_matrix() {
     glm::mat4 view;
-    glm::translate(view, { position.x, position.y, position.z });
+    //glm::translate(view, { position.x, position.y, position.z });
     _view_matrix = view;
 }
 

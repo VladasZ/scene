@@ -24,8 +24,7 @@ public:
 
     Size resolution { 100, 100 };
 
-    Vector3 position;
-    Vector3 direction { 1, 0, 0 };
+    Vector3 position { 0, 0, -1 };
 
     const Matrix4& view_matrix() const;
     const Matrix4& projection_matrix() const;

@@ -9,15 +9,15 @@
 #include <iostream>
 
 #include "Box.hpp"
-#include "Mesh.hpp"
+#include "ColoredMesh.hpp"
 
 using namespace scene;
 
-static Mesh* create_mesh(float length, float width, float height) {
+static ColoredMesh* create_mesh(float length, float width, float height) {
     const float length_2 = length / 2;
     const float  width_2 = width  / 2;
     const float height_2 = height / 2;
-    return new Mesh {{
+    return new ColoredMesh {{
             // front
             { -width_2, -length_2,  height_2 },
             {  width_2, -length_2,  height_2 },

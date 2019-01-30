@@ -8,11 +8,12 @@
 
 #pragma once
 
+#include "Vector4.hpp"
 #include "Matrix4.hpp"
 
 namespace scene {
 
-class Mesh;
+class ColoredMesh;
 class Scene;
 
 class Object {
@@ -24,18 +25,18 @@ protected:
     Matrix4 _model_matrix;
     Matrix4 _mvp_matrix;
 
-    Mesh*  _mesh;
+    ColoredMesh*  _mesh;
     Scene* _scene;
 
 public:
 
     Vector3 position;
-    Vector3 rotation { 1, 0, 0 };
+    Vector4 rotation { 1, 0, 0, 0 };
 
-    Object(Mesh*);
+    Object(ColoredMesh*);
     virtual ~Object();
 
-    Mesh* mesh() const;
+    ColoredMesh* mesh() const;
 
     const Matrix4& model_matrix() const;
     void calculate_model_matrix();
