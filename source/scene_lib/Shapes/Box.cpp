@@ -56,7 +56,7 @@ Box::Box(float size) : Box(size, size, size) {
 }
 
 Box::Box(float length, float width, float height) :
-    Object(create_mesh(length, width, height)),
+    Model(create_mesh(length, width, height)),
     length(length),
     width(width),
     height(height)

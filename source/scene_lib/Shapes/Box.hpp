@@ -6,11 +6,11 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "Object.hpp"
+#include "Model.hpp"
 
 namespace scene {
 
-class Box : public Object {
+class Box : public Model {
 
 public:
 

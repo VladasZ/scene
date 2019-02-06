@@ -27,6 +27,8 @@ public:
 
     void add_object(Object*);
 
+    void update();
+
 };
 
 }

@@ -17,11 +17,10 @@ using namespace scene;
 
 
 Scene::Scene() : camera(new Camera()) {
-
+    add_object(camera);
 }
 
 Scene::~Scene() {
-    delete camera;
     for (auto obj : _objects)
         delete obj;
 }
@@ -29,4 +28,9 @@ Scene::~Scene() {
 void Scene::add_object(Object* obj) {
     _objects.push_back(obj);
     obj->_scene = this;
+}
+
+void Scene::update() {
+    for (auto obj : _objects)
+        obj->update();
 }
