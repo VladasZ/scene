@@ -22,6 +22,7 @@ public:
     std::vector<unsigned short> indices;
 
     Mesh() = default;
+    Mesh(const std::vector<Vector3>&);
     Mesh(const std::vector<Vector3>&, const std::vector<unsigned short>&);
 
     const char* to_string() const;

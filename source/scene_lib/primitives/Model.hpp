@@ -13,7 +13,7 @@
 
 namespace scene {
 
-class ColoredMesh;
+class Mesh;
 
 class Model : public Object  {
 
@@ -22,14 +22,14 @@ protected:
     Matrix4 _model_matrix;
     Matrix4 _mvp_matrix;
 
-    ColoredMesh*  _mesh;
+    Mesh*  _mesh;
 
 public:
 
-    Model(ColoredMesh*);
+    Model(Mesh*);
     ~Model() override;
 
-    ColoredMesh* mesh() const;
+    Mesh* mesh() const;
 
     const Matrix4& model_matrix() const;
     void calculate_model_matrix();

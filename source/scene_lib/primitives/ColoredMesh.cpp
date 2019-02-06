@@ -12,6 +12,10 @@
 
 using namespace scene;
 
+ColoredMesh::ColoredMesh(const std::vector<Vector3>& vertices) : ColoredMesh(vertices, { }) {
+
+}
+
 ColoredMesh::ColoredMesh(const std::vector<Vector3>& vertices,
                          const std::vector<unsigned short>& indices) : Mesh(vertices, indices) {
     for (const auto& ver : vertices) {

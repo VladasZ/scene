@@ -50,7 +50,6 @@ static ColoredMesh* create_mesh(float length, float width, float height) {
         }};
 }
 
-
 Box::Box(float size) : Box(size, size, size) {
 
 }
@@ -60,9 +59,7 @@ Box::Box(float length, float width, float height) :
     length(length),
     width(width),
     height(height)
-{
-
-}
+{ }
 
 void Box::refresh_mesh() {
     delete _mesh;

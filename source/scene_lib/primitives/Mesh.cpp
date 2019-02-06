@@ -12,6 +12,10 @@
 
 using namespace scene;
 
+Mesh::Mesh(const std::vector<Vector3>& vertices) : vertices(vertices) {
+
+}
+
 Mesh::Mesh(const std::vector<Vector3>& vertices, const std::vector<unsigned short>& indices) : vertices(vertices), indices(indices) {
 
 }

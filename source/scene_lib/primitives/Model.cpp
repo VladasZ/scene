@@ -12,11 +12,11 @@
 #include "Scene.hpp"
 #include "Model.hpp"
 #include "Camera.hpp"
-#include "ColoredMesh.hpp"
+#include "Mesh.hpp"
 
 using namespace scene;
 
-Model::Model(ColoredMesh* mesh) : _mesh(mesh) {
+Model::Model(Mesh* mesh) : _mesh(mesh) {
 
 }
 
@@ -24,7 +24,7 @@ Model::~Model() {
     delete _mesh;
 }
 
-ColoredMesh* Model::mesh() const {
+Mesh* Model::mesh() const {
     return _mesh;
 }
 
