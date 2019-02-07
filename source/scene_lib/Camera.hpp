@@ -17,6 +17,8 @@ class Camera : public Object {
     Matrix4 _view_matrix;
     Matrix4 _projection_matrix;
 
+    Vector3 _target {  };
+
 public:
 
     float fov    = 1;
@@ -28,8 +30,7 @@ public:
     const Matrix4& view_matrix() const;
     const Matrix4& projection_matrix() const;
 
-    void update_view_matrix();
-    void update_projection_matrix();
+    void update_matrices() override;
 
 };
 

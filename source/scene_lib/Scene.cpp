@@ -28,6 +28,7 @@ Scene::~Scene() {
 void Scene::add_object(Object* obj) {
     _objects.push_back(obj);
     obj->_scene = this;
+    obj->update_matrices();
 }
 
 void Scene::update() {

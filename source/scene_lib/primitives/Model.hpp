@@ -32,10 +32,9 @@ public:
     Mesh* mesh() const;
 
     const Matrix4& model_matrix() const;
-    void calculate_model_matrix();
+    const Matrix4& mvp_matrix()   const;
 
-    const Matrix4& mvp_matrix() const;
-    void calculate_mvp_matrix();
+    void update_matrices() override;
 };
 
 }

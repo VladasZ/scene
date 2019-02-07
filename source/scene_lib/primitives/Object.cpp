@@ -19,10 +19,29 @@ Object::~Object() {
 
 }
 
+const Vector3& Object::position() const {
+    return _position;
+}
+
+void Object::set_position(const Vector3& position) {
+    _position = position;
+    update_matrices();
+}
+
+const Vector4& Object::rotation() const {
+    return _rotation;
+}
+
+void Object::set_rotation(const Vector4& rotation) {
+    _rotation = rotation;
+    update_matrices();
+}
+
 void Object::stop() {
     velocity = { };
 }
 
 void Object::update() {
-    position += velocity;
+    _position += velocity;
+    update_matrices();
 }
