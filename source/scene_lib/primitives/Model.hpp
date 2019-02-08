@@ -8,18 +8,16 @@
 
 #pragma once
 
-#include "Object.hpp"
-#include "Matrix4.hpp"
+#include "Rotatable.hpp"
 
 namespace scene {
 
 class Mesh;
 
-class Model : public Object  {
+class Model : public Rotatable {
 
 protected:
 
-    Matrix4 _model_matrix;
     Matrix4 _mvp_matrix;
 
     Mesh*  _mesh;
@@ -31,7 +29,6 @@ public:
 
     Mesh* mesh() const;
 
-    const Matrix4& model_matrix() const;
     const Matrix4& mvp_matrix()   const;
 
     void update_matrices() override;

@@ -28,19 +28,11 @@ Mesh* Model::mesh() const {
     return _mesh;
 }
 
-const Matrix4& Model::model_matrix() const {
-    return _model_matrix;
-}
-
 const Matrix4& Model::mvp_matrix() const {
     return _mvp_matrix;
 }
 
 void Model::update_matrices() {
-
-    glm::mat4 model;
-    model         = glm::translate(model,           { _position.x, _position.y, _position.z });
-    _model_matrix = glm::rotate(model, _rotation.w, { _rotation.x, _rotation.y, _rotation.z });
-
-    _mvp_matrix = _scene->camera->projection_matrix() * _scene->camera->view_matrix() * _model_matrix;
+    Rotatable::update_matrices();
+    _mvp_matrix = _scene->camera->projection_matrix() * _scene->camera->view_matrix() * _translation_matrix * _rotation_matrix;
 }

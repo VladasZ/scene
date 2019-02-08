@@ -7,12 +7,11 @@
 //
 
 #include "Size.hpp"
-#include "Matrix4.hpp"
-#include "Object.hpp"
+#include "Movable.hpp"
 
 namespace scene {
 
-class Camera : public Object {
+class Camera : public Movable {
 
     Matrix4 _view_matrix;
     Matrix4 _projection_matrix;
