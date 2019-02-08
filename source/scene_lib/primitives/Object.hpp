@@ -21,7 +21,7 @@ class Object {
 
 protected:
 
-    Scene* _scene;
+    Scene* _scene = nullptr;
 
     Vector3 _position;
 
