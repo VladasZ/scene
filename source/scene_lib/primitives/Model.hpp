@@ -18,6 +18,11 @@ class Model : public Rotatable {
 
 public:
 
+    enum DrawMode {
+        Lines     = 0x0001,
+        Triangles = 0x0004
+    };
+
     class Drawer {
         friend Model;
     protected:
@@ -28,6 +33,8 @@ public:
 
 protected:
 
+    DrawMode _draw_mode;
+
     Matrix4 _mvp_matrix;
 
     Mesh*  _mesh;
@@ -36,10 +43,11 @@ protected:
 
 public:
 
-    Model(Mesh*);
+    Model(Mesh*, DrawMode = Triangles);
     ~Model() override;
 
     Mesh* mesh() const;
+    DrawMode draw_mode() const;
 
     void draw() const;
 

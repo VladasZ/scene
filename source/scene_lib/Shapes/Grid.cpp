@@ -37,7 +37,7 @@ static Mesh* create_mesh(Size size, Size resolution) {
 }
 
 Grid::Grid(Size size, Size resolution) :
-    Model(create_mesh(size, resolution)),
+    Model(create_mesh(size, resolution), Model::DrawMode::Lines),
     size(size),
     resolution(resolution)
 { }
