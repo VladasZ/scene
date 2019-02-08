@@ -28,3 +28,7 @@ ColoredMesh::ColoredMesh(const std::vector<Vector3>& vertices,
         data.push_back(colors.back().b);
     }
 }
+
+ColoredMesh::~ColoredMesh() {
+
+}

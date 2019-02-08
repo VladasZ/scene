@@ -20,6 +20,10 @@ Mesh::Mesh(const std::vector<Vector3>& vertices, const std::vector<unsigned shor
 
 }
 
+Mesh::~Mesh() {
+
+}
+
 const char* Mesh::to_string() const {
     static std::string string;
     for (auto& ver : vertices)

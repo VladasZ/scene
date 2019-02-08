@@ -13,11 +13,16 @@
 #include "Model.hpp"
 #include "Camera.hpp"
 #include "Mesh.hpp"
+#include "SceneConfig.hpp"
 
 using namespace scene;
 
-Model::Model(Mesh* mesh) : _mesh(mesh) {
+Model::Drawer::~Drawer() {
 
+}
+
+Model::Model(Mesh* mesh) : _mesh(mesh) {
+    _drawer = config::drawer->init_model_drawer(this);
 }
 
 Model::~Model() {
@@ -26,6 +31,10 @@ Model::~Model() {
 
 Mesh* Model::mesh() const {
     return _mesh;
+}
+
+void Model::draw() const {
+    _drawer->_draw();
 }
 
 const Matrix4& Model::mvp_matrix() const {

@@ -9,13 +9,17 @@
 #include <vector>
 
 #include "Matrix4.hpp"
+#include "SceneConfig.hpp"
 
 namespace scene {
 
 class Camera;
 class Object;
+class Model;
 
 class Scene {
+
+    std::vector<Model*> _models;
 
 public:
 
@@ -28,6 +32,7 @@ public:
     void add_object(Object*);
 
     void update();
+    void draw();
 
 };
 

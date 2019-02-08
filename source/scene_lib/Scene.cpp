@@ -9,6 +9,7 @@
 #include <iostream>
 using namespace std;
 
+#include "Model.hpp"
 #include "Scene.hpp"
 #include "Camera.hpp"
 #include "Object.hpp"
@@ -29,9 +30,17 @@ void Scene::add_object(Object* obj) {
     _objects.push_back(obj);
     obj->_scene = this;
     obj->update_matrices();
+
+    if (auto model = dynamic_cast<Model*>(obj))
+        _models.push_back(model);
 }
 
 void Scene::update() {
     for (auto obj : _objects)
         obj->update();
+}
+
+void Scene::draw() {
+    for (auto mod : _models)
+        mod->draw();
 }

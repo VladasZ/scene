@@ -23,6 +23,7 @@ public:
 
     ColoredMesh(const std::vector<Vector3>&);
     ColoredMesh(const std::vector<Vector3>&, const std::vector<unsigned short>&);
+    ~ColoredMesh() override;
 };
 
 }
