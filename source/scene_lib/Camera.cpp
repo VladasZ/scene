@@ -30,7 +30,6 @@ void Camera::move_orbit(const Point& shift) {
     Matrix4 rotation = glm::eulerAngleXZ(shift.y, shift.x);
 
     _position = rotation * (_position - _target) + _target;
-    //_up = rotation * _up;
 
     update_matrices();
 }
@@ -54,5 +53,11 @@ void Camera::update_matrices() {
 void Camera::update() {
     _target += velocity;
     Movable::update();
+}
+
+const Vector3& Camera::_direction() {
+    static Vector3 direction;
+    direction = _target - _position;
+    return direction;
 }
 

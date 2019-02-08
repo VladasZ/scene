@@ -7,11 +7,11 @@
 //
 
 #include "Size.hpp"
-#include "Movable.hpp"
+#include "Walkable.hpp"
 
 namespace scene {
 
-class Camera : public Movable {
+class Camera : public Walkable {
 
     Matrix4 _view_matrix;
     Matrix4 _projection_matrix;
@@ -32,9 +32,12 @@ public:
 
     void move_orbit(const Point&);
 
+private:
+
     void update_matrices() override;
     void update() override;
 
+    const Vector3& _direction() override;
 };
 
 }
