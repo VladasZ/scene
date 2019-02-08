@@ -16,7 +16,8 @@ class Camera : public Movable {
     Matrix4 _view_matrix;
     Matrix4 _projection_matrix;
 
-    Vector3 _target {  };
+    Vector3 _target;
+    Vector3 _up { 0, 0, 1 };
 
 public:
 
@@ -29,7 +30,10 @@ public:
     const Matrix4& view_matrix() const;
     const Matrix4& projection_matrix() const;
 
+    void move_orbit(const Point&);
+
     void update_matrices() override;
+    void update() override;
 
 };
 

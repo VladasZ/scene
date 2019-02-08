@@ -10,6 +10,7 @@
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtx/euler_angles.hpp"
 
 #include "Scene.hpp"
 #include "Camera.hpp"
@@ -24,12 +25,23 @@ const Matrix4& Camera::projection_matrix() const {
     return _projection_matrix;
 }
 
+void Camera::move_orbit(const Point& shift) {
+
+    Matrix4 rotation = glm::eulerAngleXZ(shift.y, shift.x);
+
+    _position = rotation * (_position - _target) + _target;
+    //_up = rotation * _up;
+
+    update_matrices();
+}
+
 void Camera::update_matrices() {
+
     _view_matrix = glm::lookAt(
-    { _position.x, _position.y, _position.z }, // Camera is at (4,3,3), in World Space
-    { 0,0,0 }, // and looks at the origin
-                glm::vec3(0,0,1)  // Head is up (set to 0,-1,0 to look upside-down)
-                );
+              { _position.x, _position.y, _position.z },
+              {   _target.x,   _target.y,   _target.z },
+    glm::vec3 {       _up.x,       _up.y,       _up.z }
+    );
 
     _projection_matrix = glm::perspective(fov, resolution.width / resolution.height, z_near, z_far);
 
@@ -37,5 +49,10 @@ void Camera::update_matrices() {
         if (obj != this)
             obj->update_matrices();
     }
+}
+
+void Camera::update() {
+    _target += velocity;
+    Movable::update();
 }
 
