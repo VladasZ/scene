@@ -6,9 +6,6 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
 #include "Translatable.hpp"
 
 using namespace scene;
@@ -19,5 +16,5 @@ const Matrix4& Translatable::translation_matrix() const {
 }
 
 void Translatable::update_matrices() {
-    _translation_matrix = glm::translate(glm::mat4 { }, { _position.x, _position.y, _position.z });
+    _translation_matrix =  Matrix4::transform::translation(_position);
 }

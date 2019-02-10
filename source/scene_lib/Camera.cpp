@@ -8,10 +8,6 @@
 
 #include <iostream>
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/euler_angles.hpp"
-
 #include "Scene.hpp"
 #include "Camera.hpp"
 
@@ -27,7 +23,10 @@ const Matrix4& Camera::projection_matrix() const {
 
 void Camera::move_orbit(const Point& shift) {
 
-    Matrix4 rotation = glm::eulerAngleXZ(shift.y, shift.x);
+    auto rotation_z = Matrix4::transform::rotation_z(shift.x);
+    auto rotation_x = Matrix4::transform::rotation_x(shift.y);
+
+    Matrix4 rotation = rotation_x * rotation_z;
 
     _position = rotation * (_position - _target) + _target;
 
@@ -36,13 +35,9 @@ void Camera::move_orbit(const Point& shift) {
 
 void Camera::update_matrices() {
 
-    _view_matrix = glm::lookAt(
-              { _position.x, _position.y, _position.z },
-              {   _target.x,   _target.y,   _target.z },
-    glm::vec3 {       _up.x,       _up.y,       _up.z }
-    );
+    _view_matrix = Matrix4::transform::look_at(_position, _target, _up);
 
-    _projection_matrix = glm::perspective(fov, resolution.width / resolution.height, z_near, z_far);
+    _projection_matrix =  Matrix4::transform::perspective(fov, resolution.width / resolution.height, z_near, z_far);
 
     for (auto obj : _scene->_objects) {
         if (obj != this)
