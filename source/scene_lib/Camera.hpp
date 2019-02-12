@@ -23,7 +23,7 @@ public:
 
     float fov    = 1;
     float z_near = 0.1f;
-    float z_far  = 100.0f;
+    float z_far  = 10000.0f;
 
     Size resolution { 100, 100 };
 
