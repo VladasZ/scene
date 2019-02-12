@@ -8,4 +8,6 @@ add_executable(${PROJECT_NAME} ${SOURCE})
 conan_target_link_libraries(${PROJECT_NAME})
 
 link_project(scene_lib)
-link_project(geometry)
+
+link_project_at_path(geometry  ${geometry_path} )
+link_project_at_path(cpp_utils ${cpp_utils_path})

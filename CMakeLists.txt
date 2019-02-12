@@ -12,4 +12,7 @@ conan_basic_setup()
 
 add_subdirectory(source/scene)
 add_subdirectory(source/scene_lib)
-add_subdirectory(source/geometry)
+
+foreach(var ${GIT_DEPENDENCIES})
+  add_subdirectory(${var})
+endforeach()
