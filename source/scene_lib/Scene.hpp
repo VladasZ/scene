@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#pragma once
+
 #include <vector>
 
 #include "Matrix4.hpp"
