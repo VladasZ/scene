@@ -10,12 +10,12 @@
 
 #include <vector>
 
+#include "Camera.hpp"
 #include "Matrix4.hpp"
 #include "SceneConfig.hpp"
 
 namespace scene {
 
-class Camera;
 class Object;
 class Model;
 

@@ -45,5 +45,5 @@ void Scene::draw() {
 }
 
 void Scene::setup() {
-    add_object(new scene::Grid({ 10, 10 }, { 10, 10 }));
+
 }
