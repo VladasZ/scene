@@ -2,4 +2,5 @@
 *#
 *.#*
 /build
+/dep_build
 *txt.user

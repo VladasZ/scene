@@ -21,6 +21,8 @@ class Model;
 
 class Scene {
 
+protected:
+
     std::vector<Model*> _models;
 
 public:
@@ -35,6 +37,7 @@ public:
 
     void update();
     void draw();
+    virtual void setup();
 
 };
 

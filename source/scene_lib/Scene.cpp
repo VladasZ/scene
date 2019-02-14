@@ -9,10 +9,9 @@
 #include <iostream>
 using namespace std;
 
-#include "Model.hpp"
+#include "Grid.hpp"
 #include "Scene.hpp"
 #include "Camera.hpp"
-#include "Object.hpp"
 
 using namespace scene;
 
@@ -43,4 +42,8 @@ void Scene::update() {
 void Scene::draw() {
     for (auto mod : _models)
         mod->draw();
+}
+
+void Scene::setup() {
+    add_object(new scene::Grid({ 10, 10 }, { 10, 10 }));
 }
