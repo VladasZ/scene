@@ -21,6 +21,11 @@ const Matrix4& Camera::projection_matrix() const {
     return _projection_matrix;
 }
 
+void Camera::set_target(const Vector3& target) {
+    _target = target;
+    update_matrices();
+}
+
 void Camera::move_orbit(const Point& shift) {
 
     auto rotation_z = Matrix4::transform::rotation_z(shift.x);

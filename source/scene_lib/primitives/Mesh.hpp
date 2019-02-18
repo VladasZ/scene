@@ -18,8 +18,9 @@ class Mesh {
 
 public:
 
-    std::vector<Vector3> vertices;
-    std::vector<unsigned short> indices;
+    const std::vector<Vector3> vertices;
+    const std::vector<unsigned short> indices;
+    const Vector3 middle_point;
 
     Mesh() = default;
     Mesh(const std::vector<Vector3>&);

@@ -32,6 +32,8 @@ public:
     const Matrix4& view_matrix() const;
     const Matrix4& projection_matrix() const;
 
+    void set_target(const Vector3&);
+
     void move_orbit(const Point&);
 
 private:

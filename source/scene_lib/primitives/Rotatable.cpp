@@ -13,6 +13,15 @@
 
 using namespace scene;
 
+const Vector3& Rotatable::pivot() const {
+    return _pivot;
+}
+
+void Rotatable::set_pivot(const Vector3& pivot) {
+    _pivot = pivot;
+    update_matrices();
+}
+
 const Vector4& Rotatable::rotation() const {
     return _rotation;
 }
