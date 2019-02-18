@@ -14,6 +14,10 @@ namespace scene {
 
 class Rotatable : public Translatable {
 
+private:
+
+    bool _default_pivot = true;
+
 protected:
 
     Vector3 _pivot;
