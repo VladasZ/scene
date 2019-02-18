@@ -23,7 +23,7 @@ Model::Drawer::~Drawer() {
 
 Model::Model(Mesh* mesh, DrawMode draw_mode) : _draw_mode(draw_mode), _mesh(mesh) {
     _drawer = config::drawer->init_model_drawer(this);
-    _pivot = mesh->middle_point;
+    _pivot = Vector3::middle_point(mesh->vertices);
 }
 
 Model::~Model() {

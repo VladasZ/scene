@@ -6,8 +6,6 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include <cstdint>
-
 #include "Mesh.hpp"
 #include "Color.hpp"
 #include "Vector3.hpp"

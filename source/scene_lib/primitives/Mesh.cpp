@@ -13,10 +13,10 @@
 using namespace scene;
 
 Mesh::Mesh(const std::vector<Vector3>& vertices)
-    : vertices(vertices), middle_point(Vector3::middle_point(vertices)) { }
+    : vertices(vertices) { }
 
 Mesh::Mesh(const std::vector<Vector3>& vertices, const std::vector<unsigned short>& indices)
-    : vertices(vertices), indices(indices), middle_point(Vector3::middle_point(vertices))  { }
+    : vertices(vertices), indices(indices) { }
 
 Mesh::~Mesh() { }
 

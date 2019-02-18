@@ -16,8 +16,9 @@ using namespace scene;
 
 void Rotatable::look_at(const Vector3& target) {
     static const Vector3 up = { 0, 0, 1 };
-    const Vector3 eye = _pivot - _position;
-    _rotation = Vector4::look_at_quaternion(eye, target, up);
+    //const Vector3 eye = _pivot - _position;
+    //_rotation = Vector4::look_at_quaternion({ }, target, up);
+    _rotation_matrix = Matrix4::transform::look_at({ }, target, up);
     update_matrices();
 }
 
@@ -45,13 +46,9 @@ const Matrix4& Rotatable::rotation_matrix() const {
 void Rotatable::update_matrices() {
     Translatable::update_matrices();
 
-    glm::quat q;
-
-    glm::vec4 vec = { q.x, q.y, q.z, q.w };
-
     auto rotation          = glm::rotate(glm::mat4 { }, _rotation.w, { _rotation.x, _rotation.y, _rotation.z });
     auto translate_pivot   = Matrix4::transform::translation(_pivot);
     auto untranslate_pivot = translate_pivot.inversed();
 
-    _rotation_matrix =  translate_pivot * rotation * untranslate_pivot;
+    //_rotation_matrix =  translate_pivot * rotation * untranslate_pivot;
 }

@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include <cstdint>
-
 #include "Vector3.hpp"
 
 namespace scene {
@@ -20,7 +18,6 @@ public:
 
     const std::vector<Vector3> vertices;
     const std::vector<unsigned short> indices;
-    const Vector3 middle_point;
 
     Mesh() = default;
     Mesh(const std::vector<Vector3>&);
