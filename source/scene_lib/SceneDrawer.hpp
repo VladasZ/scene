@@ -1,5 +1,5 @@
 //
-//  Drawer.hpp
+//  SceneDrawer.hpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 2/8/19.
@@ -12,11 +12,11 @@
 
 namespace scene {
 
-class Drawer {
+class SceneDrawer {
 
 public:
 
-    virtual ~Drawer();
+    virtual ~SceneDrawer();
     virtual Model::Drawer* init_model_drawer(Model*) = 0;
 
 };

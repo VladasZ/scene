@@ -8,12 +8,12 @@
 
 #pragma once
 
-#include "Drawer.hpp"
+#include "SceneDrawer.hpp"
 
 namespace scene {
 
 struct config {
-    static Drawer* drawer;
+    static SceneDrawer* drawer;
 };
 
 }

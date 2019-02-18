@@ -10,4 +10,4 @@
 
 using namespace scene;
 
-Drawer* config::drawer;
+SceneDrawer* config::drawer;
