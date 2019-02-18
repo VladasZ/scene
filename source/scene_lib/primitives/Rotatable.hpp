@@ -14,10 +14,6 @@ namespace scene {
 
 class Rotatable : public Translatable {
 
-private:
-
-    bool _default_pivot = true;
-
 protected:
 
     Vector3 _pivot;
@@ -25,6 +21,8 @@ protected:
     Matrix4 _rotation_matrix;
 
 public:
+
+    void look_at(const Vector3&);
 
     const Vector3& pivot() const;
     void set_pivot(const Vector3&);

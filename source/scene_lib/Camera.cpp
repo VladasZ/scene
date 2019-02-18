@@ -40,9 +40,8 @@ void Camera::move_orbit(const Point& shift) {
 
 void Camera::update_matrices() {
 
-    _view_matrix = Matrix4::transform::look_at(_position, _target, _up);
-
-    _projection_matrix =  Matrix4::transform::perspective(fov, resolution.width / resolution.height, z_near, z_far);
+    _view_matrix       = Matrix4::transform::look_at(_position, _target, _up);
+    _projection_matrix = Matrix4::transform::perspective(fov, resolution.width / resolution.height, z_near, z_far);
 
     for (auto obj : _scene->_objects) {
         if (obj != this)
@@ -60,4 +59,3 @@ const Vector3& Camera::_direction() {
     direction = _target - _position;
     return direction;
 }
-
