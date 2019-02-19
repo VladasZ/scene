@@ -15,5 +15,8 @@ TexturedMesh::TexturedMesh(const std::vector<Vector3       >& vertices,
                            const std::vector<Point         >& texture_coordinates) : Mesh(vertices, indices) {
     uv = texture_coordinates;
 
-
+    for (unsigned int i = 0; i < vertices.size(); i++) {
+        vertices[i].append_to_container(data);
+        uv[i].append_to_container(data);
+    }
 }

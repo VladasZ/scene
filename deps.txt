@@ -1,3 +1,4 @@
 soil
+scene
 geometry
 cpp_utils
