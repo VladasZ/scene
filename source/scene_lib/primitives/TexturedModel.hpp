@@ -20,6 +20,8 @@ class TexturedModel : public Model {
 public:
 
     TexturedModel(Image*, Mesh*);
+
+    Image* texture() const;
 };
 
 }

@@ -13,3 +13,8 @@ using namespace scene;
 TexturedModel::TexturedModel(Image* texture, Mesh* mesh) : Model(mesh) {
     _texture = texture;
 }
+
+
+Image* TexturedModel::texture() const {
+    return _texture;
+}
