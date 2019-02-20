@@ -9,11 +9,11 @@
 #pragma once
 
 #include "Size.hpp"
-#include "Walkable.hpp"
+#include "Flyable.hpp"
 
 namespace scene {
 
-class Camera : public Walkable {
+class Camera : public Flyable {
 
     Matrix4 _view_matrix;
     Matrix4 _projection_matrix;

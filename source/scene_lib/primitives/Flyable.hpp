@@ -12,15 +12,17 @@
 
 namespace scene {
 
-class Walkable : public Movable {
+class Flyable : public Movable {
 
 public:
 
     enum Direction {
-        Forward = 0b0001,
-        Back    = 0b0010,
-        Left    = 0b0100,
-        Right   = 0b1000
+        Forward = 0b000001,
+        Back    = 0b000010,
+        Left    = 0b000100,
+        Right   = 0b001000,
+        Up      = 0b010000,
+        Down    = 0b100000
     };
 
 private:
@@ -29,9 +31,9 @@ private:
 
 public:
 
-    float walking_speed = 0.1f;
+    float flying_speed = 0.1f;
 
-    void walk(Direction);
+    void fly(Direction);
 
 
 };

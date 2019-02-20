@@ -1,5 +1,5 @@
 //
-//  Walkable.cpp
+//  Flyable.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 2/8/19.
@@ -9,20 +9,20 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-#include "Walkable.hpp"
+#include "Flyable.hpp"
 
 using namespace scene;
 
 
-void Walkable::walk(Direction direction) {
+void Flyable::fly(Direction direction) {
 
-    Vector3 vel = _direction();
+    Vector3 vel = _direction().point();
     Vector3 side = vel.cross({ 0, 0, 1 });
     vel.normalize();
-    vel *= walking_speed;
+    vel *= flying_speed;
 
     side.normalize();
-    side *= walking_speed;
+    side *= flying_speed;
 
     if (direction == Direction::Forward)
         velocity = {  vel.x,  vel.y };
@@ -36,4 +36,9 @@ void Walkable::walk(Direction direction) {
     if (direction == Direction::Right)
         velocity = {  side.x,  side.y };
 
+    if (direction == Direction::Up)
+        velocity = { 0, 0,  flying_speed };
+
+    if (direction == Direction::Down)
+        velocity = { 0, 0, -flying_speed };
 }
