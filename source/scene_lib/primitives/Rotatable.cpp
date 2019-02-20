@@ -8,6 +8,7 @@
 
 #include "glm/glm.hpp"
 #include "glm/gtc/quaternion.hpp"
+#include "glm/gtx/euler_angles.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "Rotatable.hpp"
@@ -15,10 +16,20 @@
 using namespace scene;
 
 void Rotatable::look_at(const Vector3& target) {
-    static const Vector3 up = { 0, 0, 1 };
-    //const Vector3 eye = _pivot - _position;
-    //_rotation = Vector4::look_at_quaternion({ }, target, up);
-    _rotation_matrix = Matrix4::transform::look_at({ }, target, up);
+
+    const auto rotx = std::atan2(target.y, -target.z);
+
+    float roty;
+
+    if (target.z <= 0)
+       roty = -std::atan2(target.x * std::cos(rotx), -target.z);
+    else
+       roty =  std::atan2(target.x * std::cos(rotx),  target.z);
+
+    const auto rotz = std::atan2(std::cos(rotx), std::sin(rotx) * std::sin(roty));
+
+    _rotation_matrix = glm::eulerAngleXYZ(rotx, roty, rotz);
+
     update_matrices();
 }
 
