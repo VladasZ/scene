@@ -17,18 +17,16 @@ using namespace scene;
 
 void Rotatable::look_at(const Vector3& target) {
 
-    const auto rotx = std::atan2(target.y, -target.z);
+    const auto rotation_x     = std::atan2(target.y, -target.z);
+    const auto cos_rotation_x = std::cos(rotation_x);
 
-    float roty;
+    const auto rotation_y = target.z <= 0 ?
+                           -std::atan2(target.x * cos_rotation_x, -target.z) :
+                            std::atan2(target.x * cos_rotation_x,  target.z);
 
-    if (target.z <= 0)
-       roty = -std::atan2(target.x * std::cos(rotx), -target.z);
-    else
-       roty =  std::atan2(target.x * std::cos(rotx),  target.z);
+    const auto rotation_z = std::atan2(cos_rotation_x, std::sin(rotation_x) * std::sin(rotation_y));
 
-    const auto rotz = std::atan2(std::cos(rotx), std::sin(rotx) * std::sin(roty));
-
-    _rotation_matrix = glm::eulerAngleXYZ(rotx, roty, rotz);
+    _rotation_matrix = glm::eulerAngleXYZ(rotation_x, rotation_y, rotation_z);
 
     update_matrices();
 }
@@ -56,10 +54,8 @@ const Matrix4& Rotatable::rotation_matrix() const {
 
 void Rotatable::update_matrices() {
     Translatable::update_matrices();
-
-    auto rotation          = glm::rotate(glm::mat4 { }, _rotation.w, { _rotation.x, _rotation.y, _rotation.z });
-    auto translate_pivot   = Matrix4::transform::translation(_pivot);
-    auto untranslate_pivot = translate_pivot.inversed();
-
+//    auto rotation          = glm::rotate(glm::mat4 { }, _rotation.w, { _rotation.x, _rotation.y, _rotation.z });
+//    auto translate_pivot   = Matrix4::transform::translation(_pivot);
+//    auto untranslate_pivot = translate_pivot.inversed();
     //_rotation_matrix =  translate_pivot * rotation * untranslate_pivot;
 }

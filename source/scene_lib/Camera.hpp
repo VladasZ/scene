@@ -33,6 +33,7 @@ public:
     const Matrix4& projection_matrix() const;
 
     void set_target(const Vector3&);
+    const Vector3& target() const;
 
     void move_orbit(const Point&);
 

@@ -26,15 +26,14 @@ void Camera::set_target(const Vector3& target) {
     update_matrices();
 }
 
+const Vector3& Camera::target() const {
+    return _target;
+}
+
 void Camera::move_orbit(const Point& shift) {
-
-    auto rotation_z = Matrix4::transform::rotation_z(shift.x);
-    auto rotation_x = Matrix4::transform::rotation_x(shift.y);
-
-    Matrix4 rotation = rotation_x * rotation_z;
-
-    _position = rotation * (_position - _target) + _target;
-
+    auto relative_position = _position - _target;
+    relative_position.orbit_shift(shift);
+    _position = relative_position + _target;
     update_matrices();
 }
 

@@ -47,6 +47,6 @@ const Matrix4& Model::mvp_matrix() const {
 }
 
 void Model::update_matrices() {
-    Rotatable::update_matrices();
-    _mvp_matrix = _scene->camera->projection_matrix() * _scene->camera->view_matrix() * _translation_matrix * _rotation_matrix;
+    Scalable::update_matrices();
+    _mvp_matrix = _scene->camera->projection_matrix() * _scene->camera->view_matrix() * _translation_matrix * _rotation_matrix * _scale_matrix;
 }

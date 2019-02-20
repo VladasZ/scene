@@ -8,13 +8,13 @@
 
 #pragma once
 
-#include "Rotatable.hpp"
+#include "Scalable.hpp"
 
 namespace scene {
 
 class Mesh;
 
-class Model : public Rotatable {
+class Model : public Scalable {
 
 public:
 
