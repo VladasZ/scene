@@ -10,11 +10,16 @@
 
 using namespace scene;
 
-float Scalable::scale() const {
+const Vector3& Scalable::scale() const {
     return _scale;
 }
 
 void Scalable::set_scale(float scale) {
+    _scale = { scale, scale, scale };
+    update_matrices();
+}
+
+void Scalable::set_scale(const Vector3& scale) {
     _scale = scale;
     update_matrices();
 }
