@@ -16,12 +16,15 @@
 
 namespace scene {
 
-class Object;
+class Box;
 class Model;
+class Object;
 
 class Scene {
 
 protected:
+
+    Box* _dummy_box;
 
     std::vector<Model*> _models;
 
@@ -34,6 +37,8 @@ public:
     virtual ~Scene();
 
     void add_object(Object*);
+    void add_box(const Vector3&, float = 0.1f);
+    void draw_box(const Vector3&);
 
     void update();
     void draw();

@@ -9,6 +9,7 @@
 #include <iostream>
 using namespace std;
 
+#include "Box.hpp"
 #include "Grid.hpp"
 #include "Scene.hpp"
 #include "Camera.hpp"
@@ -18,6 +19,9 @@ using namespace scene;
 
 Scene::Scene() : camera(new Camera()) {
     add_object(camera);
+    _dummy_box = new Box(0.1f);
+    _dummy_box->set_position({ 0, 0, 10000000000.0f });
+    add_object(_dummy_box);
 }
 
 Scene::~Scene() {
@@ -32,6 +36,17 @@ void Scene::add_object(Object* obj) {
 
     if (auto model = dynamic_cast<Model*>(obj))
         _models.push_back(model);
+}
+
+void Scene::add_box(const Vector3& position, float size) {
+    auto box = new Box(size);
+    box->set_position(position);
+    add_object(box);
+}
+
+void Scene::draw_box(const Vector3& position) {
+    _dummy_box->set_position(position);
+    _dummy_box->draw();
 }
 
 void Scene::update() {
