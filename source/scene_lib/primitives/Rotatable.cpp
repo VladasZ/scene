@@ -52,6 +52,16 @@ const Matrix4& Rotatable::rotation_matrix() const {
     return _rotation_matrix;
 }
 
+void Rotatable::set_rotation_matrix(const Matrix4& rotation_matrix) {
+    _rotation_matrix = rotation_matrix;
+    update_matrices();
+}
+
+void Rotatable::add_rotation(const Matrix4& rotation) {
+    _rotation_matrix = rotation *_rotation_matrix;
+    update_matrices();
+}
+
 void Rotatable::update_matrices() {
     Translatable::update_matrices();
 //    auto rotation          = glm::rotate(glm::mat4 { }, _rotation.w, { _rotation.x, _rotation.y, _rotation.z });

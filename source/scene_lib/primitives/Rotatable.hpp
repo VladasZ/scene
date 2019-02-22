@@ -31,6 +31,9 @@ public:
     void set_rotation(const Vector4&);
 
     const Matrix4& rotation_matrix() const;
+    void set_rotation_matrix(const Matrix4&);
+
+    void add_rotation(const Matrix4&);
 
     void update_matrices() override;
 
