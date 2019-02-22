@@ -16,18 +16,7 @@
 using namespace scene;
 
 void Rotatable::look_at(const Vector3& target) {
-
-    const auto rotation_x     = std::atan2(target.y, -target.z);
-    const auto cos_rotation_x = std::cos(rotation_x);
-
-    const auto rotation_y = target.z <= 0 ?
-                           -std::atan2(target.x * cos_rotation_x, -target.z) :
-                            std::atan2(target.x * cos_rotation_x,  target.z);
-
-    const auto rotation_z = std::atan2(cos_rotation_x, std::sin(rotation_x) * std::sin(rotation_y));
-
-    _rotation_matrix = glm::eulerAngleXYZ(rotation_x, rotation_y, rotation_z);
-
+    _rotation_matrix = Matrix4::transform::model_look_at(target);
     update_matrices();
 }
 

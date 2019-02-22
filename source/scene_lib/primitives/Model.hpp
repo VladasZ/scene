@@ -35,7 +35,6 @@ protected:
 
     DrawMode _draw_mode;
 
-    Matrix4 _transform;
     Matrix4 _mvp_matrix;
 
     Mesh*  _mesh;
@@ -53,9 +52,6 @@ public:
     DrawMode draw_mode() const;
 
     void draw() const;
-
-    void set_transform(const Matrix4&);
-    const Matrix4& transform() const;
 
     const Matrix4& mvp_matrix() const;
 
