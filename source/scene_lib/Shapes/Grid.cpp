@@ -36,7 +36,7 @@ static Mesh* create_mesh(Size size, Size resolution) {
     return new Mesh(vertices);
 }
 
-Grid::Grid(Size size, Size resolution) :
+Grid::Grid(const Size& size, const Size& resolution) :
     Model(create_mesh(size, resolution), Model::DrawMode::Lines),
     size(size),
     resolution(resolution)

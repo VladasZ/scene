@@ -38,6 +38,7 @@ public:
     void update();
     void draw();
     virtual void setup();
+    virtual void each_frame();
 
 };
 

@@ -44,6 +44,8 @@ protected:
 
 public:
 
+    bool is_transparent = false;
+
     Model(Mesh*, DrawMode = Triangles);
     ~Model() override;
 

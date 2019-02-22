@@ -42,8 +42,13 @@ void Scene::update() {
 void Scene::draw() {
     for (auto mod : _models)
         mod->draw();
+    each_frame();
 }
 
 void Scene::setup() {
+
+}
+
+void Scene::each_frame() {
 
 }
