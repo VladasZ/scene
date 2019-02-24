@@ -19,7 +19,7 @@ using namespace scene;
 
 Scene::Scene() : camera(new Camera()) {
     add_object(camera);
-    _dummy_box = new Box(0.1f);
+    _dummy_box = new Box(0.02f);
     _dummy_box->set_position({ 0, 0, 10000000000.0f });
     add_object(_dummy_box);
 }

@@ -35,6 +35,7 @@ protected:
 
     DrawMode _draw_mode;
 
+    Matrix4 _view_matrix;
     Matrix4 _mvp_matrix;
 
     Mesh*  _mesh;
@@ -53,6 +54,7 @@ public:
 
     void draw() const;
 
+    const Matrix4& view_matrix() const;
     const Matrix4& mvp_matrix() const;
 
 private:

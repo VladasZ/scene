@@ -21,6 +21,10 @@ const Matrix4& Camera::projection_matrix() const {
     return _projection_matrix;
 }
 
+const Matrix4& Camera::view_projection_matrix() const {
+    return _view_projection_matrix;
+}
+
 void Camera::set_target(const Vector3& target) {
     _target = target;
     update_matrices();
@@ -39,8 +43,9 @@ void Camera::move_orbit(const Point& shift) {
 
 void Camera::update_matrices() {
 
-    _view_matrix       = Matrix4::transform::look_at(_position, _target, _up);
-    _projection_matrix = Matrix4::transform::perspective(fov, resolution.width / resolution.height, z_near, z_far);
+    _view_matrix            = Matrix4::transform::look_at(_position, _target, _up);
+    _projection_matrix      = Matrix4::transform::perspective(fov, resolution.width / resolution.height, z_near, z_far);
+    _view_projection_matrix = _projection_matrix * _view_matrix;
 
     for (auto obj : _scene->_objects) {
         if (obj != this)

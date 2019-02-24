@@ -42,11 +42,16 @@ void Model::draw() const {
     _drawer->_draw();
 }
 
+const Matrix4& Model::view_matrix() const {
+    return _view_matrix;
+}
+
 const Matrix4& Model::mvp_matrix() const {
     return _mvp_matrix;
 }
 
 void Model::update_matrices() {
     Scalable::update_matrices();
-    _mvp_matrix = _scene->camera->projection_matrix() * _scene->camera->view_matrix() * _translation_matrix * _rotation_matrix * _scale_matrix;
+    _view_matrix = _translation_matrix * _rotation_matrix * _scale_matrix;
+    _mvp_matrix = _scene->camera->view_projection_matrix() * _view_matrix;
 }

@@ -17,6 +17,7 @@ class Camera : public Flyable {
 
     Matrix4 _view_matrix;
     Matrix4 _projection_matrix;
+    Matrix4 _view_projection_matrix;
 
     Vector3 _target;
     Vector3 _up { 0, 0, 1 };
@@ -31,6 +32,7 @@ public:
 
     const Matrix4& view_matrix() const;
     const Matrix4& projection_matrix() const;
+    const Matrix4& view_projection_matrix() const;
 
     void set_target(const Vector3&);
     const Vector3& target() const;
