@@ -17,6 +17,7 @@ class Mesh {
 public:
 
     const std::vector<Vector3> vertices;
+    std::vector<Vector3> normals;
     const std::vector<unsigned short> indices;
 
     Mesh() = default;

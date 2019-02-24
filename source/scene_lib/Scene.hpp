@@ -16,7 +16,6 @@
 
 namespace scene {
 
-class Box;
 class Model;
 class Object;
 
@@ -24,7 +23,7 @@ class Scene {
 
 protected:
 
-    Box* _dummy_box;
+    Model* _dummy_box;
 
     std::vector<Model*> _models;
 
