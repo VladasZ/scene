@@ -36,8 +36,9 @@ public:
     virtual ~Scene();
 
     void add_object(Object*);
-    void add_box(const Vector3&, float = 0.1f);
-    void draw_box(const Vector3&);
+
+    void add_box (const Vector3&, float = 0.05f);
+    void draw_box(const Vector3&, float = 0.05f);
 
     void update();
     void draw();
