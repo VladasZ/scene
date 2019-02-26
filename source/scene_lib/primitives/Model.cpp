@@ -38,7 +38,9 @@ Model::DrawMode Model::draw_mode() const {
     return _draw_mode;
 }
 
-void Model::draw() const {
+void Model::draw() {
+    if (_need_matrices_update)
+        update_matrices();
     _drawer->_draw();
 }
 

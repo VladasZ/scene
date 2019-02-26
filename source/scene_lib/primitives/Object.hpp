@@ -21,6 +21,8 @@ class Object {
 
 protected:
 
+    bool _need_matrices_update = true;
+
     Scene* _scene = nullptr;
 
     Vector3 _position;

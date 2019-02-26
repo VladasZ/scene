@@ -25,7 +25,6 @@ const Vector3& Object::position() const {
 
 void Object::set_position(const Vector3& position) {
     _position = position;
-    if (_scene)
-        update_matrices();
+    _need_matrices_update = true;
 }
 

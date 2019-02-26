@@ -52,7 +52,7 @@ public:
     Mesh* mesh() const;
     DrawMode draw_mode() const;
 
-    void draw() const;
+    void draw();
 
     const Matrix4& view_matrix() const;
     const Matrix4& mvp_matrix() const;

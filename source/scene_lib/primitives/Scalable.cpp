@@ -16,12 +16,12 @@ const Vector3& Scalable::scale() const {
 
 void Scalable::set_scale(float scale) {
     _scale = { scale, scale, scale };
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 void Scalable::set_scale(const Vector3& scale) {
     _scale = scale;
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 void Scalable::update_matrices() {

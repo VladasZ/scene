@@ -32,8 +32,6 @@ Scene::~Scene() {
 void Scene::add_object(Object* obj) {
     _objects.push_back(obj);
     obj->_scene = this;
-    obj->update_matrices();
-
     if (auto model = dynamic_cast<Model*>(obj))
         _models.push_back(model);
 }

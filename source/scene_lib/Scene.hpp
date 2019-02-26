@@ -21,9 +21,12 @@ class Object;
 
 class Scene {
 
+    friend Model;
+
 protected:
 
     Model* _dummy_box;
+    Model* _dummy_vector;
 
     std::vector<Model*> _models;
 

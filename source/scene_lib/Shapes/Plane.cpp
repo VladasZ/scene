@@ -19,5 +19,5 @@ static Mesh* create_mesh(const Size& size) {
 }
 
 Plane::Plane(const Size& size) : Model(create_mesh(size)), size(size) {
-
+    look_at({ 0, 0, 1 });
 }

@@ -17,7 +17,7 @@ using namespace scene;
 
 void Rotatable::look_at(const Vector3& target) {
     _rotation_matrix = Matrix4::transform::model_look_at(target);
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 const Vector3& Rotatable::pivot() const {
@@ -26,7 +26,7 @@ const Vector3& Rotatable::pivot() const {
 
 void Rotatable::set_pivot(const Vector3& pivot) {
     _pivot = pivot;
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 const Vector4& Rotatable::rotation() const {
@@ -43,12 +43,12 @@ const Matrix4& Rotatable::rotation_matrix() const {
 
 void Rotatable::set_rotation_matrix(const Matrix4& rotation_matrix) {
     _rotation_matrix = rotation_matrix;
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 void Rotatable::add_rotation(const Matrix4& rotation) {
     _rotation_matrix = rotation *_rotation_matrix;
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 void Rotatable::update_matrices() {
