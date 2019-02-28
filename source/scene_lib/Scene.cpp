@@ -24,7 +24,8 @@ Scene::Scene() : camera(new Camera()) {
     _dummy_box   ->set_position({ 0, 0, 10000000000.0f });
     _dummy_vector->set_position({ 0, 0, 10000000000.0f });
 
-    add_object(_dummy_box);
+    add_object(_dummy_box   );
+    add_object(_dummy_vector);
 }
 
 Scene::~Scene() {

@@ -43,7 +43,7 @@ public:
 
     template <class T>
     const std::vector<T>& vertices() const {
-        return static_cast<const std::vector<T>&>(_vertices_array);
+        return *static_cast<const std::vector<T>*>(_vertices_array);
     }
 
     float* vertices_data     () const;
