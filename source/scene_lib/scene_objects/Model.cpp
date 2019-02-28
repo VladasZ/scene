@@ -23,7 +23,7 @@ Model::Drawer::~Drawer() {
 
 Model::Model(Mesh* mesh, DrawMode draw_mode) : _draw_mode(draw_mode), _mesh(mesh) {
     _drawer = config::drawer->init_model_drawer(this);
-    _pivot = Vector3::middle_point(mesh->vertices);
+    //_pivot = Vector3::middle_point(mesh->vertices);
 }
 
 Model::~Model() {
@@ -42,6 +42,13 @@ void Model::draw() {
     if (_need_matrices_update)
         update_matrices();
     _drawer->_draw();
+}
+
+void Model::draw_normals() {
+    if (_need_matrices_update)
+        update_matrices();
+
+
 }
 
 const Matrix4& Model::view_matrix() const {

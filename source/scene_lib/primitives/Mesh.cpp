@@ -8,25 +8,64 @@
 
 #include <string>
 
+#include "Array.hpp"
+
 #include "Mesh.hpp"
 
 using namespace scene;
 
-Mesh::Mesh(const std::vector<Vector3>& vertices)
-    : vertices(vertices) { }
+Mesh::Mesh(Vertex::Array&& vertices)
+    : _type(Type::Plain), _vertices_data_size(array::bytes_size(vertices)) {
+    _vertices_array = new Vertex::Array { };
+    *static_cast<Vertex::Array*>(_vertices_array) = std::move(vertices);
+}
 
-Mesh::Mesh(const std::vector<Vector3>& vertices, const std::vector<unsigned short>& indices)
-    : vertices(vertices), indices(indices) { }
+Mesh::Mesh(Vertex::Array&& vertices, IndicesArray&& indices)
+    : _type(Type::Plain), _vertices_data_size(array::bytes_size(vertices)), _indices(std::move(indices)) {
+    _vertices_array = new Vertex::Array { };
+    *static_cast<Vertex::Array*>(_vertices_array) = std::move(vertices);
+}
 
-Mesh::~Mesh() { }
+Mesh::Mesh(ColoredVertex::Array&& vertices, IndicesArray&& indices)
+    : _type(Type::Colored), _vertices_data_size(array::bytes_size(vertices)), _indices(std::move(indices)) {
+    _vertices_array = new ColoredVertex::Array { };
+    *static_cast<ColoredVertex::Array*>(_vertices_array) = std::move(vertices);
+}
 
-const char* Mesh::to_string() const {
-    static std::string string;
-    for (auto& ver : vertices)
-        string += std::string() + ver.to_string() + "\n";
-    string += "\n";
-    string.pop_back();
-    for (auto& ind : indices)
-        string += std::string() + std::to_string(ind) + "\n";
-    return string.c_str();
+Mesh::Mesh(TexturedVertex::Array&& vertices, IndicesArray&& indices)
+    : _type(Type::Textured), _vertices_data_size(array::bytes_size(vertices)),  _indices(std::move(indices)) {
+    _vertices_array = new TexturedVertex::Array { };
+    *static_cast<TexturedVertex::Array*>(_vertices_array) = std::move(vertices);
+}
+
+Mesh::Type Mesh::type() const {
+    return _type;
+}
+
+float* Mesh::vertices_data() const {
+    return static_cast<std::vector<float>*>(_vertices_array)->data();
+}
+
+size_t Mesh::vertices_data_size() const {
+    return _vertices_data_size;
+}
+
+bool Mesh::has_indices() const {
+    return _indices.size();
+}
+
+const Mesh::IndicesArray& Mesh::indices() const {
+    return _indices;
+}
+
+bool Mesh::is_plain() const{
+    return _type == Type::Plain;
+}
+
+bool Mesh::is_colored() const {
+    return _type == Type::Colored;
+}
+
+bool Mesh::is_textured() const {
+    return _type == Type::Textured;
 }

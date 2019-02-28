@@ -10,13 +10,13 @@
 
 #include <vector>
 
-#include "Camera.hpp"
-#include "Matrix4.hpp"
+#include      "Camera.hpp"
+#include     "Matrix4.hpp"
 #include "SceneConfig.hpp"
 
 namespace scene {
 
-class Model;
+class Model ;
 class Object;
 
 class Scene {
@@ -25,7 +25,7 @@ class Scene {
 
 protected:
 
-    Model* _dummy_box;
+    Model*    _dummy_box;
     Model* _dummy_vector;
 
     std::vector<Model*> _models;
@@ -33,6 +33,7 @@ protected:
 public:
 
     Camera* const camera;
+
     std::vector<Object*> _objects;
 
     Scene();
@@ -44,8 +45,9 @@ public:
     void draw_box(const Vector3&, float = 0.05f);
 
     void update();
-    void draw();
-    virtual void setup();
+    void   draw();
+
+    virtual void      setup();
     virtual void each_frame();
 
 };

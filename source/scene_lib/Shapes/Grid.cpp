@@ -9,7 +9,6 @@
 #include <iostream>
 
 #include "Grid.hpp"
-#include "ColoredMesh.hpp"
 
 using namespace scene;
 
@@ -33,7 +32,7 @@ static Mesh* create_mesh(Size size, Size resolution) {
         vertices.emplace_back( width_min + size.width, height_min + height_step * i );
     }
 
-    return new Mesh(vertices);
+    return nullptr;//new Mesh(vertices);
 }
 
 Grid::Grid(const Size& size, const Size& resolution) :

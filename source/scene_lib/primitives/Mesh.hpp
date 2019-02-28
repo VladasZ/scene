@@ -8,7 +8,8 @@
 
 #pragma once
 
-#include "Vector3.hpp"
+#include  "ColoredVertex.hpp"
+#include "TexturedVertex.hpp"
 
 namespace scene {
 
@@ -16,16 +17,44 @@ class Mesh {
 
 public:
 
-    const std::vector<Vector3> vertices;
-    std::vector<Vector3> normals;
-    const std::vector<unsigned short> indices;
+    using IndicesArray = std::vector<Vertex::Index>;
 
-    Mesh() = default;
-    Mesh(const std::vector<Vector3>&);
-    Mesh(const std::vector<Vector3>&, const std::vector<unsigned short>&);
-    virtual ~Mesh();
+    enum Type {
+        Plain   ,
+        Colored ,
+        Textured,
+    };
 
-    const char* to_string() const;
+private:
+
+    const Type                 _type;
+    void*            _vertices_array;
+    const size_t _vertices_data_size;
+    const IndicesArray      _indices;
+
+public:
+
+    Mesh(        Vertex::Array&&                );
+    Mesh(        Vertex::Array&&, IndicesArray&&);
+    Mesh( ColoredVertex::Array&&, IndicesArray&&);
+    Mesh(TexturedVertex::Array&&, IndicesArray&&);
+
+    Type type() const;
+
+    template <class T>
+    const std::vector<T>& vertices() const {
+        return static_cast<const std::vector<T>&>(_vertices_array);
+    }
+
+    float* vertices_data     () const;
+    size_t vertices_data_size() const;
+
+    bool            has_indices() const;
+    const IndicesArray& indices() const;
+
+    bool is_plain   () const;
+    bool is_colored () const;
+    bool is_textured() const;
 
 };
 

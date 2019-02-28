@@ -32,7 +32,7 @@ public:
     virtual ~Object();
 
     const Vector3& position() const;
-    void set_position(const Vector3&);
+    void       set_position(const Vector3&);
 
     virtual void update_matrices() = 0;
     virtual void update() = 0;

@@ -23,7 +23,6 @@ public:
     Box(float size = 1);
     Box(float, float, float);
 
-    void refresh_mesh();
 };
 
 }

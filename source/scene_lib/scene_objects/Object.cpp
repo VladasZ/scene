@@ -8,7 +8,6 @@
 
 #include <iostream>
 
-#include "ColoredMesh.hpp"
 #include "Scene.hpp"
 #include "Camera.hpp"
 #include "Object.hpp"

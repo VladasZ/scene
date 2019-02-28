@@ -9,25 +9,26 @@
 #include <iostream>
 
 #include "Box.hpp"
-#include "ColoredMesh.hpp"
+#include "Mesh.hpp"
 
 using namespace scene;
 
-static ColoredMesh* create_mesh(float length, float width, float height) {
+static Mesh* create_mesh(float length, float width, float height) {
     const float length_2 = length / 2;
     const float  width_2 = width  / 2;
     const float height_2 = height / 2;
-    return new ColoredMesh {{
+    return new Mesh {
+        ColoredVertex::Array {
             // front
-            { -width_2, -length_2,  height_2 },
-            {  width_2, -length_2,  height_2 },
-            {  width_2,  length_2,  height_2 },
-            { -width_2,  length_2,  height_2 },
+            {{ -width_2, -length_2,  height_2 }, { 0, 0, 0 }},
+            {{  width_2, -length_2,  height_2 }, { 0, 0, 0 }},
+            {{  width_2,  length_2,  height_2 }, { 0, 0, 0 }},
+            {{ -width_2,  length_2,  height_2 }, { 0, 0, 0 }},
             // back
-            { -width_2, -length_2, -height_2 },
-            {  width_2, -length_2, -height_2 },
-            {  width_2,  length_2, -height_2 },
-            { -width_2,  length_2, -height_2 }
+            {{ -width_2, -length_2, -height_2 }, { 0, 0, 0 }},
+            {{  width_2, -length_2, -height_2 }, { 0, 0, 0 }},
+            {{  width_2,  length_2, -height_2 }, { 0, 0, 0 }},
+            {{ -width_2,  length_2, -height_2 }, { 0, 0, 0 }}
         },{
             // front
             0, 1, 2,
@@ -60,8 +61,3 @@ Box::Box(float length, float width, float height) :
     width(width),
     height(height)
 { }
-
-void Box::refresh_mesh() {
-    delete _mesh;
-    _mesh = create_mesh(length, width, height);
-}
