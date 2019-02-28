@@ -21,9 +21,12 @@ Model::Drawer::~Drawer() {
 
 }
 
-Model::Model(Mesh* mesh, DrawMode draw_mode) : _draw_mode(draw_mode), _mesh(mesh) {
+Model::Model(Mesh* mesh, Image* image) : _draw_mode(DrawMode::Triangles), _mesh(mesh), _image(image) {
     _drawer = config::drawer->init_model_drawer(this);
-    //_pivot = Vector3::middle_point(mesh->vertices);
+}
+
+Model::Model(Mesh* mesh, DrawMode draw_mode) : _draw_mode(draw_mode), _mesh(mesh), _image(nullptr) {
+    _drawer = config::drawer->init_model_drawer(this);
 }
 
 Model::~Model() {
@@ -49,6 +52,14 @@ void Model::draw_normals() {
         update_matrices();
 
 
+}
+
+bool Model::has_image() const {
+    return _image;
+}
+
+Image* Model::image() const {
+    return _image;
 }
 
 const Matrix4& Model::view_matrix() const {

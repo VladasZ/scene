@@ -10,6 +10,8 @@
 
 #include "Scalable.hpp"
 
+class Image;
+
 namespace scene {
 
 class Mesh;
@@ -20,14 +22,14 @@ public:
 
     enum DrawMode {
         Lines     = 0x0001,
-        Triangles = 0x0004
+        Triangles = 0x0004,
     };
 
     class Drawer {
         friend Model;
     protected:
         Model* _model;
-        virtual ~Drawer() = 0;
+        virtual ~Drawer()          = 0;
         virtual void _draw() const = 0;
     };
 
@@ -38,23 +40,26 @@ protected:
     Matrix4 _view_matrix;
     Matrix4  _mvp_matrix;
 
-    Mesh*  _mesh;
-
+    Mesh  *   _mesh;
+    Image *  _image;
     Drawer* _drawer;
 
 public:
 
     bool is_transparent = false;
 
-    Model(Mesh*, DrawMode = Triangles);
-    ~Model() override;
+     Model(Mesh*, Image*              );
+     Model(Mesh*, DrawMode = Triangles);
+    ~Model()                   override;
 
-    Mesh* mesh() const;
+    Mesh*         mesh() const;
     DrawMode draw_mode() const;
 
-    void draw();
-
+    void draw        ();
     void draw_normals();
+
+    bool has_image() const;
+    Image*   image() const;
 
     const Matrix4& view_matrix() const;
     const Matrix4&  mvp_matrix() const;
