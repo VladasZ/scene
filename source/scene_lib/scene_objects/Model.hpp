@@ -37,7 +37,7 @@ protected:
 
     DrawMode _draw_mode;
 
-    Matrix4 _view_matrix;
+    Matrix4 _model_matrix;
     Matrix4  _mvp_matrix;
 
     Mesh  *   _mesh;
@@ -61,7 +61,7 @@ public:
     bool has_image() const;
     Image*   image() const;
 
-    const Matrix4& view_matrix() const;
+    const Matrix4& model_matrix() const;
     const Matrix4&  mvp_matrix() const;
 
 private:

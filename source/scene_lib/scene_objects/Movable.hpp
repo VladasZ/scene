@@ -17,6 +17,8 @@ class Movable : public Object {
 
 public:
 
+    using Object::Object;
+
     Vector3 velocity;
 
     void stop();

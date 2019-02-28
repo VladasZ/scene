@@ -14,6 +14,10 @@
 
 using namespace scene;
 
+Object::Object(const Vector3& position) : _position(position) {
+
+}
+
 Object::~Object() {
 
 }
@@ -27,3 +31,10 @@ void Object::set_position(const Vector3& position) {
     _need_matrices_update = true;
 }
 
+void Object::update_matrices() {
+
+}
+
+void Object::update() {
+
+}

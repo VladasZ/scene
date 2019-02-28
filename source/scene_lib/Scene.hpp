@@ -16,8 +16,9 @@
 
 namespace scene {
 
-class Model ;
-class Object;
+class Model     ;
+class Object    ;
+class PointLight;
 
 class Scene {
 
@@ -28,9 +29,11 @@ protected:
     Model*    _dummy_box;
     Model* _dummy_vector;
 
-    std::vector<Model*> _models;
+    std::vector<Model*>             _models;
 
 public:
+
+    std::vector<PointLight*> _light_sources;
 
     Camera* const camera;
 
@@ -39,7 +42,8 @@ public:
     Scene();
     virtual ~Scene();
 
-    void add_object(Object*);
+    void add_object(Object    *);
+    void add_light (PointLight*);
 
     void add_box (const Vector3&, float = 0.05f);
     void draw_box(const Vector3&, float = 0.05f);

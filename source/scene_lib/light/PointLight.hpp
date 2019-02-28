@@ -14,6 +14,8 @@ class PointLight : public Movable {
 
 public:
 
+    using Movable::Movable;
+
 };
 
 }

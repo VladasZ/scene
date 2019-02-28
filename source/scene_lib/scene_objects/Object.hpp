@@ -23,19 +23,23 @@ protected:
 
     bool _need_matrices_update = true;
 
+public:
+
     Scene* _scene = nullptr;
 
     Vector3 _position;
 
 public:
 
-    virtual ~Object();
+    Object()              = default;
+    Object(const Vector3& position);
+    virtual               ~Object();
 
-    const Vector3& position() const;
+    const Vector3& position()         const;
     void       set_position(const Vector3&);
 
-    virtual void update_matrices() = 0;
-    virtual void update() = 0;
+    virtual void update_matrices();
+    virtual void update         ();
 };
 
 }

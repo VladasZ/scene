@@ -53,8 +53,8 @@ void Model::draw_normals() {
 
     if (mesh()->is_textured()) {
         for (const auto& ver : mesh()->vertices<TexturedVertex>()) {
-            _scene->_dummy_vector->set_position(_view_matrix *                  ver.position);
-            _scene->_dummy_vector->look_at     (_view_matrix.multiply_by_normal(ver.normal ));
+            _scene->_dummy_vector->set_position(_model_matrix *                 ver.position);
+            _scene->_dummy_vector->look_at     (_model_matrix.multiply_by_normal(ver.normal));
             _scene->_dummy_vector->                                                    draw();
         }
         _scene->_dummy_vector->draw();
@@ -62,8 +62,8 @@ void Model::draw_normals() {
     }
 
     for (const auto& ver : mesh()->vertices<ColoredVertex>()) {
-        _scene->_dummy_vector->set_position(_view_matrix *                  ver.position);
-        _scene->_dummy_vector->look_at     (_view_matrix.multiply_by_normal(ver.normal ));
+        _scene->_dummy_vector->set_position(_model_matrix *                 ver.position);
+        _scene->_dummy_vector->look_at     (_model_matrix.multiply_by_normal(ver.normal ));
         _scene->_dummy_vector->                                                    draw();
     }
 }
@@ -76,8 +76,8 @@ Image* Model::image() const {
     return _image;
 }
 
-const Matrix4& Model::view_matrix() const {
-    return _view_matrix;
+const Matrix4& Model::model_matrix() const {
+    return _model_matrix;
 }
 
 const Matrix4& Model::mvp_matrix() const {
@@ -86,6 +86,6 @@ const Matrix4& Model::mvp_matrix() const {
 
 void Model::update_matrices() {
     Scalable::update_matrices();
-    _view_matrix = _translation_matrix * _rotation_matrix * _scale_matrix;
-    _mvp_matrix = _scene->camera->view_projection_matrix() * _view_matrix;
+    _model_matrix = _translation_matrix * _rotation_matrix * _scale_matrix;
+    _mvp_matrix = _scene->camera->view_projection_matrix() * _model_matrix;
 }

@@ -40,6 +40,10 @@ void Scene::add_object(Object* obj) {
         _models.push_back(model);
 }
 
+void Scene::add_light(PointLight* light) {
+    _light_sources.push_back(light);
+}
+
 void Scene::add_box(const Vector3& position, float size) {
 //    auto box = new Box(size);
 //    add_object(box);
