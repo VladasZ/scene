@@ -11,6 +11,7 @@
 #include "Scene.hpp"
 #include "Vector.hpp"
 #include "Camera.hpp"
+#include "PointLight.hpp"
 
 using namespace scene;
 
@@ -45,9 +46,9 @@ void Scene::add_light(PointLight* light) {
 }
 
 void Scene::add_box(const Vector3& position, float size) {
-//    auto box = new Box(size);
-//    add_object(box);
-//    box->set_position(position);
+    auto box = new Box(size);
+    add_object(box);
+    box->set_position(position);
 }
 
 void Scene::draw_box(const Vector3& position, float size) {
@@ -59,6 +60,8 @@ void Scene::draw_box(const Vector3& position, float size) {
 void Scene::update() {
     for (auto obj : _objects)
         obj->update();
+    for (auto light : _light_sources)
+        light->update();
 }
 
 void Scene::draw() {
