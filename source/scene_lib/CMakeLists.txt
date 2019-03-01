@@ -7,7 +7,10 @@ add_library(${PROJECT_NAME} ${SOURCE})
 
 conan_target_link_libraries(${PROJECT_NAME})
 
-link_project_at_path(SOIL      ${soil_path}     )
+if(${DESKTOP_BUILD})
+	link_project_at_path(SOIL ${soil_path})
+endif()
+
 link_project_at_path(image     ${image_path}    )
 link_project_at_path(geometry  ${geometry_path} )
 link_project_at_path(cpp_utils ${cpp_utils_path})

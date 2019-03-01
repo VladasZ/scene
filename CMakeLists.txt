@@ -8,10 +8,22 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(scene)
 
+if(${DESKTOP_BUILD})
+	add_definitions(-DUI_DESKTOP=1)
+	add_definitions(-DIOS=0)
+endif()
+
+if(${IOS})
+	add_definitions(-DUI_DESKTOP=0)
+	add_definitions(-DIOS=1)
+endif()
+
 conan_basic_setup()
 
-add_subdirectory(source/scene)
 add_subdirectory(source/scene_lib)
+if(${DESKTOP_BUILD})
+	add_subdirectory(source/scene)
+endif()
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
   foreach(var ${GIT_DEPENDENCIES})
