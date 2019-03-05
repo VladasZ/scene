@@ -27,10 +27,14 @@ public:
 
 private:
 
-    const Type                 _type;
-    void*            _vertices_array;
-    const size_t _vertices_data_size;
-    const IndicesArray      _indices;
+    const Type _type;
+
+    const size_t _vertices_data_byte_size ;
+    const size_t _vertices_data_float_size;
+
+    void* _vertices_array;
+
+    const IndicesArray _indices;
 
 public:
 
@@ -46,8 +50,9 @@ public:
         return *static_cast<const std::vector<T>*>(_vertices_array);
     }
 
-    float* vertices_data     () const;
-    size_t vertices_data_size() const;
+    float* vertices_data           () const;
+    size_t vertices_data_byte_size () const;
+    size_t vertices_data_float_size() const;
 
     bool            has_indices() const;
     const IndicesArray& indices() const;
