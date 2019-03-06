@@ -38,10 +38,9 @@ private:
 
 public:
 
-    Mesh(        Vertex::Array&&                );
-    Mesh(        Vertex::Array&&, IndicesArray&&);
-    Mesh( ColoredVertex::Array&&, IndicesArray&&);
-    Mesh(TexturedVertex::Array&&, IndicesArray&&);
+    Mesh(        Vertex::Array&&, IndicesArray&& = { });
+    Mesh( ColoredVertex::Array&&, IndicesArray&& = { });
+    Mesh(TexturedVertex::Array&&, IndicesArray&& = { });
 
     Type type() const;
 

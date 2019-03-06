@@ -8,13 +8,15 @@
 
 #include <iostream>
 
+#include "Mesh.hpp"
 #include "Grid.hpp"
+#include "ColoredVertex.hpp"
 
 using namespace scene;
 
 static Mesh* create_mesh(Size size, Size resolution) {
 
-    std::vector<Vector3> vertices;
+    ColoredVertex::Array vertices;
 
     const auto width_min = - size.width / 2;
     const auto width_step = size.width / resolution.width;
@@ -23,16 +25,16 @@ static Mesh* create_mesh(Size size, Size resolution) {
     const auto height_step = size.height / resolution.height;
 
     for (int i = 0; i <= resolution.width; i++) {
-        vertices.emplace_back( width_min + width_step * i, height_min );
-        vertices.emplace_back( width_min + width_step * i, height_min + size.height );
+        vertices.emplace_back( Vector3 { width_min + width_step * i, height_min },              Vector3 { } );
+        vertices.emplace_back( Vector3 { width_min + width_step * i, height_min + size.height}, Vector3 { } );
     }
 
     for (int i = 0; i <= resolution.height; i++) {
-        vertices.emplace_back( width_min,              height_min + height_step * i );
-        vertices.emplace_back( width_min + size.width, height_min + height_step * i );
+        vertices.emplace_back( Vector3 { width_min,              height_min + height_step * i }, Vector3 { } );
+        vertices.emplace_back( Vector3 { width_min + size.width, height_min + height_step * i }, Vector3 { } );
     }
 
-    return nullptr;//new Mesh(vertices);
+    return new Mesh(std::move(vertices));
 }
 
 Grid::Grid(const Size& size, const Size& resolution) :

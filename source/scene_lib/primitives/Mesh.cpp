@@ -14,15 +14,6 @@
 
 using namespace scene;
 
-Mesh::Mesh(Vertex::Array&& vertices) :
-    _type(Type::Plain),
-    _vertices_data_byte_size (array::bytes_size    (vertices)),
-    _vertices_data_float_size(array::size_in<float>(vertices))
-{
-    _vertices_array = new Vertex::Array { };
-    *static_cast<Vertex::Array*>(_vertices_array) = std::move(vertices);
-}
-
 Mesh::Mesh(Vertex::Array&& vertices, IndicesArray&& indices) :
     _type(Type::Plain),
     _vertices_data_byte_size (array::bytes_size    (vertices)),
