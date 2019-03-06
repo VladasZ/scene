@@ -16,11 +16,11 @@ class Translatable : public Movable {
 
 protected:
 
-    Matrix4 _translation_matrix;
+    gm::Matrix4 _translation_matrix;
 
 public:
 
-    const Matrix4& translation_matrix() const;
+    const gm::Matrix4& translation_matrix() const;
 
     void update_matrices() override;
 

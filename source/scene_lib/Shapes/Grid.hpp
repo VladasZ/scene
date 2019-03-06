@@ -15,10 +15,10 @@ class Grid : public Model {
 
 public:
 
-    const Size size;
-    const Size resolution;
+    const gm::Size size;
+    const gm::Size resolution;
 
-    Grid(const Size& size = { 5, 5 }, const Size& resolution = { 20, 20 });
+    Grid(const gm::Size& size = { 5, 5 }, const gm::Size& resolution = { 20, 20 });
 };
 
 }

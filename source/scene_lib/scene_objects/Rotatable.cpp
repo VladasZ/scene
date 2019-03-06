@@ -13,6 +13,7 @@
 
 #include "Rotatable.hpp"
 
+using namespace gm;
 using namespace scene;
 
 void Rotatable::look_at(const Vector3& target) {

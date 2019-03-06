@@ -27,7 +27,7 @@ public:
 
 private:
 
-    virtual const Vector3& _direction() = 0;
+    virtual const gm::Vector3& _direction() = 0;
 
 public:
 

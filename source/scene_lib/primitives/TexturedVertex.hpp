@@ -18,10 +18,10 @@ public:
 
     using Array = std::vector<TexturedVertex>;
 
-    Point texture_coordinate;
+    gm::Point texture_coordinate;
 
     TexturedVertex() = default;
-    TexturedVertex(const Vector3& position, const Vector3& normal, const Point& texture_coordinate);
+    TexturedVertex(const gm::Vector3& position, const gm::Vector3& normal, const gm::Point& texture_coordinate);
 
 };
 

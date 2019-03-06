@@ -19,11 +19,11 @@ public:
 
     using Array = std::vector<ColoredVertex>;
 
-    Color color;
+    gm::Color color;
 
     ColoredVertex() = default;
-    ColoredVertex(const Vector3& position, const Vector3& normal);
-    ColoredVertex(const Vector3& position, const Vector3& normal, const Color& color);
+    ColoredVertex(const gm::Vector3& position, const gm::Vector3& normal);
+    ColoredVertex(const gm::Vector3& position, const gm::Vector3& normal, const gm::Color& color);
 
 };
 

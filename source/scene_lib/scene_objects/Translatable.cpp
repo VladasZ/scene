@@ -8,6 +8,7 @@
 
 #include "Translatable.hpp"
 
+using namespace gm;
 using namespace scene;
 
 

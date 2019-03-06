@@ -45,8 +45,8 @@ public:
     void add_object(Object    *);
     void add_light (PointLight*);
 
-    void add_box (const Vector3&, float = 0.05f);
-    void draw_box(const Vector3&, float = 0.05f);
+    void add_box (const gm::Vector3&, float = 0.05f);
+    void draw_box(const gm::Vector3&, float = 0.05f);
 
     void update();
     void   draw();

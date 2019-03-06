@@ -8,6 +8,7 @@
 
 #include "ColoredVertex.hpp"
 
+using namespace gm;
 using namespace scene;
 
 ColoredVertex::ColoredVertex(const Vector3& position, const Vector3& normal) : Vertex(position, normal), color(Color::random()) {

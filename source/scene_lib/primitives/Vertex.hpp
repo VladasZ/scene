@@ -19,11 +19,11 @@ public:
     using Index = unsigned short;
     using Array = std::vector<Vertex>;
 
-    Vector3 position;
-    Vector3 normal;
+    gm::Vector3 position;
+    gm::Vector3 normal;
 
     Vertex() = default;
-    Vertex(const Vector3& position, const Vector3& normal);
+    Vertex(const gm::Vector3& position, const gm::Vector3& normal);
 
     std::string to_string() const;
 };

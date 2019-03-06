@@ -9,6 +9,7 @@
 #include "Mesh.hpp"
 #include "Plane.hpp"
 
+using namespace gm;
 using namespace scene;
 
 static Mesh* create_mesh(const Size& size) {

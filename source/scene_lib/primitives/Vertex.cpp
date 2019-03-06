@@ -8,6 +8,7 @@
 
 #include "Vertex.hpp"
 
+using namespace gm;
 using namespace scene;
 
 Vertex::Vertex(const Vector3& position, const Vector3& normal) : position(position), normal(normal) {

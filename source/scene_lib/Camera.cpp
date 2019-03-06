@@ -11,6 +11,7 @@
 #include "Scene.hpp"
 #include "Camera.hpp"
 
+using namespace gm;
 using namespace scene;
 
 const Matrix4& Camera::view_matrix() const {

@@ -8,6 +8,7 @@
 
 #include "TexturedVertex.hpp"
 
+using namespace gm;
 using namespace scene;
 
 TexturedVertex::TexturedVertex(const Vector3& position, const Vector3& normal, const Point& texture_coordinate)

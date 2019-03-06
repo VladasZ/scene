@@ -27,16 +27,16 @@ public:
 
     Scene* _scene = nullptr;
 
-    Vector3 _position;
+    gm::Vector3 _position;
 
 public:
 
     Object()              = default;
-    Object(const Vector3& position);
+    Object(const gm::Vector3& position);
     virtual               ~Object();
 
-    const Vector3& position()         const;
-    void       set_position(const Vector3&);
+    const gm::Vector3& position()         const;
+    void       set_position(const gm::Vector3&);
 
     virtual void update_matrices();
     virtual void update         ();

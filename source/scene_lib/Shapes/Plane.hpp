@@ -15,9 +15,9 @@ class Plane : public Model {
 
 public:
 
-    const Size size;
+    const gm::Size size;
 
-    Plane(const Size& size = { 5, 5 });
+    Plane(const gm::Size& size = { 5, 5 });
 
 };
 

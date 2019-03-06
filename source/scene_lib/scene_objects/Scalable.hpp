@@ -16,15 +16,15 @@ class Scalable : public Rotatable {
 
 protected:
 
-    Vector3 _scale = { 1.0f, 1.0f, 1.0f };
-    Matrix4 _scale_matrix;
+    gm::Vector3 _scale = { 1.0f, 1.0f, 1.0f };
+    gm::Matrix4 _scale_matrix;
 
 public:
 
-    const Vector3& scale() const;
+    const gm::Vector3& scale() const;
 
     void set_scale(float);
-    void set_scale(const Vector3&);
+    void set_scale(const gm::Vector3&);
 
     void update_matrices() override;
 

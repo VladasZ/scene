@@ -13,6 +13,7 @@
 #include "Camera.hpp"
 #include "PointLight.hpp"
 
+using namespace gm;
 using namespace scene;
 
 

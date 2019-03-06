@@ -15,6 +15,7 @@
 #include "Mesh.hpp"
 #include "SceneConfig.hpp"
 
+using namespace gm;
 using namespace scene;
 
 Model::Drawer::~Drawer() {

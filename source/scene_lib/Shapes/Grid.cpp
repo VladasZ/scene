@@ -12,6 +12,7 @@
 #include "Grid.hpp"
 #include "ColoredVertex.hpp"
 
+using namespace gm;
 using namespace scene;
 
 static Mesh* create_mesh(Size size, Size resolution) {

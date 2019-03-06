@@ -19,7 +19,7 @@ public:
 
     using Object::Object;
 
-    Vector3 velocity;
+    gm::Vector3 velocity;
 
     void stop();
 

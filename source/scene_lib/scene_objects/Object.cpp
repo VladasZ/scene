@@ -12,6 +12,7 @@
 #include "Camera.hpp"
 #include "Object.hpp"
 
+using namespace gm;
 using namespace scene;
 
 Object::Object(const Vector3& position) : _position(position) {
