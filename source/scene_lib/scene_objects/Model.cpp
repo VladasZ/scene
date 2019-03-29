@@ -64,7 +64,7 @@ void Model::draw_normals() {
 
     for (const auto& ver : mesh()->vertices<ColoredVertex>()) {
         _scene->_dummy_vector->set_position(_model_matrix *                 ver.position);
-        _scene->_dummy_vector->look_at     (_model_matrix.multiply_by_normal(ver.normal ));
+        _scene->_dummy_vector->look_at     (_model_matrix.multiply_by_normal(ver.normal));
         _scene->_dummy_vector->                                                    draw();
     }
 }
