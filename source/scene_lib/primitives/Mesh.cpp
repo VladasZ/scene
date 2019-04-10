@@ -8,10 +8,11 @@
 
 #include <string>
 
-#include "Array.hpp"
+#include "ArrayUtils.hpp"
 
 #include "Mesh.hpp"
 
+using namespace cu;
 using namespace scene;
 
 Mesh::Mesh(Vertex::Array&& vertices, IndicesArray&& indices) :
