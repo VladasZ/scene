@@ -11,6 +11,7 @@
 #include "Box.hpp"
 #include "Mesh.hpp"
 
+using namespace gm;
 using namespace scene;
 
 static Mesh* create_mesh(float length, float width, float height) {

@@ -12,10 +12,11 @@
 
 #include "Mesh.hpp"
 
+using namespace gm;
 using namespace cu;
 using namespace scene;
 
-Mesh::Mesh(Vertex::Array&& vertices, IndicesArray&& indices) :
+Mesh::Mesh(Vertex::Array&& vertices, Vertex::Indices&& indices) :
     _type(Type::Plain),
     _vertices_data_byte_size (array::bytes_size    (vertices)),
     _vertices_data_float_size(array::size_in<float>(vertices)),
@@ -25,7 +26,7 @@ Mesh::Mesh(Vertex::Array&& vertices, IndicesArray&& indices) :
     *static_cast<Vertex::Array*>(_vertices_array) = std::move(vertices);
 }
 
-Mesh::Mesh(ColoredVertex::Array&& vertices, IndicesArray&& indices) :
+Mesh::Mesh(ColoredVertex::Array&& vertices, Vertex::Indices&& indices) :
     _type(Type::Colored),
     _vertices_data_byte_size (array::bytes_size    (vertices)),
     _vertices_data_float_size(array::size_in<float>(vertices)),
@@ -35,7 +36,7 @@ Mesh::Mesh(ColoredVertex::Array&& vertices, IndicesArray&& indices) :
     *static_cast<ColoredVertex::Array*>(_vertices_array) = std::move(vertices);
 }
 
-Mesh::Mesh(TexturedVertex::Array&& vertices, IndicesArray&& indices) :
+Mesh::Mesh(TexturedVertex::Array&& vertices, Vertex::Indices&& indices) :
     _type(Type::Textured),
     _vertices_data_byte_size (array::bytes_size    (vertices)),
     _vertices_data_float_size(array::size_in<float>(vertices)),
@@ -65,7 +66,7 @@ bool Mesh::has_indices() const {
     return _indices.size();
 }
 
-const Mesh::IndicesArray& Mesh::indices() const {
+const Vertex::Indices& Mesh::indices() const {
     return _indices;
 }
 

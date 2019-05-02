@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include  "ColoredVertex.hpp"
+#include "ColoredVertex.hpp"
 #include "TexturedVertex.hpp"
 
 namespace scene {
@@ -16,8 +16,6 @@ namespace scene {
 class Mesh {
 
 public:
-
-    using IndicesArray = std::vector<Vertex::Index>;
 
     enum Type {
         Plain   ,
@@ -34,13 +32,13 @@ private:
 
     void* _vertices_array;
 
-    const IndicesArray _indices;
+    const gm::Vertex::Indices _indices;
 
 public:
 
-    Mesh(        Vertex::Array&&, IndicesArray&& = { });
-    Mesh( ColoredVertex::Array&&, IndicesArray&& = { });
-    Mesh(TexturedVertex::Array&&, IndicesArray&& = { });
+    Mesh(        gm::Vertex::Array&&, gm::Vertex::Indices&& = { });
+    Mesh( gm::ColoredVertex::Array&&, gm::Vertex::Indices&& = { });
+    Mesh(gm::TexturedVertex::Array&&, gm::Vertex::Indices&& = { });
 
     Type type() const;
 
@@ -54,7 +52,7 @@ public:
     size_t vertices_data_float_size() const;
 
     bool            has_indices() const;
-    const IndicesArray& indices() const;
+    const gm::Vertex::Indices& indices() const;
 
     bool is_plain   () const;
     bool is_colored () const;
