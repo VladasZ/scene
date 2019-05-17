@@ -13,7 +13,7 @@ using namespace gm;
 using namespace scene;
 
 static Mesh* create_mesh(const Size& size) {
-    return new Mesh(ColoredVertex::Array {
+    return new Mesh(Vertex::Array {
                      {{ 0, -size.width / 2,  size.height / 2 }, { 1, 0, 0 }},
                      {{ 0,  size.width / 2,  size.height / 2 }, { 1, 0, 0 }},
                      {{ 0,  size.width / 2, -size.height / 2 }, { 1, 0, 0 }},

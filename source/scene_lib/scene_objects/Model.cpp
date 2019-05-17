@@ -52,20 +52,10 @@ void Model::draw_normals() {
     if (_need_matrices_update)
         update_matrices();
 
-    if (mesh()->is_textured()) {
-        for (const auto& ver : mesh()->vertices<TexturedVertex>()) {
-            _scene->_dummy_vector->set_position(_model_matrix *                 ver.position);
-            _scene->_dummy_vector->look_at     (_model_matrix.multiply_by_normal(ver.normal));
-            _scene->_dummy_vector->                                                    draw();
-        }
+    for (auto ver : mesh()->vertices()) {
+        _scene->_dummy_vector->set_position(_model_matrix * ver.position);
+        _scene->_dummy_vector->look_at(_model_matrix.multiply_by_normal(ver.normal));
         _scene->_dummy_vector->draw();
-        return;
-    }
-
-    for (const auto& ver : mesh()->vertices<ColoredVertex>()) {
-        _scene->_dummy_vector->set_position(_model_matrix *                 ver.position);
-        _scene->_dummy_vector->look_at     (_model_matrix.multiply_by_normal(ver.normal));
-        _scene->_dummy_vector->                                                    draw();
     }
 }
 

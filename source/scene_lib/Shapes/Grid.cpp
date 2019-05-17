@@ -10,14 +10,13 @@
 
 #include "Mesh.hpp"
 #include "Grid.hpp"
-#include "ColoredVertex.hpp"
 
 using namespace gm;
 using namespace scene;
 
 static Mesh* create_mesh(Size size, Size resolution) {
 
-    ColoredVertex::Array vertices;
+    Vertex::Array vertices;
 
     const auto width_min = - size.width / 2;
     const auto width_step = size.width / resolution.width;
@@ -39,7 +38,14 @@ static Mesh* create_mesh(Size size, Size resolution) {
 }
 
 Grid::Grid(const Size& size, const Size& resolution) :
-    Model(create_mesh(size, resolution), Model::DrawMode::Lines),
+    Model(create_mesh(size, resolution), Model::DrawMode::Triangles),
     size(size),
     resolution(resolution)
 { }
+
+void Grid::draw() {
+
+
+    Model::draw();
+
+}

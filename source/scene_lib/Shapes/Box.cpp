@@ -19,7 +19,7 @@ static Mesh* create_mesh(float length, float width, float height) {
     const float  width_2 = width  / 2;
     const float height_2 = height / 2;
     return new Mesh {
-        ColoredVertex::Array {
+        Vertex::Array {
             // front
             {{ -width_2, -length_2,  height_2 }, { 0, 0, 0 }},
             {{  width_2, -length_2,  height_2 }, { 0, 0, 0 }},

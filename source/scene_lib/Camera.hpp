@@ -28,6 +28,8 @@ public:
     float z_near =     0.1f;
     float z_far  = 10000.0f;
 
+    Camera();
+
     gm::Size resolution { 100, 100 };
 
     const gm::Matrix4&            view_matrix() const;

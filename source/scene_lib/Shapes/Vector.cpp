@@ -14,7 +14,7 @@ using namespace scene;
 
 static Mesh* create_mesh() {
     return new Mesh {
-        ColoredVertex::Array {
+        Vertex::Array {
             {{ 0.8f,  0.02f, -0.02f }, { 0.8f,  0.02f, -0.02f }},
             {{ 0.8f, -0.02f, -0.02f }, { 0.8f,  0.02f, -0.02f }},
             {{ 0.8f, -0.05f, -0.05f }, { 0.8f,  0.02f, -0.02f }},

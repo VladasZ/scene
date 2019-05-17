@@ -26,6 +26,8 @@ Scene::Scene() : camera(new Camera()) {
     _dummy_box   ->set_position({ 0, 0, 10000000000.0f });
     _dummy_vector->set_position({ 0, 0, 10000000000.0f });
 
+    _dummy_vector->set_scale(0.4f);
+
     add_object(_dummy_box   );
     add_object(_dummy_vector);
 }
@@ -56,6 +58,7 @@ void Scene::draw_box(const Vector3& position, float size) {
     _dummy_box->set_scale(size);
     _dummy_box->set_position(position);
     _dummy_box->draw();
+    _dummy_box->draw_normals();
 }
 
 void Scene::update() {

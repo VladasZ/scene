@@ -55,7 +55,7 @@ public:
     Mesh*         mesh() const;
     DrawMode draw_mode() const;
 
-    void draw        ();
+    virtual void draw();
     void draw_normals();
 
     bool has_image() const;
