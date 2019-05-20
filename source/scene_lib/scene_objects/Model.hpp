@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Color.hpp"
 #include "Scalable.hpp"
 
 class Image;
@@ -29,7 +30,7 @@ public:
         friend Model;
     protected:
         Model* _model;
-        virtual ~Drawer()          = 0;
+        virtual ~Drawer() = 0;
         virtual void _draw() const = 0;
     };
 
@@ -38,31 +39,33 @@ protected:
     DrawMode _draw_mode;
 
     gm::Matrix4 _model_matrix;
-    gm::Matrix4   _mvp_matrix;
+    gm::Matrix4 _mvp_matrix;
 
-    Mesh  *   _mesh;
-    Image *  _image;
+    Mesh* _mesh;
+    Image* _image;
     Drawer* _drawer;
 
 public:
 
     bool is_transparent = false;
 
-     Model(Mesh*, Image*              );
-     Model(Mesh*, DrawMode = Triangles);
-    ~Model()                   override;
+    gm::Color color = gm::Color::green;
 
-    Mesh*         mesh() const;
+    Model(Mesh*, Image*);
+    Model(Mesh*, DrawMode = Triangles);
+    ~Model() override;
+
+    Mesh* mesh() const;
     DrawMode draw_mode() const;
 
     virtual void draw();
     void draw_normals();
 
     bool has_image() const;
-    Image*   image() const;
+    Image* image() const;
 
     const gm::Matrix4& model_matrix() const;
-    const gm::Matrix4&   mvp_matrix() const;
+    const gm::Matrix4& mvp_matrix() const;
 
 private:
 

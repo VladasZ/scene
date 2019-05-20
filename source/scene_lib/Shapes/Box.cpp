@@ -21,15 +21,15 @@ static Mesh* create_mesh(float length, float width, float height) {
     return new Mesh {
         Vertex::Array {
             // front
-            {{ -width_2, -length_2,  height_2 }, { 0, 0, 0 }},
-            {{  width_2, -length_2,  height_2 }, { 0, 0, 0 }},
-            {{  width_2,  length_2,  height_2 }, { 0, 0, 0 }},
-            {{ -width_2,  length_2,  height_2 }, { 0, 0, 0 }},
+            {{ -width_2, -length_2,  height_2 }, { -1, -1,  1 }},
+            {{  width_2, -length_2,  height_2 }, {  1, -1,  1 }},
+            {{  width_2,  length_2,  height_2 }, {  1,  1,  1 }},
+            {{ -width_2,  length_2,  height_2 }, { -1,  1,  1 }},
             // back
-            {{ -width_2, -length_2, -height_2 }, { 0, 0, 0 }},
-            {{  width_2, -length_2, -height_2 }, { 0, 0, 0 }},
-            {{  width_2,  length_2, -height_2 }, { 0, 0, 0 }},
-            {{ -width_2,  length_2, -height_2 }, { 0, 0, 0 }}
+            {{ -width_2, -length_2, -height_2 }, { -1, -1, -1 }},
+            {{  width_2, -length_2, -height_2 }, {  1, -1, -1 }},
+            {{  width_2,  length_2, -height_2 }, {  1,  1, -1 }},
+            {{ -width_2,  length_2, -height_2 }, { -1,  1, -1 }}
         },{
             // front
             0, 1, 2,
