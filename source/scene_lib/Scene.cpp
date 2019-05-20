@@ -58,7 +58,6 @@ void Scene::draw_box(const Vector3& position, float size) {
     _dummy_box->set_scale(size);
     _dummy_box->set_position(position);
     _dummy_box->draw();
-    _dummy_box->draw_normals();
 }
 
 void Scene::update() {
