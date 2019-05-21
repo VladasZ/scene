@@ -36,17 +36,17 @@ public:
     const gm::Matrix4&      projection_matrix() const;
     const gm::Matrix4& view_projection_matrix() const;
 
-    void       set_target(const gm::Vector3&);
-    const gm::Vector3& target() const        ;
+    void set_target(const gm::Vector3&);
+    const gm::Vector3& target() const;
 
     void move_orbit(const gm::Point&);
+
+    const gm::Vector3& direction() override;
 
 private:
 
     void update_matrices() override;
-    void update         () override;
-
-    const gm::Vector3& _direction() override;
+    void update() override;
 };
 
 }

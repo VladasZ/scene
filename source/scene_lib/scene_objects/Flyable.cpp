@@ -17,7 +17,7 @@ using namespace scene;
 
 void Flyable::fly(Direction direction) {
 
-    Vector3 vel = _direction().point();
+    Vector3 vel = this->direction().point();
     Vector3 side = vel.cross({ 0, 0, 1 });
     vel.normalize();
     vel *= flying_speed;

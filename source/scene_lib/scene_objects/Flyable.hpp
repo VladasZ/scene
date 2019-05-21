@@ -25,11 +25,7 @@ public:
         Down    = 0b100000
     };
 
-private:
-
-    virtual const gm::Vector3& _direction() = 0;
-
-public:
+    virtual const gm::Vector3& direction() = 0;
 
     float flying_speed = 0.1f;
 

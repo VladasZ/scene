@@ -46,6 +46,12 @@ void Camera::move_orbit(const Point& shift) {
     update_matrices();
 }
 
+const Vector3& Camera::direction() {
+    static Vector3 direction;
+    direction = _target - _position;
+    return direction;
+}
+
 void Camera::update_matrices() {
 
     _view_matrix            = Matrix4::transform::look_at(_position, _target, _up);
@@ -61,10 +67,4 @@ void Camera::update_matrices() {
 void Camera::update() {
     _target += velocity;
     Movable::update();
-}
-
-const Vector3& Camera::_direction() {
-    static Vector3 direction;
-    direction = _target - _position;
-    return direction;
 }
