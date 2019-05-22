@@ -6,12 +6,12 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "Box.hpp"
 #include "Grid.hpp"
 #include "Scene.hpp"
-#include "Vector.hpp"
 #include "Camera.hpp"
+#include "BoxModel.hpp"
 #include "PointLight.hpp"
+#include "VectorModel.hpp"
 
 using namespace gm;
 using namespace scene;
@@ -20,8 +20,8 @@ using namespace scene;
 Scene::Scene() : camera(new Camera()) {
     add_object(camera);
 
-    _dummy_box    = new Box   ();
-    _dummy_vector = new Vector();
+    _dummy_box    = new BoxModel();
+    _dummy_vector = new VectorModel();
 
     _dummy_box   ->set_position({ 0, 0, 10000000000.0f });
     _dummy_vector->set_position({ 0, 0, 10000000000.0f });
@@ -49,7 +49,7 @@ void Scene::add_light(PointLight* light) {
 }
 
 void Scene::add_box(const Vector3& position, float size) {
-    auto box = new Box(size);
+    auto box = new BoxModel(size);
     add_object(box);
     box->set_position(position);
 }

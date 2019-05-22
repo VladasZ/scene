@@ -1,5 +1,5 @@
 //
-//  Box.hpp
+//  BoxModel.hpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 1/24/19.
@@ -12,7 +12,7 @@
 
 namespace scene {
 
-class Box : public Model {
+class BoxModel : public Model {
 
 public:
 
@@ -20,8 +20,8 @@ public:
     float width;
     float height;
 
-    Box(float size = 1);
-    Box(float, float, float);
+    BoxModel(float size = 1);
+    BoxModel(float, float, float);
 
 };
 

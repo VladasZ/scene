@@ -1,5 +1,5 @@
 //
-//  Vector.hpp
+//  VectorModel.hpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 2/27/19.
@@ -11,8 +11,8 @@
 #include "Model.hpp"
 
 namespace scene {
-class Vector : public Model {
+class VectorModel : public Model {
 public:
-    Vector();
+    VectorModel();
 };
 }

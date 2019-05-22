@@ -1,5 +1,5 @@
 //
-//  Vector.cpp
+//  VectorModel.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 2/27/19.
@@ -7,7 +7,7 @@
 //
 
 #include "Mesh.hpp"
-#include "Vector.hpp"
+#include "VectorModel.hpp"
 
 using namespace gm;
 using namespace scene;
@@ -63,6 +63,6 @@ static Mesh* create_mesh() {
         }};
 }
 
-Vector::Vector() : Model(create_mesh()) {
+VectorModel::VectorModel() : Model(create_mesh()) {
 
 }

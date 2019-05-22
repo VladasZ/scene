@@ -6,11 +6,6 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include "glm/glm.hpp"
-#include "glm/gtc/quaternion.hpp"
-#include "glm/gtx/euler_angles.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
 #include "Rotatable.hpp"
 
 using namespace gm;
@@ -54,8 +49,4 @@ void Rotatable::add_rotation(const Matrix4& rotation) {
 
 void Rotatable::update_matrices() {
     Translatable::update_matrices();
-//    auto rotation          = glm::rotate(glm::mat4 { }, _rotation.w, { _rotation.x, _rotation.y, _rotation.z });
-//    auto translate_pivot   = Matrix4::transform::translation(_pivot);
-//    auto untranslate_pivot = translate_pivot.inversed();
-    //_rotation_matrix =  translate_pivot * rotation * untranslate_pivot;
 }

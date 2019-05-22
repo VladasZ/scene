@@ -1,5 +1,5 @@
 //
-//  Box.cpp
+//  BoxModel.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 1/24/19.
@@ -8,8 +8,8 @@
 
 #include <iostream>
 
-#include "Box.hpp"
 #include "Mesh.hpp"
+#include "BoxModel.hpp"
 
 using namespace gm;
 using namespace scene;
@@ -53,11 +53,11 @@ static Mesh* create_mesh(float length, float width, float height) {
         }};
 }
 
-Box::Box(float size) : Box(size, size, size) {
+BoxModel::BoxModel(float size) : BoxModel(size, size, size) {
 
 }
 
-Box::Box(float length, float width, float height) :
+BoxModel::BoxModel(float length, float width, float height) :
     Model(create_mesh(length, width, height)),
     length(length),
     width(width),
