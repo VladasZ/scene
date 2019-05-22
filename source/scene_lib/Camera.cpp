@@ -52,6 +52,28 @@ const Vector3& Camera::direction() {
     return direction;
 }
 
+LineSegment Camera::cast_ray(const gm::Point& location) {
+
+    Vector4 start = {
+        (location.x / resolution.width - 0.5f) * 2.0f,
+        ((resolution.height - location.y) / resolution.height - 0.5f) * 2.0f,
+        -1,
+    };
+
+    Vector4 end = {
+        (location.x / resolution.width - 0.5f) * 2.0f,
+        ((resolution.height - location.y) / resolution.height - 0.5f) * 2.0f,
+        0,
+    };
+
+    const auto inversed_transform = view_projection_matrix().inversed();
+
+    start = inversed_transform * start; start /= start.w;
+    end   = inversed_transform *   end;   end /=   end.w;
+
+    return { start, end };
+}
+
 void Camera::update_matrices() {
 
     _view_matrix            = Matrix4::transform::look_at(_position, _target, _up);

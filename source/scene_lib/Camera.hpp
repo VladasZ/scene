@@ -10,6 +10,7 @@
 
 #include "Size.hpp"
 #include "Flyable.hpp"
+#include "LineSegment.hpp"
 
 namespace scene {
 
@@ -42,6 +43,8 @@ public:
     void move_orbit(const gm::Point&);
 
     const gm::Vector3& direction() override;
+
+    gm::LineSegment cast_ray(const gm::Point&);
 
 private:
 

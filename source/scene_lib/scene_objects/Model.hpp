@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Color.hpp"
-#include "Scalable.hpp"
+#include "Selectable.hpp"
 
 class Image;
 
@@ -17,7 +17,7 @@ namespace scene {
 
 class Mesh;
 
-class Model : public Scalable {
+class Model : public Selectable {
 
 public:
 
