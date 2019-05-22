@@ -10,3 +10,7 @@
 
 using namespace gm;
 using namespace scene;
+
+Selectable::Selectable(Mesh* mesh) {
+
+}

@@ -19,6 +19,10 @@ class Mesh;
 
 class Selectable : public Scalable {
 
+public:
+
+    Selectable(Mesh*);
+
 };
 
 }
