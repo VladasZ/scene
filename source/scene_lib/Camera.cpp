@@ -52,7 +52,7 @@ const Vector3& Camera::direction() {
     return direction;
 }
 
-LineSegment Camera::cast_ray(const gm::Point& location) {
+Ray Camera::cast_ray(const gm::Point& location) {
 
     Vector4 start = {
         (location.x / resolution.width - 0.5f) * 2.0f,
@@ -71,7 +71,11 @@ LineSegment Camera::cast_ray(const gm::Point& location) {
     start = inversed_transform * start; start /= start.w;
     end   = inversed_transform *   end;   end /=   end.w;
 
-    return { start, end };
+    Ray ray { start, end };
+
+    ray.dir = (ray.direction_vector() * 100) + ray.orig;
+
+    return { ray.dir, ray.orig };
 }
 
 void Camera::update_matrices() {

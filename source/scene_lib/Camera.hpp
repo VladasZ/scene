@@ -8,9 +8,9 @@
 
 #pragma once
 
+#include "Ray.hpp"
 #include "Size.hpp"
 #include "Flyable.hpp"
-#include "LineSegment.hpp"
 
 namespace scene {
 
@@ -44,7 +44,7 @@ public:
 
     const gm::Vector3& direction() override;
 
-    gm::LineSegment cast_ray(const gm::Point&);
+    gm::Ray cast_ray(const gm::Point&);
 
 private:
 

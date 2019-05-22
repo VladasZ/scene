@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Box.hpp"
 #include "Model.hpp"
 
 namespace scene {
@@ -16,12 +17,9 @@ class BoxModel : public Model {
 
 public:
 
-    float length;
-    float width;
-    float height;
+    gm::Box box;
 
-    BoxModel(float size = 1);
-    BoxModel(float, float, float);
+    BoxModel(const gm::Box& = { });
 
 };
 

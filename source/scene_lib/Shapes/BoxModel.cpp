@@ -14,11 +14,11 @@
 using namespace gm;
 using namespace scene;
 
-static Mesh* create_mesh(float length, float width, float height) {
+static Mesh* create_mesh(const gm::Box& box) {
 
-    const float length_2 = length / 2;
-    const float  width_2 = width  / 2;
-    const float height_2 = height / 2;
+    const float length_2 = box.length / 2;
+    const float  width_2 = box.width  / 2;
+    const float height_2 = box.height / 2;
     return new Mesh {
         Vertex::Array {
             // front
@@ -53,13 +53,6 @@ static Mesh* create_mesh(float length, float width, float height) {
         }};
 }
 
-BoxModel::BoxModel(float size) : BoxModel(size, size, size) {
+BoxModel::BoxModel(const gm::Box& box) : Model(create_mesh(box)), box(box) {
 
 }
-
-BoxModel::BoxModel(float length, float width, float height) :
-    Model(create_mesh(length, width, height)),
-    length(length),
-    width(width),
-    height(height)
-{ }
