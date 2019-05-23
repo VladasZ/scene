@@ -23,6 +23,9 @@ class Selectable : public Scalable {
 
 public:
 
+    bool selected = false;
+    bool selectable = true;
+
     const gm::Box bounding_box;
 
     Selectable(Mesh*);

@@ -51,6 +51,8 @@ public:
     void update();
     void draw();
 
+    Model* select_model(const gm::Point& location) const;
+
     virtual void setup();
     virtual void each_frame();
 
