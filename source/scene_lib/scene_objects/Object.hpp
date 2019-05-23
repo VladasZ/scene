@@ -25,21 +25,21 @@ protected:
 
 public:
 
-    Scene* _scene = nullptr;
-
     gm::Vector3 _position;
+
+    Scene* _scene = nullptr;
 
 public:
 
-    Object()              = default;
+    Object() = default;
     Object(const gm::Vector3& position);
-    virtual               ~Object();
+    virtual ~Object();
 
-    const gm::Vector3& position()         const;
-    void       set_position(const gm::Vector3&);
+    const gm::Vector3& position() const;
+    void set_position(const gm::Vector3&);
 
     virtual void update_matrices();
-    virtual void update         ();
+    virtual void update();
 };
 
 }

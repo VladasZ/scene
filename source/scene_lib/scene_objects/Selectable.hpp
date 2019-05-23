@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Ray.hpp"
+#include "Box.hpp"
 #include "Color.hpp"
 #include "Scalable.hpp"
 
@@ -21,7 +23,11 @@ class Selectable : public Scalable {
 
 public:
 
+    const gm::Box bounding_box;
+
     Selectable(Mesh*);
+
+    bool intersects_ray(const gm::Ray&) const;
 
 };
 

@@ -25,7 +25,12 @@ void Scalable::set_scale(const Vector3& scale) {
     _need_matrices_update = true;
 }
 
+const Matrix4& Scalable::model_matrix() const {
+    return _model_matrix;
+}
+
 void Scalable::update_matrices() {
     Rotatable::update_matrices();
     _scale_matrix = Matrix4::transform::scale(_scale);
+    _model_matrix = _translation_matrix * _rotation_matrix * _scale_matrix;
 }

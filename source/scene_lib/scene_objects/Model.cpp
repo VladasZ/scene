@@ -64,16 +64,11 @@ Image* Model::image() const {
     return _image;
 }
 
-const Matrix4& Model::model_matrix() const {
-    return _model_matrix;
-}
-
 const Matrix4& Model::mvp_matrix() const {
     return _mvp_matrix;
 }
 
 void Model::update_matrices() {
     Scalable::update_matrices();
-    _model_matrix = _translation_matrix * _rotation_matrix * _scale_matrix;
     _mvp_matrix = _scene->camera->view_projection_matrix() * _model_matrix;
 }

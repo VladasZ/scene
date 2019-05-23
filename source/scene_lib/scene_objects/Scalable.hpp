@@ -19,12 +19,16 @@ protected:
     gm::Vector3 _scale = { 1.0f, 1.0f, 1.0f };
     gm::Matrix4 _scale_matrix;
 
+    gm::Matrix4 _model_matrix;
+
 public:
 
     const gm::Vector3& scale() const;
 
     void set_scale(float);
     void set_scale(const gm::Vector3&);
+
+    const gm::Matrix4& model_matrix() const;
 
     void update_matrices() override;
 

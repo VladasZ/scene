@@ -49,7 +49,7 @@ void Scene::add_light(PointLight* light) {
 }
 
 void Scene::add_box(const Vector3& position, float size) {
-    auto box = new BoxModel(size);
+    auto box = new BoxModel(Box(size));
     add_object(box);
     box->set_position(position);
 }
