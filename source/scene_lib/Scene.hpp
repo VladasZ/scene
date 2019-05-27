@@ -33,6 +33,9 @@ protected:
 
 public:
 
+
+    Model* selected_model = nullptr;
+
     std::vector<PointLight*> _light_sources;
 
     Camera* const camera;
@@ -51,7 +54,7 @@ public:
     void update();
     void draw();
 
-    Model* select_model(const gm::Point& location) const;
+    Model* select_model(const gm::Point& location);
 
     virtual void setup();
     virtual void each_frame();

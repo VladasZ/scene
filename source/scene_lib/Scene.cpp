@@ -73,21 +73,27 @@ void Scene::draw() {
     each_frame();
 }
 
-Model* Scene::select_model(const gm::Point& location) const {
-
-    for (auto model : _models)
-        model->selected = false;
+Model* Scene::select_model(const gm::Point& location) {
 
     auto ray = camera->cast_ray(location);
 
+    bool new_model = false;
+
     for (auto model : _models) {
         if (model->intersects_ray(ray)) {
-            model->selected = true;
-            return model;
+            selected_model = model;
+            new_model = true;
+            break;
         }
     }
 
-    return nullptr;
+    if (new_model) {
+        for (auto model : _models)
+            model->selected = false;
+        selected_model->selected = true;
+    }
+
+    return selected_model;
 }
 
 void Scene::setup() {

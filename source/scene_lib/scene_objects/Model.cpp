@@ -43,6 +43,8 @@ void Model::draw() {
     if (_need_matrices_update)
         update_matrices();
     _drawer->_draw();
+    for (auto submodel : _submodels)
+        submodel->_drawer->_draw();
 }
 
 void Model::draw_normals() {
@@ -62,6 +64,14 @@ bool Model::has_image() const {
 
 Image* Model::image() const {
     return _image;
+}
+
+const std::vector<Model*>& Model::submodels() const {
+    return _submodels;
+}
+
+Model* Model::supermodel() const {
+    return _supermodel;
 }
 
 const Matrix4& Model::mvp_matrix() const {

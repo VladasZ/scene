@@ -44,6 +44,9 @@ protected:
     Image* _image;
     Drawer* _drawer;
 
+    Model* _supermodel = nullptr;
+    std::vector<Model*> _submodels;
+
 public:
 
     bool is_transparent = false;
@@ -62,6 +65,9 @@ public:
 
     bool has_image() const;
     Image* image() const;
+
+    const std::vector<Model*>& submodels() const;
+    Model* supermodel() const;
 
     const gm::Matrix4& mvp_matrix() const;
 
