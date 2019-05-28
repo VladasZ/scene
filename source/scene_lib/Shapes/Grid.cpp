@@ -25,27 +25,29 @@ static Mesh* create_mesh(Size size, Size resolution) {
     const auto height_step = size.height / resolution.height;
 
     for (int i = 0; i <= resolution.width; i++) {
-        vertices.emplace_back( Vector3 { width_min + width_step * i, height_min },              Vector3 { } );
-        vertices.emplace_back( Vector3 { width_min + width_step * i, height_min + size.height}, Vector3 { } );
+        vertices.emplace_back( Vector3 { width_min + width_step * i, height_min }             );
+        vertices.emplace_back( Vector3 { width_min + width_step * i, height_min + size.height});
     }
 
     for (int i = 0; i <= resolution.height; i++) {
-        vertices.emplace_back( Vector3 { width_min,              height_min + height_step * i }, Vector3 { } );
-        vertices.emplace_back( Vector3 { width_min + size.width, height_min + height_step * i }, Vector3 { } );
+        vertices.emplace_back( Vector3 { width_min,              height_min + height_step * i });
+        vertices.emplace_back( Vector3 { width_min + size.width, height_min + height_step * i });
     }
 
-    return new Mesh(std::move(vertices));
+    Vertex::Indices indices;
+    Vertex::Index index = 0;
+
+    for ([[maybe_unused]] auto vert : vertices)
+        indices.push_back(index++);
+
+    return new Mesh(std::move(vertices), std::move(indices));
 }
 
-Grid::Grid(const Size& size, const Size& resolution) :
-    Model(create_mesh(size, resolution), Model::DrawMode::Triangles),
+Grid::Grid(const Size& size, const Size& resolution)
+    :
+    Model(create_mesh(size, resolution), Model::DrawMode::Lines),
     size(size),
     resolution(resolution)
-{ }
-
-void Grid::draw() {
-
-
-    Model::draw();
-
+{
+    color = Color::black;
 }

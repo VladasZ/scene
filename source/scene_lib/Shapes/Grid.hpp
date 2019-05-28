@@ -20,7 +20,6 @@ public:
 
     Grid(const gm::Size& size = { 5, 5 }, const gm::Size& resolution = { 20, 20 });
 
-    void draw() override;
 };
 
 }
