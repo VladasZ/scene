@@ -13,6 +13,7 @@
 #include "Camera.hpp"
 #include "Matrix4.hpp"
 #include "SceneConfig.hpp"
+#include "PositionManipulator.hpp"
 
 namespace scene {
 
@@ -35,6 +36,8 @@ public:
 
 
     Model* selected_model = nullptr;
+
+    PositionManipulator* position_manipulator;
 
     std::vector<PointLight*> _light_sources;
 

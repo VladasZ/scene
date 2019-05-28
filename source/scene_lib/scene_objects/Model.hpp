@@ -49,7 +49,7 @@ protected:
 
 public:
 
-    bool is_transparent = false;
+    bool is_hidden = false;
 
     gm::Color color = gm::Color::green;
 
@@ -66,10 +66,14 @@ public:
     bool has_image() const;
     Image* image() const;
 
-    const std::vector<Model*>& submodels() const;
     Model* supermodel() const;
 
+    void add_submodel(Model*);
+    const std::vector<Model*>& submodels() const;
+
     const gm::Matrix4& mvp_matrix() const;
+
+    virtual void _setup();
 
 private:
 

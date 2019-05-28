@@ -40,11 +40,17 @@ Model::DrawMode Model::draw_mode() const {
 }
 
 void Model::draw() {
-    if (_need_matrices_update)
+    if (is_hidden)
+        return;
+    if (_need_matrices_update) {
+        for (auto submodel : _submodels) {
+            submodel->_need_matrices_update = true;
+        }
         update_matrices();
+    }
     _drawer->_draw();
     for (auto submodel : _submodels)
-        submodel->_drawer->_draw();
+        submodel->draw();
 }
 
 void Model::draw_normals() {
@@ -66,19 +72,39 @@ Image* Model::image() const {
     return _image;
 }
 
-const std::vector<Model*>& Model::submodels() const {
-    return _submodels;
-}
-
 Model* Model::supermodel() const {
     return _supermodel;
+}
+
+void Model::add_submodel(Model* model) {
+    _submodels.push_back(model);
+    model->_supermodel = this;
+    model->_scene = _scene;
+    model->_setup();
+}
+
+const std::vector<Model*>& Model::submodels() const {
+    return _submodels;
 }
 
 const Matrix4& Model::mvp_matrix() const {
     return _mvp_matrix;
 }
 
+void Model::_setup() {
+    for (auto submodel : _submodels)
+        submodel->_scene = _scene;
+}
+
 void Model::update_matrices() {
     Scalable::update_matrices();
-    _mvp_matrix = _scene->camera->view_projection_matrix() * _model_matrix;
+
+    _mvp_matrix = _scene->camera->view_projection_matrix();
+
+    if (_supermodel)
+        _mvp_matrix *= _supermodel->_model_matrix;
+
+    _mvp_matrix *= _model_matrix;
+
+    //* _model_matrix;
 }

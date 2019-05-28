@@ -20,16 +20,18 @@ using namespace scene;
 Scene::Scene() : camera(new Camera()) {
     add_object(camera);
 
-    _dummy_box    = new BoxModel();
+    _dummy_box = new BoxModel();
     _dummy_vector = new VectorModel();
 
-    _dummy_box   ->set_position({ 0, 0, 10000000000.0f });
-    _dummy_vector->set_position({ 0, 0, 10000000000.0f });
+    _dummy_box->is_hidden = true;
+    _dummy_vector->is_hidden = true;
 
     _dummy_vector->set_scale(0.4f);
 
-    add_object(_dummy_box   );
+    add_object(_dummy_box);
     add_object(_dummy_vector);
+
+    add_object(position_manipulator = new PositionManipulator());
 }
 
 Scene::~Scene() {
@@ -40,8 +42,10 @@ Scene::~Scene() {
 void Scene::add_object(Object* obj) {
     _objects.push_back(obj);
     obj->_scene = this;
-    if (auto model = dynamic_cast<Model*>(obj))
+    if (auto model = dynamic_cast<Model*>(obj)) {
         _models.push_back(model);
+        model->_setup();
+    }
 }
 
 void Scene::add_light(PointLight* light) {
@@ -55,6 +59,7 @@ void Scene::add_box(const Vector3& position, float size) {
 }
 
 void Scene::draw_box(const Vector3& position, float size) {
+    _dummy_box->is_hidden = false;
     _dummy_box->set_scale(size);
     _dummy_box->set_position(position);
     _dummy_box->draw();
@@ -80,6 +85,9 @@ Model* Scene::select_model(const gm::Point& location) {
     bool new_model = false;
 
     for (auto model : _models) {
+
+
+
         if (model->intersects_ray(ray)) {
             selected_model = model;
             new_model = true;
