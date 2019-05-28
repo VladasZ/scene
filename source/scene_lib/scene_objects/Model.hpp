@@ -71,6 +71,8 @@ public:
     void add_submodel(Model*);
     const std::vector<Model*>& submodels() const;
 
+    void remove_all_submodels();
+
     const gm::Matrix4& mvp_matrix() const;
 
     virtual void _setup();

@@ -2,7 +2,7 @@
 //  PositionManipulator.cpp
 //  scene
 //
-//  Created by Vladas Zakrevskis on 1/24/19.
+//  Created by Vladas Zakrevskis on 5/27/19.
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 

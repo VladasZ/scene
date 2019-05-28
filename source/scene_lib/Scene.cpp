@@ -32,6 +32,7 @@ Scene::Scene() : camera(new Camera()) {
     add_object(_dummy_vector);
 
     add_object(position_manipulator = new PositionManipulator());
+    position_manipulator->is_hidden = true;
 }
 
 Scene::~Scene() {
@@ -86,8 +87,6 @@ Model* Scene::select_model(const gm::Point& location) {
 
     for (auto model : _models) {
 
-
-
         if (model->intersects_ray(ray)) {
             selected_model = model;
             new_model = true;
@@ -99,6 +98,8 @@ Model* Scene::select_model(const gm::Point& location) {
         for (auto model : _models)
             model->selected = false;
         selected_model->selected = true;
+//        position_manipulator->set_position(selected_model->_position);
+//        position_manipulator->is_hidden = false;
     }
 
     return selected_model;

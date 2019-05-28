@@ -28,6 +28,7 @@ Model::Model(Mesh* mesh, DrawMode draw_mode) : Selectable(mesh), _draw_mode(draw
 }
 
 Model::~Model() {
+    remove_all_submodels();
     delete _mesh;
 }
 
@@ -87,6 +88,12 @@ const std::vector<Model*>& Model::submodels() const {
     return _submodels;
 }
 
+void Model::remove_all_submodels() {
+    for (auto submodel : _submodels)
+        delete submodel;
+    _submodels.clear();
+}
+
 const Matrix4& Model::mvp_matrix() const {
     return _mvp_matrix;
 }
@@ -105,6 +112,4 @@ void Model::update_matrices() {
         _mvp_matrix *= _supermodel->_model_matrix;
 
     _mvp_matrix *= _model_matrix;
-
-    //* _model_matrix;
 }
