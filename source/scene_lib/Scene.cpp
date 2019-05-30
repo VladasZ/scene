@@ -27,6 +27,9 @@ Scene::Scene() : camera(new Camera()) {
     _dummy_box->is_hidden = true;
     _dummy_vector->is_hidden = true;
 
+    _dummy_box->selectable = false;
+    _dummy_vector->selectable = false;
+
     _dummy_vector->set_scale(0.4f);
 
     add_object(_dummy_box);
@@ -34,6 +37,7 @@ Scene::Scene() : camera(new Camera()) {
 
     add_object(position_manipulator = new PositionManipulator());
     position_manipulator->is_hidden = true;
+    position_manipulator->selectable = false;
 }
 
 Scene::~Scene() {
@@ -96,10 +100,11 @@ Model* Scene::select_model(const gm::Point& location) {
         if (model->intersects_ray(ray)) {
             selected_model = model;
             new_model = true;
-            add_ray(ray);
             break;
         }
     }
+
+    //add_ray(ray);
 
     if (new_model) {
         for (auto model : _models)
@@ -113,7 +118,7 @@ Model* Scene::select_model(const gm::Point& location) {
 void Scene::add_ray(const gm::Ray& ray) {
     auto vector = new VectorModel();
     add_object(vector);
-    vector->set_scale({ 100, 0.1f, 0.1f });
+    vector->set_scale({ ray.length(), 0.1f, 0.1f });
     vector->set_position(ray.orig);
     vector->look_at(ray.direction_vector());
     vector->selectable = false;
