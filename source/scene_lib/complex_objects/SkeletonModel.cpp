@@ -12,8 +12,9 @@
 using namespace gm;
 using namespace scene;
 
+static const auto joint_size = 0.18f;
 
-SkeletonModel::SkeletonModel(Skeleton* skeleton) : BoxModel(0.1f), _skeleton(skeleton) {
+SkeletonModel::SkeletonModel(Skeleton* skeleton) : BoxModel(joint_size), _skeleton(skeleton) {
 
 }
 
@@ -27,13 +28,13 @@ void SkeletonModel::update_skeleton() {
     for (auto bone : _skeleton->all_bones()) {
         auto vector = new VectorModel();
         add_submodel(vector);
-        vector->set_scale(bone->length());
+        vector->set_scale( { bone->length(), 1, 1 });
         vector->set_position(bone->begin());
         vector->look_at(bone->direction());
+        vector->selectable = false;
 
-        auto box = new BoxModel(Box(0.1f));
+        auto box = new BoxModel(Box(joint_size));
         add_submodel(box);
-        box->set_scale(bone->length());
         box->set_position(bone->end());
     }
 }

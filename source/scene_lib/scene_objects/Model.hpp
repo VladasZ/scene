@@ -75,6 +75,10 @@ public:
 
     const gm::Matrix4& mvp_matrix() const;
 
+    Model* intersecting_ray(const gm::Ray&);
+
+    void deselect();
+
     virtual void _setup();
 
 private:

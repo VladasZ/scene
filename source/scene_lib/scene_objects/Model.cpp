@@ -98,6 +98,22 @@ const Matrix4& Model::mvp_matrix() const {
     return _mvp_matrix;
 }
 
+Model* Model::intersecting_ray(const gm::Ray& ray) {
+    if (intersects_ray(ray))
+        return this;
+    for (auto submodel : _submodels) {
+        if (auto intersecting = submodel->intersecting_ray(ray))
+            return intersecting;
+    }
+    return nullptr;
+}
+
+void Model::deselect() {
+    is_selected = false;
+    for (auto submodel : _submodels)
+        submodel->deselect();
+}
+
 void Model::_setup() {
     for (auto submodel : _submodels)
         submodel->_scene = _scene;
@@ -106,10 +122,8 @@ void Model::_setup() {
 void Model::update_matrices() {
     Scalable::update_matrices();
 
-    _mvp_matrix = _scene->camera->view_projection_matrix();
-
     if (_supermodel)
-        _mvp_matrix *= _supermodel->_model_matrix;
+        _model_matrix = _supermodel->_model_matrix * _model_matrix;
 
-    _mvp_matrix *= _model_matrix;
+    _mvp_matrix = _scene->camera->view_projection_matrix() * _model_matrix;
 }

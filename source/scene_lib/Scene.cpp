@@ -94,22 +94,19 @@ Model* Scene::select_model(const gm::Point& location) {
 
     auto ray = camera->cast_ray(location);
 
-    bool new_model = false;
+    Model* new_model = nullptr;
 
     for (auto model : _models) {
-        if (model->intersects_ray(ray)) {
-            selected_model = model;
-            new_model = true;
+        if ((new_model = model->intersecting_ray(ray))) {
             break;
         }
     }
 
-    //add_ray(ray);
-
     if (new_model) {
+        selected_model = new_model;
         for (auto model : _models)
-            model->selected = false;
-        selected_model->selected = true;        
+            model->deselect();
+        selected_model->is_selected = true;
     }
 
     return selected_model;

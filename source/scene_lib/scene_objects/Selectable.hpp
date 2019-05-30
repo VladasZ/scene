@@ -23,7 +23,7 @@ class Selectable : public Scalable {
 
 public:
 
-    bool selected = false;
+    bool is_selected = false;
     bool selectable = true;
 
     const gm::Box bounding_box;
