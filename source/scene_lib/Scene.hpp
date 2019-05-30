@@ -30,7 +30,6 @@ protected:
     Model* _dummy_box;
     Model* _dummy_vector;
 
-    std::vector<Model*> _models;
 
 public:
 
@@ -43,6 +42,7 @@ public:
 
     Camera* const camera;
 
+    std::vector<Model*> _models;
     std::vector<Object*> _objects;
 
     Scene();
@@ -51,13 +51,17 @@ public:
     void add_object(Object*);
     void add_light(PointLight*);
 
-    void add_box(const gm::Vector3&, float = 0.05f);
-    void draw_box(const gm::Vector3&, float = 0.05f);
+    void remove_object(Object*);
+
+    void add_box(const gm::Vector3& = { }, float = 1);
+    void draw_box(const gm::Vector3& = { }, float = 0.05f);
 
     void update();
     void draw();
 
     Model* select_model(const gm::Point& location);
+
+    void add_ray(const gm::Ray&);
 
     virtual void setup();
     virtual void each_frame();

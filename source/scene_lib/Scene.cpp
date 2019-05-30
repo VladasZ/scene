@@ -10,6 +10,7 @@
 #include "Scene.hpp"
 #include "Camera.hpp"
 #include "BoxModel.hpp"
+#include "ArrayUtils.hpp"
 #include "PointLight.hpp"
 #include "VectorModel.hpp"
 
@@ -53,6 +54,12 @@ void Scene::add_light(PointLight* light) {
     _light_sources.push_back(light);
 }
 
+void Scene::remove_object(Object* object) {
+    cu::array::remove(_models, object);
+    cu::array::remove(_objects, object);
+    delete object;
+}
+
 void Scene::add_box(const Vector3& position, float size) {
     auto box = new BoxModel(Box(size));
     add_object(box);
@@ -86,10 +93,10 @@ Model* Scene::select_model(const gm::Point& location) {
     bool new_model = false;
 
     for (auto model : _models) {
-
         if (model->intersects_ray(ray)) {
             selected_model = model;
             new_model = true;
+            add_ray(ray);
             break;
         }
     }
@@ -97,12 +104,19 @@ Model* Scene::select_model(const gm::Point& location) {
     if (new_model) {
         for (auto model : _models)
             model->selected = false;
-        selected_model->selected = true;
-//        position_manipulator->set_position(selected_model->_position);
-//        position_manipulator->is_hidden = false;
+        selected_model->selected = true;        
     }
 
     return selected_model;
+}
+
+void Scene::add_ray(const gm::Ray& ray) {
+    auto vector = new VectorModel();
+    add_object(vector);
+    vector->set_scale({ 100, 0.1f, 0.1f });
+    vector->set_position(ray.orig);
+    vector->look_at(ray.direction_vector());
+    vector->selectable = false;
 }
 
 void Scene::setup() {

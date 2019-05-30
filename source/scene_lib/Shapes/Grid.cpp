@@ -50,4 +50,5 @@ Grid::Grid(const Size& size, const Size& resolution)
     resolution(resolution)
 {
     color = Color::black;
+    selectable = false;
 }
