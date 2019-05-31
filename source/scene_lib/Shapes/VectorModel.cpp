@@ -66,3 +66,15 @@ static Mesh* create_mesh() {
 VectorModel::VectorModel() : Model(create_mesh()) {
 
 }
+
+void VectorModel::visualize_vector(const gm::Vector3& vector) {
+    set_position({ });
+    look_at(vector);
+    set_scale({ vector.length(), 1, 1 });
+}
+
+void VectorModel::visualize_line_segment(const gm::LineSegment& segment) {
+    set_position(segment.begin);
+    look_at(segment.end - segment.begin);
+    set_scale({ segment.length(), 1, 1 });
+}

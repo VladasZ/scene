@@ -73,9 +73,9 @@ Ray Camera::cast_ray(const gm::Point& location) {
 
     Ray ray { start, end };
 
-    ray.dir = (ray.direction_vector() * 100) + ray.orig;
+    ray.end = (ray.direction_vector() * 100) + ray.begin;
 
-    return { ray.dir, ray.orig };
+    return { ray.end, ray.begin };
 }
 
 void Camera::update_matrices() {

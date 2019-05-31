@@ -14,5 +14,8 @@ namespace scene {
 class VectorModel : public Model {
 public:
     VectorModel();
+
+    void visualize_vector(const gm::Vector3&);
+    void visualize_line_segment(const gm::LineSegment&);
 };
 }

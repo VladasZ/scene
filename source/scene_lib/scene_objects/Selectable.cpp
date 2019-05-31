@@ -38,7 +38,7 @@ bool Selectable::intersects_ray(const gm::Ray& ray) const {
     if (!selectable)
         return false;
     const auto inversed_model = _model_matrix.inversed();
-    const auto transformed_orig = inversed_model * ray.orig;
-    const auto transformed_dir  = inversed_model * ray.dir;
+    const auto transformed_orig = inversed_model * ray.begin;
+    const auto transformed_dir  = inversed_model * ray.end;
     return bounding_box.intersects_ray({ transformed_orig, transformed_dir });
 }

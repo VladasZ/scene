@@ -116,7 +116,7 @@ void Scene::add_ray(const gm::Ray& ray) {
     auto vector = new VectorModel();
     add_object(vector);
     vector->set_scale({ ray.length(), 0.1f, 0.1f });
-    vector->set_position(ray.orig);
+    vector->set_position(ray.begin);
     vector->look_at(ray.direction_vector());
     vector->selectable = false;
 }
