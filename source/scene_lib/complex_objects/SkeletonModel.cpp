@@ -15,7 +15,20 @@ using namespace scene;
 static const auto joint_size = 0.18f;
 
 SkeletonModel::SkeletonModel(Skeleton* skeleton) : BoxModel(joint_size), _skeleton(skeleton) {
+    for ([[maybe_unused]] auto bone : _skeleton->bones) {
 
+        auto vector = new VectorModel();
+        add_submodel(vector);
+        vector->selectable = false;
+
+        auto box = new BoxModel(Box(joint_size));
+        add_submodel(box);
+
+        _vectors.push_back(vector);
+        _boxes.push_back(box);
+    }
+
+    update_skeleton();
 }
 
 gm::Skeleton* SkeletonModel::skeleton() const {
@@ -23,18 +36,11 @@ gm::Skeleton* SkeletonModel::skeleton() const {
 }
 
 void SkeletonModel::update_skeleton() {
-    remove_all_submodels();
-
-    for (auto bone : _skeleton->all_bones()) {
-        auto vector = new VectorModel();
-        add_submodel(vector);
-        vector->set_scale( { bone->length(), 1, 1 });
-        vector->set_position(bone->begin());
-        vector->look_at(bone->direction());
-        vector->selectable = false;
-
-        auto box = new BoxModel(Box(joint_size));
-        add_submodel(box);
+    for (size_t i = 0; i < _skeleton->bones.size(); i++) {
+        auto bone = _skeleton->bones[i];
+        auto vector = _vectors[i];
+        auto box = _boxes[i];
+        vector->visualize_line_segment(bone->line_segment());
         box->set_position(bone->end());
     }
 }
