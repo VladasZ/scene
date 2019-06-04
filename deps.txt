@@ -1,5 +1,4 @@
 soil
-scene
 image
 geometry
 cpp_utils
