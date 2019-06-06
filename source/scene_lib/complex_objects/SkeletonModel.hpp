@@ -23,7 +23,9 @@ class SkeletonModel : public BoxModel {
 
 public:
 
-    SkeletonModel(gm::Skeleton*);
+    const float scale;
+
+    SkeletonModel(gm::Skeleton*, float scale = 1);
 
     gm::Skeleton* skeleton() const;
 

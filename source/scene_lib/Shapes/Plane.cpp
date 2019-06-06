@@ -20,6 +20,19 @@ static Mesh* create_mesh(const Size& size) {
                      {{ 0, -size.width / 2, -size.height / 2 }, { 1, 0, 0 }}}, { 0, 1, 2, 0, 2, 3 });
 }
 
+
+static Mesh* create_mesh(const std::array<gm::Vector3, 4>& points) {
+    return new Mesh(Vertex::Array {
+                     { points[0], { 0, 0, 1 }},
+                     { points[1], { 0, 0, 1 }},
+                     { points[2], { 0, 0, 1 }},
+                     { points[3], { 0, 0, 1 }}}, { 0, 1, 2, 0, 2, 3 });
+}
+
 Plane::Plane(const Size& size) : Model(create_mesh(size)), size(size) {
     look_at({ 0, 0, 1 });
+}
+
+Plane::Plane(const std::array<gm::Vector3, 4>& points) : Model(create_mesh(points)) {
+
 }

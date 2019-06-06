@@ -6,6 +6,8 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include <array>
+
 #include "Size.hpp"
 #include "Model.hpp"
 
@@ -18,6 +20,7 @@ public:
     const gm::Size size;
 
     Plane(const gm::Size& size = { 5, 5 });
+    Plane(const std::array<gm::Vector3, 4>&);
 
 };
 

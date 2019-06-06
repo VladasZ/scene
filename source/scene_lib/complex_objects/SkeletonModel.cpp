@@ -14,14 +14,14 @@ using namespace scene;
 
 static const auto joint_size = 0.18f;
 
-SkeletonModel::SkeletonModel(Skeleton* skeleton) : BoxModel(joint_size), _skeleton(skeleton) {
+SkeletonModel::SkeletonModel(Skeleton* skeleton, float scale) : BoxModel(joint_size * scale), _skeleton(skeleton), scale(scale) {
     for ([[maybe_unused]] auto bone : _skeleton->bones) {
 
         auto vector = new VectorModel();
         add_submodel(vector);
         vector->selectable = false;
 
-        auto box = new BoxModel(Box(joint_size));
+        auto box = new BoxModel(Box(joint_size * scale));
         add_submodel(box);
 
         _vectors.push_back(vector);
@@ -40,7 +40,7 @@ void SkeletonModel::update_skeleton() {
         auto bone = _skeleton->bones[i];
         auto vector = _vectors[i];
         auto box = _boxes[i];
-        vector->visualize_line_segment(bone->line_segment());
+        vector->visualize_line_segment(bone->line_segment(), scale);
         box->set_position(bone->end());
     }
 }
