@@ -29,7 +29,9 @@ public:
 
     gm::Skeleton* skeleton() const;
 
-    void update_skeleton();
+    void reach_to(const gm::Vector3&);
+
+    void update();
 
 };
 

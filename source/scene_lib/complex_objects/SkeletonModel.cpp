@@ -14,7 +14,7 @@ using namespace scene;
 
 static const auto joint_size = 0.18f;
 
-SkeletonModel::SkeletonModel(Skeleton* skeleton, float scale) : BoxModel(joint_size * scale), _skeleton(skeleton), scale(scale) {
+SkeletonModel::SkeletonModel(Skeleton* skeleton, float scale) : BoxModel(Box(joint_size * scale)), _skeleton(skeleton), scale(scale) {
     for ([[maybe_unused]] auto bone : _skeleton->bones) {
 
         auto vector = new VectorModel();
@@ -28,14 +28,19 @@ SkeletonModel::SkeletonModel(Skeleton* skeleton, float scale) : BoxModel(joint_s
         _boxes.push_back(box);
     }
 
-    update_skeleton();
+    update();
 }
 
 gm::Skeleton* SkeletonModel::skeleton() const {
     return _skeleton;
 }
 
-void SkeletonModel::update_skeleton() {
+void SkeletonModel::reach_to(const gm::Vector3& target) {
+    _skeleton->reach_to(target);
+    update();
+}
+
+void SkeletonModel::update() {
     for (size_t i = 0; i < _skeleton->bones.size(); i++) {
         auto bone = _skeleton->bones[i];
         auto vector = _vectors[i];
