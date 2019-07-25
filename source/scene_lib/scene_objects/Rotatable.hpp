@@ -16,16 +16,12 @@ class Rotatable : public Translatable {
 
 protected:
 
-    gm::Vector3 _pivot;
     gm::Vector4 _rotation = { 1, 0, 0, 0 };
     gm::Matrix4 _rotation_matrix;
 
 public:
 
     void look_at(const gm::Vector3&);
-
-    const gm::Vector3& pivot() const;
-    void set_pivot(const gm::Vector3&);
 
     const gm::Vector4& rotation() const;
     void set_rotation(const gm::Vector4&);

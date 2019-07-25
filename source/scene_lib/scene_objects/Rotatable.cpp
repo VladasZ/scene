@@ -16,15 +16,6 @@ void Rotatable::look_at(const Vector3& target) {
     _need_matrices_update = true;
 }
 
-const Vector3& Rotatable::pivot() const {
-    return _pivot;
-}
-
-void Rotatable::set_pivot(const Vector3& pivot) {
-    _pivot = pivot;
-    _need_matrices_update = true;
-}
-
 const Vector4& Rotatable::rotation() const {
     return _rotation;
 }
