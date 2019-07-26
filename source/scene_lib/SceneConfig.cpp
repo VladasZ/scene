@@ -6,8 +6,28 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "Log.hpp"
 #include "SceneConfig.hpp"
 
 using namespace scene;
+using namespace config;
 
-SceneDrawer* config::drawer;
+static SceneDrawer* _drawer = nullptr;
+
+void set_drawer(SceneDrawer* drawer) {
+#ifdef DEBUG
+	if (_drawer != nullptr)
+		Fatal("Scene drawer must be set only once");
+	if (drawer == nullptr)
+		Fatal("Scene drawer must be nonnull");
+#endif
+	_drawer = drawer;
+}
+
+SceneDrawer* drawer() {
+#ifdef DEBUG
+	if (_drawer == nullptr)
+		Fatal("Scene drawer is not set before first usage");
+#endif
+	return _drawer;
+}

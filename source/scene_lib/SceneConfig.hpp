@@ -10,10 +10,7 @@
 
 #include "SceneDrawer.hpp"
 
-namespace scene {
-
-struct config {
-    static SceneDrawer* drawer;
-};
-
+namespace scene::config {
+	void set_drawer(SceneDrawer*);
+	SceneDrawer* drawer();
 }

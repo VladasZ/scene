@@ -30,9 +30,7 @@ protected:
     Model* _dummy_box;
     Model* _dummy_vector;
 
-
 public:
-
 
     Model* selected_model = nullptr;
 
