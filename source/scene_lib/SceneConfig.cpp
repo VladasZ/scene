@@ -14,7 +14,7 @@ using namespace config;
 
 static SceneDrawer* _drawer = nullptr;
 
-void set_drawer(SceneDrawer* drawer) {
+void config::set_drawer(SceneDrawer* drawer) {
 #ifdef DEBUG
 	if (_drawer != nullptr)
 		Fatal("Scene drawer must be set only once");
@@ -24,7 +24,7 @@ void set_drawer(SceneDrawer* drawer) {
 	_drawer = drawer;
 }
 
-SceneDrawer* drawer() {
+SceneDrawer* config::drawer() {
 #ifdef DEBUG
 	if (_drawer == nullptr)
 		Fatal("Scene drawer is not set before first usage");
