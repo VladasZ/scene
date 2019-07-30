@@ -66,7 +66,7 @@ void Model::draw_normals() {
 }
 
 bool Model::has_image() const {
-    return _image;
+    return _image != nullptr;
 }
 
 Image* Model::image() const {
