@@ -40,6 +40,9 @@ const Vector3& Camera::target() const {
 }
 
 void Camera::move_orbit(const Point& shift) {
+    if (shift.is_zero()) {
+        return;
+    }
     auto relative_position = _position - _target;
     relative_position.orbit_shift(shift);
     _position = relative_position + _target;
@@ -92,5 +95,6 @@ void Camera::update_matrices() {
 
 void Camera::update() {
     _target += velocity;
+    move_orbit(orbit_velocity);
     Movable::update();
 }

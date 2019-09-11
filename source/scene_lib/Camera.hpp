@@ -28,6 +28,8 @@ public:
     float fov    =   1.0f;
     float z_near =   0.1f;
     float z_far  = 100.0f;
+    
+    gm::Point orbit_velocity;
 
     Camera();
 
