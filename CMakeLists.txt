@@ -10,7 +10,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(scene)
 
+if(${NEEDS_CONAN})
 conan_basic_setup()
+endif()
 
 add_subdirectory(source/scene_lib)
 

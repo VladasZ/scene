@@ -5,7 +5,9 @@ project(scene_lib)
 add_catalog_recursive(${PROJECT_SOURCE_DIR} /source SOURCE)
 add_library(${PROJECT_NAME} ${SOURCE})
 
+if(${NEEDS_CONAN})
 conan_target_link_libraries(${PROJECT_NAME})
+endif()
 
 link_project_at_path(image     ${image_path}    )
 link_project_at_path(geometry  ${geometry_path} )
