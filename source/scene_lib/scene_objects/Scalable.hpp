@@ -14,7 +14,7 @@ namespace scene {
 
 class Scalable : public Rotatable {
 
-protected:
+public:
 
     gm::Vector3 _scale = { 1.0f, 1.0f, 1.0f };
     gm::Matrix4 _scale_matrix;
