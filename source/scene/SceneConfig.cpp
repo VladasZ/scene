@@ -16,18 +16,21 @@ static SceneDrawer* _drawer = nullptr;
 
 void config::set_drawer(SceneDrawer* drawer) {
 #ifdef DEBUG
-	if (_drawer != nullptr)
-		Fatal("Scene drawer must be set only once");
-	if (drawer == nullptr)
-		Fatal("Scene drawer must be nonnull");
+	if (_drawer != nullptr) {
+        Fatal("Scene drawer must be set only once");
+    }
+	if (drawer == nullptr) {
+        Fatal("Scene drawer must be nonnull");
+    }
 #endif
 	_drawer = drawer;
 }
 
 SceneDrawer* config::drawer() {
 #ifdef DEBUG
-	if (_drawer == nullptr)
-		Fatal("Scene drawer is not set before first usage");
+	if (_drawer == nullptr) {
+        Fatal("Scene drawer is not set before first usage");
+    }
 #endif
 	return _drawer;
 }
