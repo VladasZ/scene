@@ -43,9 +43,9 @@ void Camera::move_orbit(const Point& shift) {
     if (shift.is_zero()) {
         return;
     }
-    auto relative_position = _position - _target;
-    relative_position.orbit_shift(shift);
-    _position = relative_position + _target;
+    _position -= _target;
+    _position.orbit_shift(shift);
+    _position += _target;
     update_matrices();
 }
 
