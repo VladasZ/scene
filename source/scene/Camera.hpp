@@ -29,8 +29,6 @@ public:
     float z_near =   0.1f;
     float z_far  = 100.0f;
     
-    gm::Point orbit_velocity;
-
     Camera();
 
     gm::Size resolution { 100, 100 };
@@ -44,7 +42,9 @@ public:
 
     void move_orbit(const gm::Point&);
 
-    const gm::Vector3& direction() override;
+    void zoom(float);
+
+    const gm::Vector3& direction() const override;
 
     gm::Ray cast_ray(const gm::Point&);
 

@@ -85,8 +85,9 @@ void Scene::update() {
 }
 
 void Scene::draw() {
-    for (auto mod : _models)
-        mod->draw();
+    for (auto model : _models) {
+        model->draw();
+    }
     each_frame();
 }
 

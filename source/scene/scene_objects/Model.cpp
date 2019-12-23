@@ -41,8 +41,9 @@ Model::DrawMode Model::draw_mode() const {
 }
 
 void Model::draw() {
-    if (is_hidden)
+    if (is_hidden) {
         return;
+    }
     if (_need_matrices_update) {
         for (auto submodel : _submodels) {
             submodel->_need_matrices_update = true;
@@ -50,14 +51,15 @@ void Model::draw() {
         update_matrices();
     }
     _drawer->_draw();
-    for (auto submodel : _submodels)
+    for (auto submodel : _submodels) {
         submodel->draw();
+    }
 }
 
 void Model::draw_normals() {
-    if (_need_matrices_update)
+    if (_need_matrices_update) {
         update_matrices();
-
+    }
     for (auto ver : mesh()->vertices()) {
         _scene->_dummy_vector->set_position(_model_matrix * ver.position);
         _scene->_dummy_vector->look_at(_model_matrix.multiply_by_normal(ver.normal));
@@ -89,8 +91,9 @@ const std::vector<Model*>& Model::submodels() const {
 }
 
 void Model::remove_all_submodels() {
-    for (auto submodel : _submodels)
+    for (auto submodel : _submodels) {
         delete submodel;
+    }
     _submodels.clear();
 }
 
@@ -99,31 +102,34 @@ const Matrix4& Model::mvp_matrix() const {
 }
 
 Model* Model::intersecting_ray(const gm::Ray& ray) {
-    if (intersects_ray(ray))
+    if (intersects_ray(ray)) {
         return this;
+    }
     for (auto submodel : _submodels) {
-        if (auto intersecting = submodel->intersecting_ray(ray))
+        if (auto intersecting = submodel->intersecting_ray(ray)) {
             return intersecting;
+        }
     }
     return nullptr;
 }
 
 void Model::deselect() {
     is_selected = false;
-    for (auto submodel : _submodels)
+    for (auto submodel : _submodels) {
         submodel->deselect();
+    }
 }
 
 void Model::_setup() {
-    for (auto submodel : _submodels)
+    for (auto submodel : _submodels) {
         submodel->_scene = _scene;
+    }
 }
 
 void Model::update_matrices() {
     Scalable::update_matrices();
-
-    if (_supermodel)
+    if (_supermodel) {
         _model_matrix = _supermodel->_model_matrix * _model_matrix;
-
+    }
     _mvp_matrix = _scene->camera->view_projection_matrix() * _model_matrix;
 }

@@ -23,9 +23,9 @@ protected:
 
     bool _need_matrices_update = true;
 
-public:
-
     gm::Vector3 _position;
+
+public:
 
     Scene* _scene = nullptr;
 

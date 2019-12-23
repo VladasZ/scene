@@ -49,7 +49,15 @@ void Camera::move_orbit(const Point& shift) {
     update_matrices();
 }
 
-const Vector3& Camera::direction() {
+void Camera::zoom(float value) {
+    _position = _position - _target;
+    float length = _position.length();
+    _position.set_length(length + (length * 0.1f * -value));
+    _position += _target;
+    update_matrices();
+}
+
+const Vector3& Camera::direction() const {
     static Vector3 direction;
     direction = _target - _position;
     return direction;
@@ -88,13 +96,13 @@ void Camera::update_matrices() {
     _view_projection_matrix = _projection_matrix * _view_matrix;
 
     for (auto obj : _scene->_objects) {
-        if (obj != this)
+        if (obj != this) {
             obj->update_matrices();
+        }
     }
 }
 
 void Camera::update() {
     _target += velocity;
-    move_orbit(orbit_velocity);
     Movable::update();
 }
