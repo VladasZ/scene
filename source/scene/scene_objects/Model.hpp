@@ -49,6 +49,7 @@ protected:
 
 public:
 
+    bool respects_depth_buffer = true;
     bool is_hidden = false;
 
     gm::Color color = gm::Color::green;

@@ -19,13 +19,9 @@ class PositionManipulator : public BoxModel {
 public:
 
     cu::XYZPack<VectorModel*> arrows = nullptr;
+    BoxModel* box = nullptr;
 
     PositionManipulator();
-
-
-private:
-
-    void _setup() override;
 
 };
 

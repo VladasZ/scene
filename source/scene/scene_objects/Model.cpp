@@ -123,6 +123,9 @@ void Model::deselect() {
 void Model::_setup() {
     for (auto submodel : _submodels) {
         submodel->_scene = _scene;
+        if (!respects_depth_buffer) {
+            submodel->respects_depth_buffer = false;
+        }
     }
 }
 

@@ -26,8 +26,10 @@ PositionManipulator::PositionManipulator() : BoxModel(0.1f) {
     arrows.y->look_at({ 0, 1, 0 });
     arrows.z->look_at({ 0, 0, 1 });
 
-}
+    box = new BoxModel(0.1f);
+    box->color = Color::turquoise;
+    add_submodel(box);
 
-void PositionManipulator::_setup() {
-    Model::_setup();
+    respects_depth_buffer = false;
+
 }

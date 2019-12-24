@@ -35,9 +35,11 @@ Scene::Scene() : camera(new Camera()) {
     add_object(_dummy_box);
     add_object(_dummy_vector);
 
-    add_object(position_manipulator = new PositionManipulator());
+    position_manipulator = new PositionManipulator();
+    position_manipulator->_scene = this;
     position_manipulator->is_hidden = true;
     position_manipulator->selectable = false;
+    static_cast<Model*>(position_manipulator)->_setup();
 }
 
 Scene::~Scene() {
@@ -78,16 +80,20 @@ void Scene::draw_box(const Vector3& position, float size) {
 }
 
 void Scene::update() {
-    for (auto obj : _objects)
+    for (auto obj : _objects) {
         obj->update();
-    for (auto light : _light_sources)
+    }
+    for (auto light : _light_sources) {
         light->update();
+    }
+    position_manipulator->update();
 }
 
 void Scene::draw() {
     for (auto model : _models) {
         model->draw();
     }
+    position_manipulator->draw();
     each_frame();
 }
 
