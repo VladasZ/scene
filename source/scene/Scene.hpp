@@ -10,16 +10,14 @@
 
 #include <vector>
 
+#include "Model.hpp"
 #include "Camera.hpp"
 #include "Matrix4.hpp"
+#include "PointLight.hpp"
 #include "SceneConfig.hpp"
 #include "PositionManipulator.hpp"
 
 namespace scene {
-
-class Model;
-class Object;
-class PointLight;
 
 class Scene {
 

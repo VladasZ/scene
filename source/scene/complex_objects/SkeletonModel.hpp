@@ -2,13 +2,13 @@
 //  SkeletonModel.hpp
 //  scene
 //
-//  Created by Vladas Zakrevskis on 5/28/19.
-//  Copyright © 2019 VladasZ. All rights reserved.
+//  Created by Vladas Zakrevskis on 29/01/20.
+//  Copyright © 2020 VladasZ. All rights reserved.
 //
 
 #pragma once
 
-#include "Skeleton.hpp"
+#include "Bone.hpp"
 #include "BoxModel.hpp"
 #include "VectorModel.hpp"
 
@@ -16,7 +16,7 @@ namespace scene {
 
 class SkeletonModel : public BoxModel {
 
-    gm::Skeleton* _skeleton;
+    std::vector<gm::Bone*> bones;
 
     std::vector<BoxModel*> _boxes;
     std::vector<VectorModel*> _vectors;
@@ -25,13 +25,15 @@ public:
 
     const float scale;
 
-    SkeletonModel(gm::Skeleton*, float scale = 1);
+    SkeletonModel(float scale = 1);
 
-    gm::Skeleton* skeleton() const;
-
-    void reach_to(const gm::Vector3&);
+    void add_bone(gm::Bone*);
 
     void update();
+
+protected:
+
+    void _create_models_for_bone(gm::Bone*);
 
 };
 
