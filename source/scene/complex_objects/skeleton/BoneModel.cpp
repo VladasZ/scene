@@ -12,24 +12,26 @@
 using namespace gm;
 using namespace scene;
 
-BoneModel::BoneModel(float length) : BaseBone(length) {
+BoneModel::BoneModel(float length) : BoxModel(0.1f), BaseBone(length) {
+    vector = new VectorModel();
+    add_submodel(vector);
+}
 
+BoneModel::~BoneModel() {
 }
 
 void BoneModel::draw() {
-    _joint->set_position(end());
-    visualize_line_segment(line_segment());
+    vector->visualize_line_segment(line_segment());
     Model::draw();
 }
 
 void BoneModel::_setup() {
     Model::_setup();
-    _scene->add_object(_joint = new BoxModel(0.1f));
+
     if (!is_root()) {
         return;
     }
     iterate_childred([&](BoneModel* child) {
-       Log(child->to_string());
-       _scene->add_object(child);
+        add_submodel(child);
     });
 }

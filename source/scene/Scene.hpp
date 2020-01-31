@@ -59,7 +59,7 @@ public:
 
     void add_ray(const gm::Ray&);
 
-    virtual void setup();
+    virtual void _setup();
     virtual void each_frame();
 
 };

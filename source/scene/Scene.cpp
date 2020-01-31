@@ -128,7 +128,7 @@ void Scene::add_ray(const gm::Ray& ray) {
     vector->selectable = false;
 }
 
-void Scene::setup() {
+void Scene::_setup() {
 
 }
 

@@ -14,15 +14,16 @@
 
 namespace scene {
 
-class BoneModel : public VectorModel, public gm::BaseBone<BoneModel> {
+class BoneModel : public BoxModel, public gm::BaseBone<BoneModel> {
 
 private:
 
-    BoxModel* _joint = nullptr;
+    VectorModel* vector = nullptr;
 
 public:
 
     BoneModel(float length);
+    ~BoneModel() override;
 
 protected:
 
