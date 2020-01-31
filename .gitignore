@@ -4,3 +4,4 @@
 /build
 /dep_build
 *txt.user
+.DS_Store

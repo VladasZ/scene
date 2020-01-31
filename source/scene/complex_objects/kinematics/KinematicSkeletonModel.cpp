@@ -1,5 +1,5 @@
 //
-//  SkeletonModel.cpp
+//  KinematicSkeletonModel.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 29/01/20.
@@ -7,14 +7,14 @@
 //
 
 #include "VectorModel.hpp"
-#include "SkeletonModel.hpp"
+#include "KinematicSkeletonModel.hpp"
 
 using namespace gm;
 using namespace scene;
 
 static const auto joint_size = 0.18f;
 
-SkeletonModel::SkeletonModel(float scale) : BoxModel(Box(joint_size * scale)), scale(scale) {
+KinematicSkeletonModel::KinematicSkeletonModel(float scale) : BoxModel(Box(joint_size * scale)), scale(scale) {
 //    for ([[maybe_unused]] auto bone : _skeleton->bones) {
 //
 //        auto vector = new VectorModel();
@@ -31,11 +31,11 @@ SkeletonModel::SkeletonModel(float scale) : BoxModel(Box(joint_size * scale)), s
 //    update();
 }
 
-void SkeletonModel::add_bone(gm::Bone* bone) {
+void KinematicSkeletonModel::add_bone(gm::ReachingBone* bone) {
 
 }
 
-void SkeletonModel::update() {
+void KinematicSkeletonModel::update() {
     for (size_t i = 0; i < bones.size(); i++) {
         auto bone = bones[i];
         auto vector = _vectors[i];
@@ -45,6 +45,6 @@ void SkeletonModel::update() {
     }
 }
 
-void SkeletonModel::_create_models_for_bone(gm::Bone* bone) {
+void KinematicSkeletonModel::_create_models_for_bone(gm::ReachingBone* bone) {
 
 }

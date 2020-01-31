@@ -1,5 +1,5 @@
 //
-//  SkeletonModel.hpp
+//  KinematicSkeletonModel.hpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 29/01/20.
@@ -8,15 +8,15 @@
 
 #pragma once
 
-#include "Bone.hpp"
 #include "BoxModel.hpp"
 #include "VectorModel.hpp"
+#include "ReachingBone.hpp"
 
 namespace scene {
 
-class SkeletonModel : public BoxModel {
+class KinematicSkeletonModel : public BoxModel {
 
-    std::vector<gm::Bone*> bones;
+    std::vector<gm::ReachingBone*> bones;
 
     std::vector<BoxModel*> _boxes;
     std::vector<VectorModel*> _vectors;
@@ -25,15 +25,15 @@ public:
 
     const float scale;
 
-    SkeletonModel(float scale = 1);
+    KinematicSkeletonModel(float scale = 1);
 
-    void add_bone(gm::Bone*);
+    void add_bone(gm::ReachingBone*);
 
     void update();
 
 protected:
 
-    void _create_models_for_bone(gm::Bone*);
+    void _create_models_for_bone(gm::ReachingBone*);
 
 };
 

@@ -18,7 +18,7 @@ public:
     const gm::Size size;
     const gm::Size resolution;
 
-    Grid(const gm::Size& size = { 5, 5 }, const gm::Size& resolution = { 20, 20 });
+    Grid(const gm::Size& size = { 20, 20 }, const gm::Size& resolution = { 20, 20 });
 
 };
 
