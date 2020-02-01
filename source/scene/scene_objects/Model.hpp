@@ -8,6 +8,10 @@
 
 #pragma once
 
+#ifdef USING_BULLET3D
+#include "RigidBody.hpp"
+#endif
+
 #include "Color.hpp"
 #include "Selectable.hpp"
 
@@ -15,76 +19,84 @@ class Image;
 
 namespace scene {
 
-class Mesh;
+    class Mesh;
 
-class Model : public Selectable {
+    class Model : public Selectable {
 
-public:
+    public:
 
-    enum DrawMode {
-        Lines     = 0x0001,
-        Triangles = 0x0004,
-    };
+        enum DrawMode {
+            Lines     = 0x0001,
+            Triangles = 0x0004,
+        };
 
-    class Drawer {
-        friend Model;
+        class Drawer {
+            friend Model;
+        protected:
+            Model* _model;
+            virtual ~Drawer() = 0;
+            virtual void _draw() const = 0;
+        };
+
+#ifdef USING_BULLET3D
+        RigidBody* rigidBody = nullptr;
+#endif
+
     protected:
-        Model* _model;
-        virtual ~Drawer() = 0;
-        virtual void _draw() const = 0;
+
+        DrawMode _draw_mode;
+
+        gm::Matrix4 _mvp_matrix;
+
+        Mesh* _mesh;
+        Image* _image;
+        Drawer* _drawer;
+
+        Model* _supermodel = nullptr;
+        std::vector<Model*> _submodels;
+
+    public:
+
+        bool respects_depth_buffer = true;
+        bool is_hidden = false;
+
+        gm::Color color = gm::Color::green;
+
+        Model(Mesh*, Image*);
+        Model(Mesh*, DrawMode = Triangles);
+        ~Model() override;
+
+        Mesh* mesh() const;
+        DrawMode draw_mode() const;
+
+        void update() override;
+
+        virtual void draw();
+        virtual void update_rigid_body();
+
+        void draw_normals();
+
+        bool has_image() const;
+        Image* image() const;
+
+        Model* supermodel() const;
+
+        void add_submodel(Model*);
+        const std::vector<Model*>& submodels() const;
+
+        void remove_all_submodels();
+
+        const gm::Matrix4& mvp_matrix() const;
+
+        Model* intersecting_ray(const gm::Ray&);
+
+        void deselect();
+
+        virtual void _setup();
+
+    private:
+
+        void update_matrices() override;
     };
-
-protected:
-
-    DrawMode _draw_mode;
-
-    gm::Matrix4 _mvp_matrix;
-
-    Mesh* _mesh;
-    Image* _image;
-    Drawer* _drawer;
-
-    Model* _supermodel = nullptr;
-    std::vector<Model*> _submodels;
-
-public:
-
-    bool respects_depth_buffer = true;
-    bool is_hidden = false;
-
-    gm::Color color = gm::Color::green;
-
-    Model(Mesh*, Image*);
-    Model(Mesh*, DrawMode = Triangles);
-    ~Model() override;
-
-    Mesh* mesh() const;
-    DrawMode draw_mode() const;
-
-    virtual void draw();
-    void draw_normals();
-
-    bool has_image() const;
-    Image* image() const;
-
-    Model* supermodel() const;
-
-    void add_submodel(Model*);
-    const std::vector<Model*>& submodels() const;
-
-    void remove_all_submodels();
-
-    const gm::Matrix4& mvp_matrix() const;
-
-    Model* intersecting_ray(const gm::Ray&);
-
-    void deselect();
-
-    virtual void _setup();
-
-private:
-
-    void update_matrices() override;
-};
 
 }

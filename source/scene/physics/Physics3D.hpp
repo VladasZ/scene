@@ -8,7 +8,12 @@
 
 #pragma once
 
+#ifdef USING_BULLET3D
+
+#include "btBulletDynamicsCommon.h"
+
 #include "Vector3.hpp"
+#include "RigidBody.hpp"
 
 namespace scene {
 
@@ -16,12 +21,27 @@ namespace scene {
 
     public:
 
+        Physics3D();
+
         static inline gm::Vector3 ground_position;
         static inline gm::Vector3 box_position;
 
-        static void init();
-        static void update();
+        void update();
+
+        void update_rigid_body(RigidBody*);
+
+        void add_rigid_body(RigidBody*);
+
+    private:
+
+        btDefaultCollisionConfiguration* collisionConfiguration;
+        btCollisionDispatcher* dispatcher;
+        btBroadphaseInterface* overlappingPairCache;
+        btSequentialImpulseConstraintSolver* solver;
+        btDiscreteDynamicsWorld* dynamicsWorld;
 
     };
 
 }
+
+#endif

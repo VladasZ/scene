@@ -10,6 +10,10 @@
 
 #include <vector>
 
+#ifdef USING_BULLET3D
+#include "Physics3D.hpp"
+#endif
+
 #include "Model.hpp"
 #include "Camera.hpp"
 #include "Matrix4.hpp"
@@ -27,6 +31,10 @@ protected:
 
     Model* _dummy_box;
     Model* _dummy_vector;
+
+#ifdef USING_BULLET3D
+    Physics3D* _physics;
+#endif
 
 public:
 

@@ -30,6 +30,9 @@ Model::Model(Mesh* mesh, DrawMode draw_mode) : Selectable(mesh), _draw_mode(draw
 Model::~Model() {
     remove_all_submodels();
     delete _mesh;
+    if (rigidBody != nullptr) {
+        delete rigidBody;
+    }
 }
 
 Mesh* Model::mesh() const {
@@ -38,6 +41,13 @@ Mesh* Model::mesh() const {
 
 Model::DrawMode Model::draw_mode() const {
     return _draw_mode;
+}
+
+void Model::update() {
+    if (rigidBody != nullptr) {
+        rigidBody->update();
+        set_position(rigidBody->position);
+    }
 }
 
 void Model::draw() {
@@ -54,6 +64,13 @@ void Model::draw() {
     for (auto submodel : _submodels) {
         submodel->draw();
     }
+}
+
+void Model::update_rigid_body() {
+#ifdef USING_BULLET3D
+    if (rigidBody == nullptr) return;
+
+#endif
 }
 
 void Model::draw_normals() {

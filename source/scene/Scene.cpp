@@ -41,11 +41,19 @@ Scene::Scene() : camera(new Camera()) {
     position_manipulator->is_hidden = true;
     position_manipulator->selectable = false;
     static_cast<Model*>(position_manipulator)->_setup();
+
+#ifdef USING_BULLET3D
+    _physics = new Physics3D();
+    RigidBody::physics = _physics;
+#endif
+
 }
 
 Scene::~Scene() {
-    for (auto obj : _objects)
+    for (auto obj : _objects) {
         delete obj;
+    }
+    delete _physics;
 }
 
 void Scene::add_object(Object* obj) {
@@ -81,6 +89,9 @@ void Scene::draw_box(const Vector3& position, float size) {
 }
 
 void Scene::update() {
+#ifdef USING_BULLET3D
+    _physics->update();
+#endif
     for (auto obj : _objects) {
         obj->update();
     }
