@@ -53,7 +53,9 @@ Scene::~Scene() {
     for (auto obj : _objects) {
         delete obj;
     }
+#ifdef USING_BULLET3D
     delete _physics;
+#endif
 }
 
 void Scene::add_object(Object* obj) {
