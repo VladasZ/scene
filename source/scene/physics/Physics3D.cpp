@@ -6,7 +6,9 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
+#ifdef USING_BULLET3D
 #include "btBulletDynamicsCommon.h"
+#endif
 
 #include "Log.hpp"
 #include "Matrix4.hpp"
@@ -15,13 +17,17 @@
 using namespace gm;
 using namespace scene;
 
+#ifdef USING_BULLET3D
 btDefaultCollisionConfiguration* collisionConfiguration;
 btCollisionDispatcher* dispatcher;
 btBroadphaseInterface* overlappingPairCache;
 btSequentialImpulseConstraintSolver* solver;
 btDiscreteDynamicsWorld* dynamicsWorld;
+#endif
 
 void Physics3D::init() {
+    
+    #ifdef USING_BULLET3D
 
     ///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
     collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -110,10 +116,15 @@ void Physics3D::init() {
     }
 
     update();
+    
+#endif
 
 }
 
 void Physics3D::update() {
+    
+    #ifdef USING_BULLET3D
+    
     dynamicsWorld->stepSimulation(1.f / 60.f, 10);
 
     //print positions of all objects
@@ -142,4 +153,6 @@ void Physics3D::update() {
         }
 
       }
+    
+#endif
 }
