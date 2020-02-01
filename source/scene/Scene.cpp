@@ -14,6 +14,7 @@
 #include "PointLight.hpp"
 #include "VectorModel.hpp"
 
+
 using namespace gm;
 using namespace scene;
 

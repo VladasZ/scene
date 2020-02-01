@@ -25,9 +25,9 @@ class Camera : public Flyable {
 
 public:
 
-    float fov    =   1.0f;
-    float z_near =   0.1f;
-    float z_far  = 100.0f;
+    float fov    =    1.0f;
+    float z_near =    0.1f;
+    float z_far  = 5000.0f;
     
     Camera();
 

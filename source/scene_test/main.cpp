@@ -8,7 +8,10 @@
 
 
 #include "Scene.hpp"
+#include "Physics3D.hpp"
 
 int main() {
+
+    scene::Physics3D::init();
 
 }

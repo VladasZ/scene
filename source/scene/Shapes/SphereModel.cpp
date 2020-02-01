@@ -1,9 +1,9 @@
 //
-//  SphereModel.hpp
+//  BoxModel.cpp
 //  scene
 //
-//  Created by Vladas Zakrevskis on 01/02/20.
-//  Copyright © 2020 VladasZ. All rights reserved.
+//  Created by Vladas Zakrevskis on 1/24/19.
+//  Copyright © 2019 VladasZ. All rights reserved.
 //
 
 #include <iostream>
