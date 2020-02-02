@@ -38,10 +38,6 @@ namespace scene {
             virtual void _draw() const = 0;
         };
 
-#ifdef USING_BULLET3D
-        RigidBody* rigidBody = nullptr;
-#endif
-
     protected:
 
         DrawMode _draw_mode;
@@ -93,6 +89,14 @@ namespace scene {
         void deselect();
 
         virtual void _setup();
+
+#ifdef USING_BULLET3D
+    protected:
+        RigidBody* _rigid_body = nullptr;
+    public:
+        RigidBody* rigid_body();
+        void add_rigid_body(float size, float mass, RigidBody::Shape shape);
+#endif
 
     private:
 

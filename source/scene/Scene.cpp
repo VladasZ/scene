@@ -90,9 +90,9 @@ void Scene::draw_box(const Vector3& position, float size) {
     _dummy_box->draw();
 }
 
-void Scene::update() {
+void Scene::update(float frame_time) {
 #ifdef USING_BULLET3D
-    _physics->update();
+    _physics->update(frame_time);
 #endif
     for (auto obj : _objects) {
         obj->update();

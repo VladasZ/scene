@@ -26,7 +26,7 @@ namespace scene {
         static inline gm::Vector3 ground_position;
         static inline gm::Vector3 box_position;
 
-        void update();
+        void update(float interval);
 
         void update_rigid_body(RigidBody*);
 

@@ -31,8 +31,8 @@ Model::~Model() {
     remove_all_submodels();
     delete _mesh;
 #ifdef USING_BULLET3D
-    if (rigidBody != nullptr) {
-        delete rigidBody;
+    if (_rigid_body != nullptr) {
+        delete _rigid_body;
     }
 #endif
 }
@@ -47,9 +47,9 @@ Model::DrawMode Model::draw_mode() const {
 
 void Model::update() {
 #ifdef USING_BULLET3D
-    if (rigidBody != nullptr) {
-        rigidBody->update();
-        set_position(rigidBody->position);
+    if (_rigid_body != nullptr) {
+        _rigid_body->update();
+        set_position(_rigid_body->position);
     }
 #endif
 }
@@ -72,7 +72,7 @@ void Model::draw() {
 
 void Model::update_rigid_body() {
 #ifdef USING_BULLET3D
-    if (rigidBody == nullptr) return;
+    if (_rigid_body == nullptr) return;
 
 #endif
 }
@@ -148,6 +148,14 @@ void Model::_setup() {
             submodel->respects_depth_buffer = false;
         }
     }
+}
+
+RigidBody* Model::rigid_body() {
+    return _rigid_body;
+}
+
+void Model::add_rigid_body(float size, float mass, RigidBody::Shape shape) {
+    _rigid_body = new RigidBody(_position, size, mass, shape);
 }
 
 void Model::update_matrices() {

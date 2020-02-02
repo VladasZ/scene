@@ -60,7 +60,7 @@ public:
     void add_box(const gm::Vector3& = { }, float = 1);
     void draw_box(const gm::Vector3& = { }, float = 0.05f);
 
-    void update();
+    void update(float frame_time);
     void draw();
 
     Model* select_model(const gm::Point& location);

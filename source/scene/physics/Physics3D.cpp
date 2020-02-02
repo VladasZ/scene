@@ -36,8 +36,8 @@ Physics3D::Physics3D() {
 
 }
 
-void Physics3D::update() {
-    dynamicsWorld->stepSimulation(1.f / 60.f, 10);
+void Physics3D::update(float interval) {
+    dynamicsWorld->stepSimulation(interval, 10);
 }
 
 void Physics3D::update_rigid_body(RigidBody* rigidBody) {
