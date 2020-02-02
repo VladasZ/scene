@@ -40,11 +40,12 @@ void Physics3D::update(float interval) {
     dynamicsWorld->stepSimulation(interval, 10);
 }
 
-void Physics3D::update_rigid_body(RigidBody* rigidBody) {
+void Physics3D::update_rigid_body(RigidBody* rigid_body) {
     btTransform trans;
-    rigidBody->body->getMotionState()->getWorldTransform(trans);
-    rigidBody->position = Vector3::force_convert(trans.getOrigin());
-    rigidBody->position.flip_height();
+    rigid_body->body->getMotionState()->getWorldTransform(trans);
+    rigid_body->position = Vector3::force_convert(trans.getOrigin());
+    rigid_body->position.flip_height();
+    rigid_body->rotation = Vector4::force_convert(trans.getRotation());
 }
 
 void Physics3D::add_rigid_body(RigidBody* rigid_body) {

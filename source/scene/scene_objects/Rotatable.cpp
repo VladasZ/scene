@@ -22,6 +22,7 @@ const Vector4& Rotatable::rotation() const {
 
 void Rotatable::set_rotation(const Vector4& rotation) {
     _rotation = rotation;
+    _need_matrices_update = true;
 }
 
 const Matrix4& Rotatable::rotation_matrix() const {
@@ -33,11 +34,7 @@ void Rotatable::set_rotation_matrix(const Matrix4& rotation_matrix) {
     _need_matrices_update = true;
 }
 
-void Rotatable::add_rotation(const Matrix4& rotation) {
-    _rotation_matrix = rotation *_rotation_matrix;
-    _need_matrices_update = true;
-}
-
 void Rotatable::update_matrices() {
     Translatable::update_matrices();
+    _rotation_matrix = Matrix4::transform::quaternion_rotation(_rotation);
 }

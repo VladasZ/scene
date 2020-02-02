@@ -16,7 +16,7 @@ class Rotatable : public Translatable {
 
 protected:
 
-    gm::Vector4 _rotation = { 1, 0, 0, 0 };
+    gm::Vector4 _rotation = { 0, 0, 0, 0 };
     gm::Matrix4 _rotation_matrix;
 
 public:
@@ -28,8 +28,6 @@ public:
 
     const gm::Matrix4& rotation_matrix() const;
     void set_rotation_matrix(const gm::Matrix4&);
-
-    void add_rotation(const gm::Matrix4&);
 
     void update_matrices() override;
 

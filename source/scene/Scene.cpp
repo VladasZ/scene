@@ -125,8 +125,9 @@ Model* Scene::select_model(const gm::Point& location) {
 
     if (new_model) {
         selected_model = new_model;
-        for (auto model : _models)
+        for (auto model : _models) {
             model->deselect();
+        }
         selected_model->is_selected = true;
     }
 

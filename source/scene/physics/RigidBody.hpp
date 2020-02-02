@@ -12,7 +12,7 @@
 
 #include "btBulletDynamicsCommon.h"
 
-#include "Vector3.hpp"
+#include "Vector4.hpp"
 
 namespace scene {
 
@@ -34,6 +34,7 @@ namespace scene {
     public:
 
         gm::Vector3 position;
+        gm::Vector4 rotation;
 
         RigidBody(gm::Vector3 pos, float size, float mass, Shape shape);
 

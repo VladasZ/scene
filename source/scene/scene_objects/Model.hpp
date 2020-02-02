@@ -68,7 +68,6 @@ namespace scene {
         void update() override;
 
         virtual void draw();
-        virtual void update_rigid_body();
 
         void draw_normals();
 

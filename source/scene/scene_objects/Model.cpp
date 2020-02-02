@@ -50,6 +50,7 @@ void Model::update() {
     if (_rigid_body != nullptr) {
         _rigid_body->update();
         set_position(_rigid_body->position);
+        set_rotation(_rigid_body->rotation);
     }
 #endif
 }
@@ -68,13 +69,6 @@ void Model::draw() {
     for (auto submodel : _submodels) {
         submodel->draw();
     }
-}
-
-void Model::update_rigid_body() {
-#ifdef USING_BULLET3D
-    if (_rigid_body == nullptr) return;
-
-#endif
 }
 
 void Model::draw_normals() {
