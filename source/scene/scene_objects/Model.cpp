@@ -150,6 +150,8 @@ void Model::_setup() {
     }
 }
 
+#ifdef USING_BULLET3D
+
 RigidBody* Model::rigid_body() {
     return _rigid_body;
 }
@@ -157,6 +159,8 @@ RigidBody* Model::rigid_body() {
 void Model::add_rigid_body(float size, float mass, RigidBody::Shape shape) {
     _rigid_body = new RigidBody(_position, size, mass, shape);
 }
+
+#endif
 
 void Model::update_matrices() {
     Scalable::update_matrices();
