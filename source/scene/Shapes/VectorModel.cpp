@@ -68,13 +68,13 @@ VectorModel::VectorModel() : Model(create_mesh()) {
 }
 
 void VectorModel::visualize_vector(const gm::Vector3& vector, float scale) {
-    position.reset();
+    edit_position() = { };
     look_at(vector);
     set_scale({ vector.length(), scale, scale });
 }
 
 void VectorModel::visualize_line_segment(const gm::LineSegment& segment, float scale) {
-    position = segment.begin;
+    edit_position() = segment.begin;
     look_at(segment.end - segment.begin);
     set_scale({ segment.length(), scale, scale });
 }

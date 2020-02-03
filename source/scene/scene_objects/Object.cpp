@@ -15,8 +15,8 @@
 using namespace gm;
 using namespace scene;
 
-Object::Object() : position({ _position }) {
-    position.did_set = [&] { _need_matrices_update = true; };
+Object::Object()  {
+
 }
 
 Object::Object(const Vector3& position) : Object() {
@@ -33,4 +33,13 @@ void Object::update_matrices() {
 
 void Object::update() {
 
+}
+
+gm::Vector3 Object::position() const {
+    return _position;
+}
+
+gm::Vector3& Object::edit_position() {
+    _need_matrices_update = true;
+    return _position;
 }

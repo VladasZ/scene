@@ -80,13 +80,13 @@ void Scene::remove_object(Object* object) {
 void Scene::add_box(const Vector3& position, float size) {
     auto box = new BoxModel(Box(size));
     add_object(box);
-    box->position = position;
+    box->edit_position() = position;
 }
 
 void Scene::draw_box(const Vector3& position, float size) {
     _dummy_box->is_hidden = false;
     _dummy_box->set_scale(size);
-    _dummy_box->position = position;
+    _dummy_box->edit_position() = position;
     _dummy_box->draw();
 }
 
@@ -138,7 +138,7 @@ void Scene::add_ray(const gm::Ray& ray) {
     auto vector = new VectorModel();
     add_object(vector);
     vector->set_scale({ ray.length(), 0.1f, 0.1f });
-    vector->position = ray.begin;
+    vector->edit_position() = ray.begin;
     vector->look_at(ray.direction_vector());
     vector->selectable = false;
 }

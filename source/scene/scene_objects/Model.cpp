@@ -49,7 +49,7 @@ void Model::update() {
 #ifdef USING_BULLET3D
     if (_rigid_body != nullptr) {
         _rigid_body->update();
-        position = _rigid_body->position;
+        edit_position() = _rigid_body->position;
         set_rotation(_rigid_body->rotation);
     }
 #endif
@@ -76,7 +76,7 @@ void Model::draw_normals() {
         update_matrices();
     }
     for (auto ver : mesh()->vertices()) {
-        _scene->_dummy_vector->position = _model_matrix * ver.position;
+        _scene->_dummy_vector->edit_position() = _model_matrix * ver.position;
         _scene->_dummy_vector->look_at(_model_matrix.multiply_by_normal(ver.normal));
         _scene->_dummy_vector->draw();
     }
