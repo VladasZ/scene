@@ -23,53 +23,54 @@
 
 namespace scene {
 
-class Scene {
+    class Scene {
 
-    friend Model;
+        friend Model;
 
-protected:
+    protected:
 
-    Model* _dummy_box;
-    Model* _dummy_vector;
+        Model* _dummy_box;
+        Model* _dummy_vector;
 
 #ifdef USING_BULLET3D
-    Physics3D* _physics;
+        Physics3D* _physics;
 #endif
 
-public:
+    public:
 
-    Model* selected_model = nullptr;
+        Model* selected_model = nullptr;
 
-    PositionManipulator* position_manipulator;
+        PositionManipulator* position_manipulator;
 
-    std::vector<PointLight*> _light_sources;
+        std::vector<PointLight*> _light_sources;
 
-    Camera* const camera;
+        Camera* const camera;
 
-    std::vector<Model*> _models;
-    std::vector<Object*> _objects;
+        std::vector<Model*> _models;
+        std::vector<Object*> _objects;
 
-    Scene();
-    virtual ~Scene();
+        Scene();
+        virtual ~Scene();
 
-    void add_object(Object*);
-    void add_light(PointLight*);
+        void add_object(Object*);
+        void add_light(PointLight*);
 
-    void remove_object(Object*);
+        void remove_object(Object*);
 
-    void add_box(const gm::Vector3& = { }, float = 1);
-    void draw_box(const gm::Vector3& = { }, float = 0.05f);
+        void add_box(const gm::Box&);
 
-    void update(float frame_time);
-    void draw();
+        void add_box(const gm::Vector3& = { }, float = 1);
+        void draw_box(const gm::Vector3& = { }, float = 0.05f);
 
-    Model* select_model(const gm::Point& location);
+        void update(float frame_time);
+        void draw();
 
-    void add_ray(const gm::Ray&);
+        Model* select_model(const gm::Point& location);
 
-    virtual void _setup();
-    virtual void each_frame();
+        void add_ray(const gm::Ray&);
 
-};
+        virtual void _setup();
+
+    };
 
 }

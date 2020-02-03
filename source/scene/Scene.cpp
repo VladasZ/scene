@@ -77,6 +77,13 @@ void Scene::remove_object(Object* object) {
     delete object;
 }
 
+void Scene::add_box(const gm::Box& b) {
+    auto box = new BoxModel(b);
+    box->color = gm::Color::red.with_alpha(0.1);
+    box->set_scale(1.01);
+    add_object(box);
+}
+
 void Scene::add_box(const Vector3& position, float size) {
     auto box = new BoxModel(Box(size));
     add_object(box);
@@ -108,27 +115,27 @@ void Scene::draw() {
         model->draw();
     }
     position_manipulator->draw();
-    each_frame();
 }
 
 Model* Scene::select_model(const gm::Point& location) {
 
     auto ray = camera->cast_ray(location);
 
+    position_manipulator->is_hidden = true;
+    selected_model = nullptr;
     Model* new_model = nullptr;
 
     for (auto model : _models) {
-        if ((new_model = model->intersecting_ray(ray))) {
-            break;
-        }
+        model->deselect();
+        if (new_model) continue;
+        new_model = model->intersecting_ray(ray);
     }
 
     if (new_model) {
         selected_model = new_model;
-        for (auto model : _models) {
-            model->deselect();
-        }
         selected_model->is_selected = true;
+        position_manipulator->edit_position() = selected_model->position();
+        position_manipulator->is_hidden = false;
     }
 
     return selected_model;
@@ -144,9 +151,5 @@ void Scene::add_ray(const gm::Ray& ray) {
 }
 
 void Scene::_setup() {
-
-}
-
-void Scene::each_frame() {
 
 }
