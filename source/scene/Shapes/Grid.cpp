@@ -37,8 +37,9 @@ static Mesh* create_mesh(Size size, Size resolution) {
     Vertex::Indices indices;
     Vertex::Index index = 0;
 
-    for ([[maybe_unused]] auto vert : vertices)
+    for ([[maybe_unused]] auto vert : vertices) {
         indices.push_back(index++);
+    }
 
     return new Mesh(std::move(vertices), std::move(indices));
 }
@@ -49,6 +50,6 @@ Grid::Grid(const Size& size, const Size& resolution)
     size(size),
     resolution(resolution)
 {
-    color = Color::black;
+    color = Color::black.with_alpha(0.2f);
     selectable = false;
 }
