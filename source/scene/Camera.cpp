@@ -15,7 +15,7 @@ using namespace gm;
 using namespace scene;
 
 Camera::Camera() {
-    set_position(_target + 10.0f);
+    position = _target + 10.0f;
 }
 
 const Matrix4& Camera::view_matrix() const {

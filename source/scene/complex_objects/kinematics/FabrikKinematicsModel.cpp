@@ -46,6 +46,6 @@ void FabrikKinematicsModel::update() {
         auto vector = _vectors[i];
         auto box = _boxes[i];
         vector->visualize_line_segment(bone->line_segment(), scale);
-        box->set_position(bone->end());
+        box->position = bone->end();
     }
 }

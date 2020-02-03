@@ -15,21 +15,16 @@
 using namespace gm;
 using namespace scene;
 
-Object::Object(const Vector3& position) : _position(position) {
+Object::Object() : position({ _position }) {
+    position.did_set = [&] { _need_matrices_update = true; };
+}
 
+Object::Object(const Vector3& position) : Object() {
+    _position = position;
 }
 
 Object::~Object() {
 
-}
-
-const Vector3& Object::position() const {
-    return _position;
-}
-
-void Object::set_position(const Vector3& position) {
-    _position = position;
-    _need_matrices_update = true;
 }
 
 void Object::update_matrices() {

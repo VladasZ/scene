@@ -10,6 +10,7 @@
 
 #include "Vector3.hpp"
 #include "Vector4.hpp"
+#include "Property.hpp"
 
 namespace scene {
 
@@ -29,14 +30,13 @@ public:
 
     Scene* _scene = nullptr;
 
+    cu::Property<gm::Vector3> position;
+
 public:
 
-    Object() = default;
+    Object();
     Object(const gm::Vector3& position);
     virtual ~Object();
-
-    const gm::Vector3& position() const;
-    void set_position(const gm::Vector3&);
 
     virtual void update_matrices();
     virtual void update();
