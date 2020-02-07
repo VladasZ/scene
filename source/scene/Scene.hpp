@@ -29,9 +29,6 @@ namespace scene {
 
     protected:
 
-        Model* _dummy_box;
-        Model* _dummy_vector;
-
 #ifdef USING_BULLET3D
         Physics3D* _physics;
 #endif
@@ -57,10 +54,7 @@ namespace scene {
 
         void remove_object(Object*);
 
-        void add_box(const gm::Box&);
-
-        void add_box(const gm::Vector3& = { }, float = 1);
-        void draw_box(const gm::Vector3& = { }, float = 0.05f);
+        void add_box(const gm::Vector3&, const gm::Box&, const gm::Color& color = gm::Color::green);
 
         void update(float frame_time);
         void draw();

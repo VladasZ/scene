@@ -70,6 +70,7 @@ namespace scene {
         virtual void draw();
 
         void draw_normals();
+        void add_bounding_box();
 
         bool has_image() const;
         Image* image() const;

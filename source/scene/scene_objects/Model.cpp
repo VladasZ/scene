@@ -75,11 +75,15 @@ void Model::draw_normals() {
     if (_need_matrices_update) {
         update_matrices();
     }
-    for (auto ver : mesh()->vertices()) {
-        _scene->_dummy_vector->edit_position() = _model_matrix * ver.position;
-        _scene->_dummy_vector->look_at(_model_matrix.multiply_by_normal(ver.normal));
-        _scene->_dummy_vector->draw();
-    }
+//    for (auto ver : mesh()->vertices()) {
+//        _scene->_dummy_vector->edit_position() = _model_matrix * ver.position;
+//        _scene->_dummy_vector->look_at(_model_matrix.multiply_by_normal(ver.normal));
+//        _scene->_dummy_vector->draw();
+//    }
+}
+
+void Model::add_bounding_box() {
+    _scene->add_box(_position, bounding_box);
 }
 
 bool Model::has_image() const {

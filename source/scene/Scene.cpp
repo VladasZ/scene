@@ -22,20 +22,6 @@ using namespace scene;
 Scene::Scene() : camera(new Camera()) {
     add_object(camera);
 
-    _dummy_box = new BoxModel();
-    _dummy_vector = new VectorModel();
-
-    _dummy_box->is_hidden = true;
-    _dummy_vector->is_hidden = true;
-
-    _dummy_box->selectable = false;
-    _dummy_vector->selectable = false;
-
-    _dummy_vector->set_scale(0.4f);
-
-    add_object(_dummy_box);
-    add_object(_dummy_vector);
-
     position_manipulator = new PositionManipulator();
     position_manipulator->_scene = this;
     position_manipulator->is_hidden = true;
@@ -77,24 +63,11 @@ void Scene::remove_object(Object* object) {
     delete object;
 }
 
-void Scene::add_box(const gm::Box& b) {
-    auto box = new BoxModel(b);
-    box->color = gm::Color::red.with_alpha(0.1);
-    box->set_scale(1.01);
-    add_object(box);
-}
-
-void Scene::add_box(const Vector3& position, float size) {
-    auto box = new BoxModel(Box(size));
-    add_object(box);
-    box->edit_position() = position;
-}
-
-void Scene::draw_box(const Vector3& position, float size) {
-    _dummy_box->is_hidden = false;
-    _dummy_box->set_scale(size);
-    _dummy_box->edit_position() = position;
-    _dummy_box->draw();
+void Scene::add_box(const gm::Vector3& position, const gm::Box& box, const gm::Color& color) {
+    auto box_model = new BoxModel(box);
+    box_model->color = color;
+    add_object(box_model);
+    box_model->edit_position() = { 3, 3, 3 };
 }
 
 void Scene::update(float frame_time) {
