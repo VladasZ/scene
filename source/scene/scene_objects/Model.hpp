@@ -88,6 +88,8 @@ namespace scene {
 
         void deselect();
 
+        gm::Vector3 absolute_position() const;
+
         virtual void _setup();
 
 #ifdef USING_BULLET3D

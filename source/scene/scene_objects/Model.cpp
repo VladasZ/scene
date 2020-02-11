@@ -139,6 +139,11 @@ void Model::deselect() {
     }
 }
 
+gm::Vector3 Model::absolute_position() const {
+    if (_supermodel == nullptr) return _position;
+    return _position + _supermodel->position();
+}
+
 void Model::_setup() {
     for (auto submodel : _submodels) {
         submodel->_scene = _scene;

@@ -96,20 +96,33 @@ Model* Scene::select_model(const gm::Point& location) {
 
     position_manipulator->is_hidden = true;
     selected_model = nullptr;
-    Model* new_model = nullptr;
+
+    std::vector<Model*> hits;
 
     for (auto model : _models) {
         model->deselect();
-        if (new_model) continue;
-        new_model = model->intersecting_ray(ray);
+        if (auto hit = model->intersecting_ray(ray)) {
+            hits.push_back(hit);
+        }
     }
 
-    if (new_model) {
-        selected_model = new_model;
-        selected_model->is_selected = true;
-        position_manipulator->edit_position() = selected_model->position();
-        position_manipulator->is_hidden = false;
+    if (hits.empty()) return nullptr;
+
+    Model* closest_to_camera;
+    auto min_distance = std::numeric_limits<float>::max();
+
+    for (auto model : hits) {
+        auto distance = model->position().distance_to(camera->position());
+        if (distance < min_distance) {
+            min_distance = distance;
+            closest_to_camera = model;
+        }
     }
+
+    selected_model = closest_to_camera;
+    selected_model->is_selected = true;
+    position_manipulator->edit_position() = selected_model->position();
+    position_manipulator->is_hidden = false;
 
     return selected_model;
 }
