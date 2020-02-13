@@ -59,7 +59,8 @@ namespace scene {
         void update(float frame_time);
         void draw();
 
-        Model* select_model(const gm::Point& location);
+        gm::Axis select_axis(const gm::Ray&);
+        Model* select_model(const gm::Ray&);
 
         void add_ray(const gm::Ray&);
 

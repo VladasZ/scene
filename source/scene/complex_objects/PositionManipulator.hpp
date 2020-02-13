@@ -23,6 +23,8 @@ public:
 
     PositionManipulator();
 
+    gm::Axis get_axis(Model* vector) const;
+
 };
 
 }

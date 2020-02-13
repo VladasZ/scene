@@ -90,9 +90,19 @@ void Scene::draw() {
     position_manipulator->draw();
 }
 
-Model* Scene::select_model(const gm::Point& location) {
+gm::Axis Scene::select_axis(const gm::Ray& ray) {
+    if (position_manipulator->is_hidden) return gm::Axis::None;
 
-    auto ray = camera->cast_ray(location);
+    for (auto arrow : position_manipulator->arrows) {
+        if (auto hit = arrow->intersecting_ray(ray)) {
+            return position_manipulator->get_axis(hit);
+        }
+    }
+
+    return gm::Axis::None;
+}
+
+Model* Scene::select_model(const gm::Ray& ray) {
 
     position_manipulator->is_hidden = true;
     selected_model = nullptr;
@@ -121,7 +131,7 @@ Model* Scene::select_model(const gm::Point& location) {
 
     selected_model = closest_to_camera;
     selected_model->is_selected = true;
-    position_manipulator->edit_position() = selected_model->position();
+    position_manipulator->edit_position() = selected_model->absolute_position();
     position_manipulator->is_hidden = false;
 
     return selected_model;
