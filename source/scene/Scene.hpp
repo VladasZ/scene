@@ -14,6 +14,7 @@
 #include "Physics3D.hpp"
 #endif
 
+#include "View.hpp"
 #include "Model.hpp"
 #include "Camera.hpp"
 #include "Matrix4.hpp"
@@ -34,6 +35,8 @@ namespace scene {
 #endif
 
     public:
+
+        ui::View* view = nullptr;
 
         Model* selected_model = nullptr;
 
