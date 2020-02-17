@@ -67,7 +67,7 @@ namespace scene {
 
         void add_ray(const gm::Ray&);
 
-        virtual void _setup();
+        virtual void _setup() { }
 
     };
 

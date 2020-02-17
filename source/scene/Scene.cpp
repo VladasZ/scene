@@ -145,7 +145,3 @@ void Scene::add_ray(const gm::Ray& ray) {
     vector->look_at(ray.direction_vector());
     vector->selectable = false;
 }
-
-void Scene::_setup() {
-
-}
