@@ -84,7 +84,7 @@ Ray Camera::cast_ray(const gm::Point& location) {
 
     Ray ray { start.vector3(), end.vector3() };
 
-    ray.end = (ray.direction_vector() * 100000) + ray.begin;
+    ray.end = (ray.direction_vector() * 1000) + ray.begin;
 
     return { ray.end, ray.begin };
 }

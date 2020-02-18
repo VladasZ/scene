@@ -35,7 +35,7 @@ void Object::update() {
 
 }
 
-gm::Vector3 Object::position() const {
+const gm::Vector3& Object::position() const {
     return _position;
 }
 

@@ -67,7 +67,7 @@ void Scene::add_box(const gm::Vector3& position, const gm::Box& box, const gm::C
     auto box_model = new BoxModel(box);
     box_model->color = color;
     add_object(box_model);
-    box_model->edit_position() = { 3, 3, 3 };
+    box_model->edit_position() = position;
 }
 
 void Scene::update(float frame_time) {

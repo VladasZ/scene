@@ -50,7 +50,8 @@ void Model::update() {
     if (_rigid_body != nullptr) {
         _rigid_body->update();
         edit_position() = _rigid_body->position;
-        set_rotation(_rigid_body->rotation);
+        const auto& quat = _rigid_body->rotation;
+        set_rotation({ quat.x, quat.z, quat.y, -quat.w });
     }
 #endif
 }

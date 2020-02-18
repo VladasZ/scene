@@ -40,7 +40,7 @@ public:
 
 public:
 
-    gm::Vector3 position() const;
+    const gm::Vector3& position() const;
     gm::Vector3& edit_position();
 
 };
