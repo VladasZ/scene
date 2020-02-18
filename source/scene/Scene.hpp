@@ -63,6 +63,7 @@ namespace scene {
         void draw();
 
         gm::Axis select_axis(const gm::Ray&);
+        gm::Axis select_plane(const gm::Ray&);
         Model* select_model(const gm::Ray&);
 
         void add_ray(const gm::Ray&);

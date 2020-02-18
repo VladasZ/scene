@@ -1,5 +1,5 @@
 //
-//  Plane.hpp
+//  PlaneModel.hpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 2/21/19.
@@ -13,14 +13,14 @@
 
 namespace scene {
 
-class Plane : public Model {
+class PlaneModel : public Model {
 
 public:
 
     const gm::Size size;
 
-    Plane(const gm::Size& size = { 5, 5 });
-    Plane(const std::array<gm::Vector3, 4>&);
+    PlaneModel(const gm::Size& size = {5, 5 });
+    PlaneModel(const std::array<gm::Vector3, 4>&);
 
 };
 

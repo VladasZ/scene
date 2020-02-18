@@ -92,13 +92,21 @@ void Scene::draw() {
 
 gm::Axis Scene::select_axis(const gm::Ray& ray) {
     if (position_manipulator->is_hidden) return gm::Axis::None;
-
     for (auto arrow : position_manipulator->arrows) {
         if (auto hit = arrow->intersecting_ray(ray)) {
             return position_manipulator->get_axis(hit);
         }
     }
+    return gm::Axis::None;
+}
 
+gm::Axis Scene::select_plane(const gm::Ray& ray) {
+    if (position_manipulator->is_hidden) return gm::Axis::None;
+    for (auto arrow : position_manipulator->planes) {
+        if (auto hit = arrow->intersecting_ray(ray)) {
+            return position_manipulator->get_plane(hit);
+        }
+    }
     return gm::Axis::None;
 }
 

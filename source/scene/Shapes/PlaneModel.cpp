@@ -1,5 +1,5 @@
 //
-//  Plane.cpp
+//  PlaneModel.cpp
 //  scene
 //
 //  Created by Vladas Zakrevskis on 2/21/19.
@@ -7,7 +7,7 @@
 //
 
 #include "Mesh.hpp"
-#include "Plane.hpp"
+#include "PlaneModel.hpp"
 
 using namespace gm;
 using namespace scene;
@@ -29,10 +29,10 @@ static Mesh* create_mesh(const std::array<gm::Vector3, 4>& points) {
                      { points[3], { 0, 0, 1 }}}, { 0, 1, 2, 0, 2, 3 });
 }
 
-Plane::Plane(const Size& size) : Model(create_mesh(size)), size(size) {
+PlaneModel::PlaneModel(const Size& size) : Model(create_mesh(size)), size(size) {
     look_at({ 0, 0, 1 });
 }
 
-Plane::Plane(const std::array<gm::Vector3, 4>& points) : Model(create_mesh(points)) {
+PlaneModel::PlaneModel(const std::array<gm::Vector3, 4>& points) : Model(create_mesh(points)) {
 
 }
