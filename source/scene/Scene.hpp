@@ -49,6 +49,10 @@ namespace scene {
         std::vector<Model*> _models;
         std::vector<Object*> _objects;
 
+        cu::Event<Model*> on_model_selected;
+        cu::Event<Model*> on_model_moved;
+
+
         Scene();
         virtual ~Scene();
 
@@ -69,6 +73,8 @@ namespace scene {
         void add_ray(const gm::Ray&);
 
         virtual void _setup() { }
+
+        void setup_selection();
 
     };
 

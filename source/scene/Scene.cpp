@@ -8,6 +8,7 @@
 
 #include "Grid.hpp"
 #include "Scene.hpp"
+#include "Input.hpp"
 #include "Camera.hpp"
 #include "BoxModel.hpp"
 #include "ArrayUtils.hpp"
@@ -15,6 +16,7 @@
 #include "VectorModel.hpp"
 
 using namespace gm;
+using namespace ui;
 using namespace scene;
 
 
@@ -32,6 +34,7 @@ Scene::Scene() : camera(new Camera()) {
     RigidBody::physics = _physics;
 #endif
 
+    setup_selection();
 }
 
 Scene::~Scene() {
@@ -45,6 +48,7 @@ Scene::~Scene() {
         view->remove_from_superview();
     }
     delete position_manipulator;
+    Input::on_free_touch.unsubscribe(this);
 }
 
 void Scene::add_object(Object* obj) {
@@ -155,4 +159,77 @@ void Scene::add_ray(const gm::Ray& ray) {
     vector->edit_position() = ray.begin;
     vector->look_at(ray.direction_vector());
     vector->selectable = false;
+}
+
+void Scene::setup_selection() {
+
+    Input::on_free_touch.subscribe(this) = [&](Touch* touch) {
+
+        static Axis selected_axis       = Axis::None;
+        static Axis selected_plane_axis = Axis::None;
+
+        Vector3 model_position;
+
+        if (touch->is_ended()) {
+            selected_axis       = Axis::None;
+            selected_plane_axis = Axis::None;
+            return;
+        }
+
+        if (touch->is_moved() && selected_axis != Axis::None) {
+            auto ray = camera->cast_ray(touch->location);
+            const auto& position = selected_model->position();
+            auto axis_vector = selected_model->position();
+            axis_vector.set_axis(selected_axis, position.get_axis(selected_axis) + 1.0f);
+            Ray axis_ray { selected_model->position(), axis_vector };
+            auto point = ray.closest_points_with(axis_ray).second;
+            selected_model->edit_position() = point;
+            position_manipulator->edit_position() = point;
+            on_model_moved(selected_model);
+        }
+        else if (touch->is_moved() && selected_plane_axis != Axis::None) {
+            const auto ray = camera->cast_ray(touch->location);
+
+            Vector3 normal;
+            normal.set_axis(selected_plane_axis, 1.0f);
+            Vector3 origin = model_position;
+
+            LineSegment seg = { origin, normal };
+
+            auto target = ray.plane_intersection(seg) + camera->position();
+
+            selected_model->edit_position() = target;
+            position_manipulator->edit_position() = target;
+
+            on_model_moved(selected_model);
+
+            return;
+        }
+
+        if (touch->is_began()
+        #ifdef DESKTOP_BUILD
+            && touch->is_left_click()
+        #endif
+                ) {
+
+            auto ray = camera->cast_ray(touch->location);
+
+            auto axis = select_axis(ray);
+
+            if (axis != Axis::None) {
+                selected_axis = axis;
+                return;
+            }
+
+            auto plane_axis = select_plane(ray);
+
+            if (plane_axis != Axis::None) {
+                selected_plane_axis = plane_axis;
+                model_position = selected_model->position();
+                return;
+            }
+
+            on_model_selected(select_model(ray));
+        }
+    };
 }
