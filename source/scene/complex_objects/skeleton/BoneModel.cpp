@@ -17,9 +17,6 @@ BoneModel::BoneModel(float length) : BoxModel(0.1f), BaseBone(length) {
     add_submodel(vector);
 }
 
-BoneModel::~BoneModel() {
-}
-
 void BoneModel::draw() {
     vector->visualize_line_segment(line_segment());
     Model::draw();

@@ -14,7 +14,6 @@
 #include "PointLight.hpp"
 #include "VectorModel.hpp"
 
-
 using namespace gm;
 using namespace scene;
 
@@ -42,6 +41,9 @@ Scene::~Scene() {
 #ifdef USING_BULLET3D
     delete _physics;
 #endif
+    if (view) {
+        view->remove_from_superview();
+    }
 }
 
 void Scene::add_object(Object* obj) {

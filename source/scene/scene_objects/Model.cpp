@@ -29,7 +29,6 @@ Model::Model(Mesh* mesh, DrawMode draw_mode) : Selectable(mesh), _draw_mode(draw
 
 Model::~Model() {
     remove_all_submodels();
-    delete _mesh;
 #ifdef USING_BULLET3D
     if (_rigid_body != nullptr) {
         delete _rigid_body;
@@ -111,9 +110,9 @@ const std::vector<Model*>& Model::submodels() const {
 }
 
 void Model::remove_all_submodels() {
-    for (auto submodel : _submodels) {
-        delete submodel;
-    }
+//    for (auto submodel : _submodels) {
+////        delete submodel;
+////    }
     _submodels.clear();
 }
 

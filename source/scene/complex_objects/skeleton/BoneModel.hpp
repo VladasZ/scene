@@ -23,7 +23,6 @@ private:
 public:
 
     BoneModel(float length);
-    ~BoneModel() override;
 
 protected:
 
