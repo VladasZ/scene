@@ -53,6 +53,6 @@ static Mesh* create_mesh(const gm::Box& box) {
         }};
 }
 
-BoxModel::BoxModel(const gm::Box& box) : Model(create_mesh(box)), box(box) {
-
-}
+//BoxModel::BoxModel(const gm::Box& box) : Model(create_mesh(box)), box(box) {
+//
+//}

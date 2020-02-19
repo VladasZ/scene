@@ -10,9 +10,8 @@
 
 using namespace scene;
 
-Mesh::Mesh(gm::Vertex::Array&& vertices, gm::Vertex::Indices&& indices) : _vertices(vertices), _indices(indices) {
-
-}
+Mesh::Mesh(const gm::Vertex::Array& vertices, const gm::Vertex::Indices& indices)
+: _vertices(vertices), _indices(indices) { }
 
 bool Mesh::has_indices() const {
     return _indices.size();

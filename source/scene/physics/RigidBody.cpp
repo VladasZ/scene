@@ -45,13 +45,19 @@ RigidBody::RigidBody(gm::Vector3 pos, float size, float mass, RigidBody::Shape s
     startTransform.setOrigin(pos.force_convert<btVector3>());
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-    btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
-    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, shape, localInertia);
+    motion_state = new btDefaultMotionState(startTransform);
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, motion_state, shape, localInertia);
     body = new btRigidBody(rbInfo);
     body->setRestitution(0.5);
 
     physics->add_rigid_body(this);
 
+}
+
+RigidBody::~RigidBody() {
+    delete shape;
+    delete body;
+    delete motion_state;
 }
 
 void RigidBody::update() {

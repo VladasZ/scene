@@ -33,7 +33,14 @@ Physics3D::Physics3D() {
     dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
     dynamicsWorld->setGravity(btVector3(0, -10, 0));
+}
 
+Physics3D::~Physics3D() {
+    delete dynamicsWorld;
+    delete solver;
+    delete overlappingPairCache;
+    delete dispatcher;
+    delete collisionConfiguration;
 }
 
 void Physics3D::update(float interval) {

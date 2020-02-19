@@ -22,6 +22,7 @@ namespace scene {
     public:
 
         Physics3D();
+        ~Physics3D();
 
         static inline gm::Vector3 ground_position;
         static inline gm::Vector3 box_position;

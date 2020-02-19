@@ -44,6 +44,7 @@ Scene::~Scene() {
     if (view) {
         view->remove_from_superview();
     }
+    delete position_manipulator;
 }
 
 void Scene::add_object(Object* obj) {

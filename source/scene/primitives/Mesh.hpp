@@ -21,7 +21,7 @@ private:
 
 public:
 
-    Mesh(gm::Vertex::Array&&, gm::Vertex::Indices&& = { });
+    Mesh(const gm::Vertex::Array&, const gm::Vertex::Indices& = { });
 
     bool has_indices() const;
 

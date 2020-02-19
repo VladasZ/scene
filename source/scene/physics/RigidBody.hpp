@@ -37,13 +37,15 @@ namespace scene {
         gm::Vector4 rotation;
 
         RigidBody(gm::Vector3 pos, float size, float mass, Shape shape);
-
+        ~RigidBody();
+        
         void update();
 
     protected:
 
         btRigidBody* body;
         btCollisionShape* shape;
+        btDefaultMotionState* motion_state;
 
     };
 
