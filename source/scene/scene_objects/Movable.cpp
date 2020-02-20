@@ -15,6 +15,5 @@ void Movable::stop() {
 }
 
 void Movable::update() {
-    _position += velocity;
-    update_matrices();
+    edit_position() += velocity;
 }

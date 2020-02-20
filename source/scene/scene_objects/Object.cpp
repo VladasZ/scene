@@ -28,7 +28,9 @@ Object::~Object() {
 }
 
 void Object::update_matrices() {
-
+    if (_need_matrices_update) {
+        on_moved();
+    }
 }
 
 void Object::update() {

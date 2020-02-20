@@ -229,7 +229,20 @@ void Scene::setup_selection() {
                 return;
             }
 
-            on_model_selected(select_model(ray));
+            if (selected_model) {
+                selected_model->on_moved.unsubscribe(this);
+            }
+
+            selected_model = select_model(ray);
+
+            if (selected_model) {
+                selected_model->on_moved.subscribe(this) = [&] {
+                    Log("KO");
+                    position_manipulator->edit_position() = selected_model->position();
+                };
+            }
+
+            on_model_selected(selected_model);
         }
     };
 }

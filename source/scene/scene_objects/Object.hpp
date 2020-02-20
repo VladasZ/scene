@@ -8,8 +8,10 @@
 
 #pragma once
 
+#include "Event.hpp"
 #include "Vector3.hpp"
 #include "Vector4.hpp"
+
 
 namespace scene {
 
@@ -39,6 +41,8 @@ public:
     virtual void update();
 
 public:
+
+    cu::Event<> on_moved;
 
     const gm::Vector3& position() const;
     gm::Vector3& edit_position();

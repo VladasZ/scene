@@ -17,5 +17,6 @@ const Matrix4& Translatable::translation_matrix() const {
 }
 
 void Translatable::update_matrices() {
+    Object::update_matrices();
     _translation_matrix =  Matrix4::transform::translation(_position);
 }
