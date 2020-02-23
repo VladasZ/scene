@@ -15,6 +15,7 @@
 using namespace gm;
 using namespace scene;
 
+
 Model::Drawer::~Drawer() {
 
 }
@@ -44,13 +45,25 @@ Model::DrawMode Model::draw_mode() const {
     return _draw_mode;
 }
 
+gm::Vector3& Model::edit_position() {
+    _new_position = true;
+    return Object::edit_position();
+}
+
 void Model::update() {
 #ifdef USING_BULLET3D
     if (_rigid_body != nullptr) {
-        _rigid_body->update();
-        edit_position() = _rigid_body->position;
-        const auto& quat = _rigid_body->rotation;
+        if (_new_position) {
+            _rigid_body->set_position(_position);
+            _new_position = false;
+        }
+        else {
+            _rigid_body->update();
+            _position = _rigid_body->position();
+        }
+        const auto& quat = _rigid_body->rotation();
         set_rotation({ quat.x, quat.z, quat.y, -quat.w });
+        _need_matrices_update = true;
     }
 #endif
 }

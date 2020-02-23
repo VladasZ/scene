@@ -50,9 +50,9 @@ void Physics3D::update(float interval) {
 void Physics3D::update_rigid_body(RigidBody* rigid_body) {
     btTransform trans;
     rigid_body->body->getMotionState()->getWorldTransform(trans);
-    rigid_body->position = Vector3::force_create(trans.getOrigin());
-    rigid_body->position.flip_height();
-    rigid_body->rotation = Vector4::force_create(trans.getRotation());
+    rigid_body->_position = Vector3::force_create(trans.getOrigin());
+    rigid_body->_position.flip_height();
+    rigid_body->_rotation = Vector4::force_create(trans.getRotation());
 }
 
 void Physics3D::add_rigid_body(RigidBody* rigid_body) {

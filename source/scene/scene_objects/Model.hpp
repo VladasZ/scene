@@ -48,6 +48,8 @@ namespace scene {
         Image* _image;
         Drawer* _drawer;
 
+        bool _new_position = false;
+
         Model* _supermodel = nullptr;
         std::vector<Model*> _submodels;
 
@@ -64,6 +66,8 @@ namespace scene {
 
         Mesh* mesh() const;
         DrawMode draw_mode() const;
+
+        gm::Vector3& edit_position() override;
 
         void update() override;
 

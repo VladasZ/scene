@@ -237,7 +237,6 @@ void Scene::setup_selection() {
 
             if (selected_model) {
                 selected_model->on_moved.subscribe(this) = [&] {
-                    Log("KO");
                     position_manipulator->edit_position() = selected_model->position();
                 };
             }

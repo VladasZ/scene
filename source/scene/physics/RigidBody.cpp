@@ -64,4 +64,14 @@ void RigidBody::update() {
     physics->update_rigid_body(this);
 }
 
+void RigidBody::set_position(const gm::Vector3& position) {
+    btTransform transform;
+    body->getMotionState()->getWorldTransform(transform);
+    _position = position;
+    _position.flip_height();
+    transform.setOrigin(_position.force_convert<btVector3>());
+    body->setWorldTransform(transform);
+    motion_state->setWorldTransform(transform);
+}
+
 #endif

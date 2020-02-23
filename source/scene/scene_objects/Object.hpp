@@ -51,7 +51,7 @@ namespace scene {
         cu::Event<> on_moved;
 
         const gm::Vector3& position() const;
-        gm::Vector3& edit_position();
+        virtual gm::Vector3& edit_position();
 
     };
 

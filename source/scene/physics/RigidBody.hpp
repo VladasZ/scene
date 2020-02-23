@@ -31,15 +31,24 @@ namespace scene {
 
         static inline Physics3D* physics = nullptr;
 
-    public:
+    protected:
 
-        gm::Vector3 position;
-        gm::Vector4 rotation;
+        gm::Vector3 _position;
+        gm::Vector4 _rotation;
+
+    public:
 
         RigidBody(gm::Vector3 pos, float size, float mass, Shape shape);
         ~RigidBody();
         
         void update();
+
+    public:
+
+        const gm::Vector3& position() const { return _position; }
+        const gm::Vector4& rotation() const { return _rotation; }
+
+        void set_position(const gm::Vector3&);
 
     protected:
 
