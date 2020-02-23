@@ -20,8 +20,7 @@ using namespace ui;
 using namespace scene;
 
 
-Scene::Scene() : camera(new Camera()) {
-    add_object(camera);
+Scene::Scene() : camera(new Camera(this)) {
 
     position_manipulator = new PositionManipulator();
     position_manipulator->_scene = this;
@@ -81,6 +80,7 @@ void Scene::update(float frame_time) {
 #ifdef USING_BULLET3D
     _physics->update(frame_time);
 #endif
+    camera->update_matrices();
     for (auto obj : _objects) {
         obj->update();
     }

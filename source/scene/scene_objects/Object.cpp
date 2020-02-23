@@ -30,7 +30,12 @@ Object::~Object() {
 void Object::update_matrices() {
     if (_need_matrices_update) {
         on_moved();
+        _need_matrices_update = false;
     }
+}
+
+void Object::set_needs_matrices_update() {
+    _need_matrices_update = true;
 }
 
 void Object::update() {

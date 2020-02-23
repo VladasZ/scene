@@ -100,7 +100,7 @@ namespace scene {
         void add_rigid_body(float size, float mass, RigidBody::Shape shape);
 #endif
 
-    private:
+    protected:
 
         void update_matrices() override;
     };

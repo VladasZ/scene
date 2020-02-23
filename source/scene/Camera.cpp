@@ -14,8 +14,9 @@
 using namespace gm;
 using namespace scene;
 
-Camera::Camera() {
+Camera::Camera(Scene* scene) {
     edit_position() = _target + 10.0f;
+    _scene = scene;
 }
 
 const Matrix4& Camera::view_matrix() const {
@@ -32,7 +33,7 @@ const Matrix4& Camera::view_projection_matrix() const {
 
 void Camera::set_target(const Vector3& target) {
     _target = target;
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 const Vector3& Camera::target() const {
@@ -40,13 +41,11 @@ const Vector3& Camera::target() const {
 }
 
 void Camera::move_orbit(const Point& shift) {
-    if (shift.is_zero()) {
-        return;
-    }
+    if (shift.is_zero()) return;
     _position -= _target;
     _position.orbit_shift(shift);
     _position += _target;
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 void Camera::zoom(float value) {
@@ -54,7 +53,7 @@ void Camera::zoom(float value) {
     float length = _position.length();
     _position.set_length(length + (length * 0.1f * -value));
     _position += _target;
-    update_matrices();
+    _need_matrices_update = true;
 }
 
 const Vector3& Camera::direction() const {
@@ -91,15 +90,19 @@ Ray Camera::cast_ray(const gm::Point& location) {
 
 void Camera::update_matrices() {
 
+    if (!_need_matrices_update) return;
+
     _view_matrix            = Matrix4::transform::look_at(_position, _target, _up);
     _projection_matrix      = Matrix4::transform::perspective(fov, resolution.width / resolution.height, z_near, z_far);
     _view_projection_matrix = _projection_matrix * _view_matrix;
 
     for (auto obj : _scene->_objects) {
-        if (obj != this) {
-            obj->update_matrices();
-        }
+        obj->set_needs_matrices_update();
     }
+
+    _scene->position_manipulator->set_needs_matrices_update();
+
+    _need_matrices_update = false;
 }
 
 void Camera::update() {

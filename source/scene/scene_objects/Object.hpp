@@ -15,38 +15,44 @@
 
 namespace scene {
 
-class Scene;
+    class Scene;
 
-class Object {
+    class Object {
 
-    friend Scene;
+        friend Scene;
 
-protected:
+    protected:
 
-    bool _need_matrices_update = true;
+        bool _need_matrices_update = true;
 
-    gm::Vector3 _position;
+        gm::Vector3 _position;
 
-public:
+    public:
 
-    Scene* _scene = nullptr;
+        Scene* _scene = nullptr;
 
-public:
+    public:
 
-    Object();
-    Object(const gm::Vector3& position);
-    virtual ~Object();
+        Object();
+        Object(const gm::Vector3& position);
+        virtual ~Object();
 
-    virtual void update_matrices();
-    virtual void update();
+    protected:
 
-public:
+        virtual void update_matrices();
 
-    cu::Event<> on_moved;
+    public:
 
-    const gm::Vector3& position() const;
-    gm::Vector3& edit_position();
+        void set_needs_matrices_update();
+        virtual void update();
 
-};
+    public:
+
+        cu::Event<> on_moved;
+
+        const gm::Vector3& position() const;
+        gm::Vector3& edit_position();
+
+    };
 
 }

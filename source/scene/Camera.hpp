@@ -14,44 +14,44 @@
 
 namespace scene {
 
-class Camera : public Flyable {
+    class Camera : public Flyable {
 
-    gm::Matrix4            _view_matrix;
-    gm::Matrix4      _projection_matrix;
-    gm::Matrix4 _view_projection_matrix;
+        gm::Matrix4            _view_matrix;
+        gm::Matrix4      _projection_matrix;
+        gm::Matrix4 _view_projection_matrix;
 
-    gm::Vector3 _target        ;
-    gm::Vector3 _up { 0, 0, 1 };
+        gm::Vector3 _target        ;
+        gm::Vector3 _up { 0, 0, 1 };
 
-public:
+    public:
 
-    float fov    =    1.0f;
-    float z_near =    0.1f;
-    float z_far  = 5000.0f;
-    
-    Camera();
+        float fov    =    1.0f;
+        float z_near =    0.1f;
+        float z_far  = 5000.0f;
 
-    gm::Size resolution { 100, 100 };
+        Camera(Scene*);
 
-    const gm::Matrix4&            view_matrix() const;
-    const gm::Matrix4&      projection_matrix() const;
-    const gm::Matrix4& view_projection_matrix() const;
+        gm::Size resolution { 100, 100 };
 
-    void set_target(const gm::Vector3&);
-    const gm::Vector3& target() const;
+        const gm::Matrix4&            view_matrix() const;
+        const gm::Matrix4&      projection_matrix() const;
+        const gm::Matrix4& view_projection_matrix() const;
 
-    void move_orbit(const gm::Point&);
+        void set_target(const gm::Vector3&);
+        const gm::Vector3& target() const;
 
-    void zoom(float);
+        void move_orbit(const gm::Point&);
 
-    const gm::Vector3& direction() const override;
+        void zoom(float);
 
-    gm::Ray cast_ray(const gm::Point&);
+        const gm::Vector3& direction() const override;
 
-private:
+        gm::Ray cast_ray(const gm::Point&);
 
-    void update_matrices() override;
-    void update() override;
-};
+    public:
+
+        void update_matrices() override;
+        void update() override;
+    };
 
 }

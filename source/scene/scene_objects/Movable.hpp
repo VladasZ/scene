@@ -13,18 +13,18 @@
 
 namespace scene {
 
-class Movable : public Object {
+    class Movable : public Object {
 
-public:
+    public:
 
-    using Object::Object;
+        using Object::Object;
 
-    gm::Vector3 velocity;
+        gm::Vector3 velocity;
 
-    void stop();
+        void stop();
 
-    void update() override;
+        void update() override;
 
-};
+    };
 
 }

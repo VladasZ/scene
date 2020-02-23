@@ -12,26 +12,25 @@
 
 namespace scene {
 
-class Flyable : public Movable {
+    class Flyable : public Movable {
 
-public:
+    public:
 
-    enum Direction {
-        Forward = 0b000001,
-        Back    = 0b000010,
-        Left    = 0b000100,
-        Right   = 0b001000,
-        Up      = 0b010000,
-        Down    = 0b100000
+        enum Direction {
+            Forward = 0b000001,
+            Back    = 0b000010,
+            Left    = 0b000100,
+            Right   = 0b001000,
+            Up      = 0b010000,
+            Down    = 0b100000
+        };
+
+        virtual const gm::Vector3& direction() const = 0;
+
+        float flying_speed = 0.1f;
+
+        void fly(Direction);
+
     };
-
-    virtual const gm::Vector3& direction() const = 0;
-
-    float flying_speed = 0.1f;
-
-    void fly(Direction);
-
-
-};
 
 }
