@@ -12,10 +12,11 @@
 using namespace gm;
 using namespace scene;
 
+
 static Box box_for_mesh(Mesh* mesh) {
 
-    Vector3 min = std::numeric_limits<Vector3::ValueType>::max();
-    Vector3 max = std::numeric_limits<Vector3::ValueType>::min();
+    Vector3 min = std::numeric_limits<Float>::max();
+    Vector3 max = std::numeric_limits<Float>::min();
 
     for (auto vertex : mesh->vertices()) {
         if (vertex.position.x < min.x) min.x = vertex.position.x;
@@ -35,9 +36,7 @@ Selectable::Selectable(Mesh* mesh) : bounding_box(box_for_mesh(mesh)) {
 }
 
 bool Selectable::intersects_ray(const gm::Ray& ray) const {
-    if (!selectable) {
-        return false;
-    }
+    if (!selectable) return false;
     const auto inversed_model = _model_matrix.inversed();
     const auto transformed_orig = inversed_model * ray.begin;
     const auto transformed_dir  = inversed_model * ray.end;
