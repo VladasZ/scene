@@ -17,7 +17,7 @@ class Rotatable : public Translatable {
 protected:
 
     bool _ignore_quat = false;
-    gm::Vector4 _rotation = { 0, 0, 0, 0 };
+    gm::Vector4 _rotation;
     gm::Matrix4 _rotation_matrix;
 
 public:

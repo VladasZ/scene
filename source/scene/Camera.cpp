@@ -64,16 +64,18 @@ const Vector3& Camera::direction() const {
 
 Ray Camera::cast_ray(const gm::Point& location) {
 
-    Vector4 start = {
+    Vector4 start {
         (location.x / resolution.width - 0.5f) * 2.0f,
         ((resolution.height - location.y) / resolution.height - 0.5f) * 2.0f,
         -1,
+        1
     };
 
-    Vector4 end = {
+    Vector4 end {
         (location.x / resolution.width - 0.5f) * 2.0f,
         ((resolution.height - location.y) / resolution.height - 0.5f) * 2.0f,
         0,
+        1
     };
 
     const auto inversed_transform = view_projection_matrix().inversed();
