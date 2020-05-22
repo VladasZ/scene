@@ -29,7 +29,7 @@ namespace scene {
 
         const gm::Box bounding_box;
 
-        Selectable(Mesh*);
+        explicit Selectable(Mesh*);
 
         bool intersects_ray(const gm::Ray&) const;
 

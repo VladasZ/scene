@@ -33,8 +33,8 @@ namespace scene {
 
     public:
 
-        Object();
-        Object(const gm::Vector3& position);
+        Object() = default;
+        explicit Object(const gm::Vector3&);
         virtual ~Object();
 
     protected:

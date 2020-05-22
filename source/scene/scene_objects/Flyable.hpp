@@ -25,6 +25,8 @@ namespace scene {
             Down    = 0b100000
         };
 
+        using Movable::Movable;
+
         virtual const gm::Vector3& direction() const = 0;
 
         float flying_speed = 0.1f;

@@ -12,6 +12,7 @@
 #include "Size.hpp"
 #include "Flyable.hpp"
 
+
 namespace scene {
 
     class Camera : public Flyable {
@@ -29,7 +30,7 @@ namespace scene {
         float z_near =    0.1f;
         float z_far  = 5000.0f;
 
-        Camera(Scene*);
+        explicit Camera(Scene*);
 
         gm::Size resolution { 100, 100 };
 

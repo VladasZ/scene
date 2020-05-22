@@ -6,8 +6,6 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
-#include <iostream>
-
 #include "Scene.hpp"
 #include "Camera.hpp"
 #include "Object.hpp"
@@ -15,12 +13,9 @@
 using namespace gm;
 using namespace scene;
 
-Object::Object()  {
 
-}
+Object::Object(const Vector3& position) : _position(position) {
 
-Object::Object(const Vector3& position) : Object() {
-    _position = position;
 }
 
 Object::~Object() {

@@ -14,8 +14,9 @@
 using namespace gm;
 using namespace scene;
 
-Camera::Camera(Scene* scene) {
-    edit_position() = _target + 10.0f;
+
+Camera::Camera(Scene* scene) : Flyable(_target + 10.0f) {
+    //edit_position() = _target + 10.0f;
     _scene = scene;
 }
 
