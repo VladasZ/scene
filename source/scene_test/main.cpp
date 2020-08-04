@@ -7,9 +7,10 @@
 //
 
 
+#include "Log.hpp"
 #include "Scene.hpp"
 #include "Physics3D.hpp"
 
 int main() {
-    
+    Log("A");
 }
