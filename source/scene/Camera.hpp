@@ -53,6 +53,8 @@ namespace scene {
 
         void update_matrices() override;
         void update() override;
+
+        std::string to_string() const;
     };
 
 }

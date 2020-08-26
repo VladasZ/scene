@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+#include "Log.hpp"
 #include "Scene.hpp"
 #include "Camera.hpp"
 
@@ -16,7 +17,7 @@ using namespace scene;
 
 
 Camera::Camera(Scene* scene) : Flyable(_target + 10.0f) {
-    //edit_position() = _target + 10.0f;
+    edit_position() = _target + 10.0f;
     _scene = scene;
 }
 
@@ -111,4 +112,8 @@ void Camera::update_matrices() {
 void Camera::update() {
     _target += velocity;
     Movable::update();
+}
+
+std::string Camera::to_string() const {
+    return VarString(_position) + " " + VarString(_target);
 }
