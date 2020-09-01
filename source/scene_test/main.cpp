@@ -12,5 +12,5 @@
 #include "Physics3D.hpp"
 
 int main() {
-    Log("A");
+    Log << "A";
 }
