@@ -12,13 +12,13 @@
 using namespace gm;
 using namespace scene;
 
-BoneModel::BoneModel(float length) : BoxModel(0.1f), BaseBone(length) {
+BoneModel::BoneModel(float length) : BoxModel(0.01f), BaseBone(length) {
     vector = new VectorModel();
     add_submodel(vector);
 }
 
 void BoneModel::draw() {
-    vector->visualize_line_segment(line_segment());
+    vector->visualize_line_segment(line_segment(), 0.1f);
     Model::draw();
 }
 
