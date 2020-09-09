@@ -11,6 +11,7 @@
 #include "Log.hpp"
 #include "RigidBody.hpp"
 #include "Physics3D.hpp"
+#include "ForceInitializable.hpp"
 
 using namespace gm;
 using namespace scene;
@@ -42,7 +43,8 @@ RigidBody::RigidBody(gm::Vector3 pos, float size, float mass, RigidBody::Shape s
     }
 
     pos.flip_height();
-    startTransform.setOrigin(pos.force_convert<btVector3>());
+    //TODO: CHECK
+   // startTransform.setOrigin(cu::force_convert<btVector3>(pos));
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
     motion_state = new btDefaultMotionState(startTransform);
@@ -69,7 +71,8 @@ void RigidBody::set_position(const gm::Vector3& position) {
     body->getMotionState()->getWorldTransform(transform);
     _position = position;
     _position.flip_height();
-    transform.setOrigin(_position.force_convert<btVector3>());
+    //TODO: CHECK
+   // transform.setOrigin(cu::force_convert<btVector3>(_position));
     body->setWorldTransform(transform);
     motion_state->setWorldTransform(transform);
 }
