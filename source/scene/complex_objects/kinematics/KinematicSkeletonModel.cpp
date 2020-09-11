@@ -31,20 +31,20 @@ KinematicSkeletonModel::KinematicSkeletonModel(float scale) : BoxModel(Box(joint
 //    update();
 }
 
-void KinematicSkeletonModel::add_bone(gm::ReachingBone* bone) {
+void KinematicSkeletonModel::add_bone(gm::ReachingBone*) {
 
 }
 
 void KinematicSkeletonModel::update() {
     for (size_t i = 0; i < bones.size(); i++) {
-        auto bone = bones[i];
+        auto _bone = bones[i];
         auto vector = _vectors[i];
-        auto box = _boxes[i];
-        vector->visualize_line_segment(bone->line_segment(), scale);
-        box->edit_position() = bone->end();
+        auto _box = _boxes[i];
+        vector->visualize_line_segment(_bone->line_segment(), scale);
+		_box->edit_position() = _bone->end();
     }
 }
 
-void KinematicSkeletonModel::_create_models_for_bone(gm::ReachingBone* bone) {
+void KinematicSkeletonModel::_create_models_for_bone(gm::ReachingBone*) {
 
 }

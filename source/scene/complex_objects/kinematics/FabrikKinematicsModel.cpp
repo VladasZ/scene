@@ -15,17 +15,17 @@ using namespace scene;
 static const auto joint_size = 0.18f;
 
 FabrikKinematicsModel::FabrikKinematicsModel(FabrikKinematics* skeleton, float scale) : BoxModel(Box(joint_size * scale)), _skeleton(skeleton), scale(scale) {
-    for ([[maybe_unused]] auto bone : _skeleton->bones) {
+    for (auto _bone [[maybe_unused]] : _skeleton->bones) {
 
         auto vector = new VectorModel();
         add_submodel(vector);
         vector->selectable = false;
 
-        auto box = new BoxModel(Box(joint_size * scale));
-        add_submodel(box);
+        auto _box = new BoxModel(Box(joint_size * scale));
+        add_submodel(_box);
 
         _vectors.push_back(vector);
-        _boxes.push_back(box);
+        _boxes.push_back(_box);
     }
 
     update();
@@ -44,8 +44,8 @@ void FabrikKinematicsModel::update() {
     for (size_t i = 0; i < _skeleton->bones.size(); i++) {
         auto bone = _skeleton->bones[i];
         auto vector = _vectors[i];
-        auto box = _boxes[i];
+        auto _box = _boxes[i];
         vector->visualize_line_segment(bone->line_segment(), scale);
-        box->edit_position() = bone->end();
+		_box->edit_position() = bone->end();
     }
 }

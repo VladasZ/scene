@@ -76,7 +76,7 @@ void Scene::add_box(const gm::Vector3& position, const gm::Box& box, const gm::C
     box_model->edit_position() = position;
 }
 
-void Scene::update(float frame_time) {
+void Scene::update([[maybe_unused]] float frame_time) {
 #ifdef USING_BULLET3D
     _physics->update(frame_time);
 #endif
@@ -133,7 +133,7 @@ Model* Scene::select_model(const gm::Ray& ray) {
 
     if (hits.empty()) return nullptr;
 
-    Model* closest_to_camera;
+    Model* closest_to_camera = nullptr;
     auto min_distance = std::numeric_limits<float>::max();
 
     for (auto model : hits) {
