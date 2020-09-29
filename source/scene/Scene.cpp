@@ -43,9 +43,7 @@ Scene::~Scene() {
 #ifdef USING_BULLET3D
     delete _physics;
 #endif
-    if (view) {
-        view->remove_from_superview();
-    }
+    
     delete position_manipulator;
     Input::on_free_touch.unsubscribe(this);
 }

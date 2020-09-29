@@ -36,8 +36,6 @@ namespace scene {
 
     public:
 
-        ui::View* view = nullptr;
-
         Model* selected_model = nullptr;
 
         PositionManipulator* position_manipulator;
