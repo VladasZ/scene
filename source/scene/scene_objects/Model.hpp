@@ -8,12 +8,11 @@
 
 #pragma once
 
-#ifdef USING_BULLET3D
-#include "RigidBody.hpp"
-#endif
 
 #include "Color.hpp"
+#include "RigidBody.hpp"
 #include "Selectable.hpp"
+
 
 class Image;
 

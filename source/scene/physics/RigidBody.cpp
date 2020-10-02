@@ -6,10 +6,11 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
+#include "RigidBody.hpp"
+
 #ifdef USING_BULLET3D
 
 #include "Log.hpp"
-#include "RigidBody.hpp"
 #include "Physics3D.hpp"
 #include "ForceInitializable.hpp"
 

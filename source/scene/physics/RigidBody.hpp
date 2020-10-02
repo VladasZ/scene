@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "BulletInclude.hpp"
+
 #ifdef USING_BULLET3D
 
 #include "btBulletDynamicsCommon.h"
