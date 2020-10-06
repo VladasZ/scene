@@ -6,6 +6,8 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
+#include "BulletInclude.hpp"
+
 #ifdef USING_BULLET3D
 
 #include "Log.hpp"
