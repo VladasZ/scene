@@ -6,10 +6,10 @@
 //  Copyright © 2019 VladasZ. All rights reserved.
 //
 
+#include "Mesh.hpp"
 #include "Scene.hpp"
 #include "Model.hpp"
 #include "Camera.hpp"
-#include "Mesh.hpp"
 #include "SceneConfig.hpp"
 
 using namespace gm;

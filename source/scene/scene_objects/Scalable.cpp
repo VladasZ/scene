@@ -11,6 +11,7 @@
 using namespace gm;
 using namespace scene;
 
+
 const Vector3& Scalable::scale() const {
     return _scale;
 }
