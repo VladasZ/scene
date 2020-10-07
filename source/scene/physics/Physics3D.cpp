@@ -13,7 +13,7 @@
 #include "Log.hpp"
 #include "Matrix4.hpp"
 #include "Physics3D.hpp"
-#include "ForceInitializable.hpp"
+#include "ForceConvert.hpp"
 
 using namespace gm;
 using namespace scene;

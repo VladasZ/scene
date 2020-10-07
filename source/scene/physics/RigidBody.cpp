@@ -12,10 +12,10 @@
 
 #include "Log.hpp"
 #include "Physics3D.hpp"
-#include "ForceInitializable.hpp"
 
 using namespace gm;
 using namespace scene;
+
 
 RigidBody::RigidBody(gm::Vector3 pos, float size, float mass, RigidBody::Shape shape_type) {
 
