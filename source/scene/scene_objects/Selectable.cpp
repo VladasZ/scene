@@ -15,8 +15,8 @@ using namespace scene;
 
 static Box box_for_mesh(Mesh* mesh) {
 
-    Vector3 min { std::numeric_limits<Float>::max() };
-    Vector3 max { std::numeric_limits<Float>::min() };
+    Vector3 min { std::numeric_limits<float>::max() };
+    Vector3 max { std::numeric_limits<float>::min() };
 
     for (auto vertex : mesh->vertices()) {
         if (vertex.position.x < min.x) min.x = vertex.position.x;
