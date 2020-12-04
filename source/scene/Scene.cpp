@@ -45,7 +45,7 @@ Scene::~Scene() {
 #endif
     
     delete position_manipulator;
-    Input::on_free_touch.unsubscribe(this);
+    Input::on_ui_free_touch.unsubscribe(this);
 }
 
 void Scene::add_object(Object* obj) {
@@ -161,7 +161,7 @@ void Scene::add_ray(const gm::Ray& ray) {
 
 void Scene::setup_selection() {
 
-    Input::on_free_touch.subscribe(this) = [&](Touch* touch) {
+    Input::on_ui_free_touch.subscribe(this) = [&](Touch* touch) {
 
         static Axis selected_axis       = Axis::None;
         static Axis selected_plane_axis = Axis::None;
@@ -175,7 +175,7 @@ void Scene::setup_selection() {
         }
 
         if (touch->is_moved() && selected_axis != Axis::None) {
-            auto ray = camera->cast_ray(touch->location);
+            auto ray = camera->cast_ray(touch->position);
             const auto& position = selected_model->position();
             auto axis_vector = selected_model->position();
             axis_vector.set_axis(selected_axis, position.get_axis(selected_axis) + 1.0f);
@@ -186,7 +186,7 @@ void Scene::setup_selection() {
             on_model_moved(selected_model);
         }
         else if (touch->is_moved() && selected_plane_axis != Axis::None) {
-            const auto ray = camera->cast_ray(touch->location);
+            const auto ray = camera->cast_ray(touch->position);
 
             Vector3 normal;
             normal.set_axis(selected_plane_axis, 1.0f);
@@ -210,7 +210,7 @@ void Scene::setup_selection() {
         #endif
                 ) {
 
-            auto ray = camera->cast_ray(touch->location);
+            auto ray = camera->cast_ray(touch->position);
 
             auto axis = select_axis(ray);
 
