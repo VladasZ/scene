@@ -10,17 +10,15 @@
 
 #include <vector>
 
-#ifdef USING_BULLET3D
-#include "Physics3D.hpp"
-#endif
-
 #include "View.hpp"
 #include "Model.hpp"
 #include "Camera.hpp"
 #include "Matrix4.hpp"
 #include "PointLight.hpp"
 #include "SceneConfig.hpp"
+#include "BulletInclude.hpp"
 #include "PositionManipulator.hpp"
+
 
 namespace scene {
 

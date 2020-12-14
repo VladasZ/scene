@@ -11,6 +11,7 @@
 #include "Input.hpp"
 #include "Camera.hpp"
 #include "BoxModel.hpp"
+#include "Physics3D.hpp"
 #include "ArrayUtils.hpp"
 #include "PointLight.hpp"
 #include "VectorModel.hpp"
