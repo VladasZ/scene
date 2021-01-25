@@ -8,12 +8,9 @@
 
 #pragma once
 
-#ifdef USING_BULLET3D
-
-#include "btBulletDynamicsCommon.h"
-
 #include "Vector3.hpp"
 #include "RigidBody.hpp"
+
 
 namespace scene {
 
@@ -35,14 +32,14 @@ namespace scene {
 
     private:
 
+#ifdef USING_BULLET3D
         btDefaultCollisionConfiguration* collisionConfiguration;
         btCollisionDispatcher* dispatcher;
         btBroadphaseInterface* overlappingPairCache;
         btSequentialImpulseConstraintSolver* solver;
         btDiscreteDynamicsWorld* dynamicsWorld;
+#endif
 
     };
 
 }
-
-#endif

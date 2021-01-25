@@ -6,18 +6,17 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
-#include "RigidBody.hpp"
-
-#ifdef USING_BULLET3D
-
 #include "Log.hpp"
 #include "Physics3D.hpp"
+#include "RigidBody.hpp"
+#include "ForceConvert.hpp"
 
 using namespace gm;
 using namespace scene;
 
 
-RigidBody::RigidBody(gm::Vector3 pos, float size, float mass, RigidBody::Shape shape_type) {
+RigidBody::RigidBody(Vector3 pos, float size, float mass, RigidBody::Shape shape_type) {
+#ifdef USING_BULLET3D
 
     if (physics == nullptr) {
         Fatal("Physics is not set for rigid body");
@@ -36,16 +35,16 @@ RigidBody::RigidBody(gm::Vector3 pos, float size, float mass, RigidBody::Shape s
     startTransform.setIdentity();
 
     //rigidbody is dynamic if and only if mass is non zero, otherwise static
-    bool isDynamic = (mass != 0.f);
+    _is_dynamic = (mass != 0.f);
 
     btVector3 localInertia(0, 0, 0);
-    if (isDynamic) {
+    if (_is_dynamic) {
         shape->calculateLocalInertia(mass, localInertia);
     }
 
     pos.flip_height();
-    //TODO: CHECK
-   // startTransform.setOrigin(cu::force_convert<btVector3>(pos));
+
+    startTransform.setOrigin({ pos.x, pos.y, pos.z });
 
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
     motion_state = new btDefaultMotionState(startTransform);
@@ -55,27 +54,29 @@ RigidBody::RigidBody(gm::Vector3 pos, float size, float mass, RigidBody::Shape s
 
     physics->add_rigid_body(this);
 
+#endif
 }
 
 RigidBody::~RigidBody() {
+#ifdef USING_BULLET3D
     delete shape;
     delete body;
     delete motion_state;
+#endif
 }
 
 void RigidBody::update() {
     physics->update_rigid_body(this);
 }
 
-void RigidBody::set_position(const gm::Vector3& position) {
+void RigidBody::set_position(const Vector3& position) {
+#ifdef USING_BULLET3D
     btTransform transform;
     body->getMotionState()->getWorldTransform(transform);
     _position = position;
     _position.flip_height();
-    //TODO: CHECK
-   // transform.setOrigin(cu::force_convert<btVector3>(_position));
+    transform.setOrigin(cu::force_cast<btVector3>(_position));
     body->setWorldTransform(transform);
     motion_state->setWorldTransform(transform);
-}
-
 #endif
+}

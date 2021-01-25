@@ -6,10 +6,6 @@
 //  Copyright © 2020 VladasZ. All rights reserved.
 //
 
-#include "BulletInclude.hpp"
-
-#ifdef USING_BULLET3D
-
 #include "Log.hpp"
 #include "Matrix4.hpp"
 #include "Physics3D.hpp"
@@ -20,7 +16,7 @@ using namespace scene;
 
 
 Physics3D::Physics3D() {
-
+#ifdef USING_BULLET3D
     ///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
     collisionConfiguration = new btDefaultCollisionConfiguration();
 
@@ -36,30 +32,41 @@ Physics3D::Physics3D() {
     dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
 
     dynamicsWorld->setGravity(btVector3(0, -10, 0));
+
+#endif
 }
 
 Physics3D::~Physics3D() {
+#ifdef USING_BULLET3D
     delete dynamicsWorld;
     delete solver;
     delete overlappingPairCache;
     delete dispatcher;
     delete collisionConfiguration;
+#endif
 }
 
 void Physics3D::update(float interval) {
+#ifdef USING_BULLET3D
     dynamicsWorld->stepSimulation(interval, 10);
+#endif
 }
 
 void Physics3D::update_rigid_body(RigidBody* rigid_body) {
+#ifdef USING_BULLET3D
+    if (rigid_body->is_dynamic()) {
+        Log << rigid_body;
+    }
     btTransform trans;
     rigid_body->body->getMotionState()->getWorldTransform(trans);
     rigid_body->_position = cu::force_cast<Vector3>(trans.getOrigin());
     rigid_body->_position.flip_height();
     rigid_body->_rotation = cu::cast<Vector4>(trans.getRotation());
+#endif
 }
 
 void Physics3D::add_rigid_body(RigidBody* rigid_body) {
+#ifdef USING_BULLET3D
     dynamicsWorld->addRigidBody(rigid_body->body);
-}
-
 #endif
+}

@@ -51,7 +51,6 @@ gm::Vector3& Model::edit_position() {
 }
 
 void Model::update() {
-#ifdef USING_BULLET3D
     if (_rigid_body != nullptr) {
         if (_new_position) {
             _rigid_body->set_position(_position);
@@ -61,11 +60,10 @@ void Model::update() {
             _rigid_body->update();
             _position = _rigid_body->position();
         }
-        const auto& quat = _rigid_body->rotation();
+        auto& quat = _rigid_body->rotation();
         set_rotation({ quat.x, quat.z, quat.y, -quat.w });
         _need_matrices_update = true;
     }
-#endif
 }
 
 void Model::draw() {
@@ -166,17 +164,15 @@ void Model::_setup() {
     }
 }
 
-#ifdef USING_BULLET3D
-
 RigidBody* Model::rigid_body() {
     return _rigid_body;
 }
 
 void Model::add_rigid_body(float size, float mass, RigidBody::Shape shape) {
+#ifdef USING_BULLET3D
     _rigid_body = new RigidBody(_position, size, mass, shape);
-}
-
 #endif
+}
 
 void Model::update_matrices() {
     Scalable::update_matrices();

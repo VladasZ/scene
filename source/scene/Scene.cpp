@@ -29,10 +29,8 @@ Scene::Scene() : camera(new Camera(this)) {
     position_manipulator->selectable = false;
     static_cast<Model*>(position_manipulator)->_setup();
 
-#ifdef USING_BULLET3D
     _physics = new Physics3D();
     RigidBody::physics = _physics;
-#endif
 
     setup_selection();
 }
@@ -75,10 +73,8 @@ void Scene::add_box(const gm::Vector3& position, const gm::Box& box, const gm::C
     box_model->edit_position() = position;
 }
 
-void Scene::update([[maybe_unused]] float frame_time) {
-#ifdef USING_BULLET3D
+void Scene::update(float frame_time) {
     _physics->update(frame_time);
-#endif
     camera->update_matrices();
     for (auto obj : _objects) {
         obj->update();
@@ -162,10 +158,7 @@ void Scene::add_ray(const gm::Ray& ray) {
 
 void Scene::setup_selection() {
 
-    Input::on_ui_free_touch.subscribe(this) = [&](Touch* touch) {
-
-        static Axis selected_axis       = Axis::None;
-        static Axis selected_plane_axis = Axis::None;
+    Input::on_ui_free_touch.subscribe(this) = [this](Touch* touch) {
 
         Vector3 model_position;
 

@@ -8,13 +8,9 @@
 
 #pragma once
 
+#include "Vector4.hpp"
 #include "BulletInclude.hpp"
 
-#ifdef USING_BULLET3D
-
-#include "btBulletDynamicsCommon.h"
-
-#include "Vector4.hpp"
 
 namespace scene {
 
@@ -52,14 +48,18 @@ namespace scene {
 
         void set_position(const gm::Vector3&);
 
+        bool is_dynamic() const { return _is_dynamic; }
+
     protected:
 
+        bool _is_dynamic;
+
+#ifdef USING_BULLET3D
         btRigidBody* body;
         btCollisionShape* shape;
         btDefaultMotionState* motion_state;
+#endif
 
     };
 
 }
-
-#endif

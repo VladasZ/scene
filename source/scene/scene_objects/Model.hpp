@@ -95,13 +95,11 @@ namespace scene {
 
         virtual void _setup();
 
-#ifdef USING_BULLET3D
     protected:
         RigidBody* _rigid_body = nullptr;
     public:
         RigidBody* rigid_body();
         void add_rigid_body(float size, float mass, RigidBody::Shape shape);
-#endif
 
     protected:
 

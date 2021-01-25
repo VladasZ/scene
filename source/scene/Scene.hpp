@@ -28,9 +28,7 @@ namespace scene {
 
     protected:
 
-#ifdef USING_BULLET3D
-        Physics3D* _physics;
-#endif
+        Physics3D* _physics = nullptr;
 
     public:
 
@@ -47,7 +45,6 @@ namespace scene {
 
         cu::Event<Model*> on_model_selected;
         cu::Event<Model*> on_model_moved;
-
 
         Scene();
         virtual ~Scene();
@@ -68,9 +65,14 @@ namespace scene {
 
         void add_ray(const gm::Ray&);
 
-        virtual void _setup() { }
-
         void setup_selection();
+
+        virtual void setup() { }
+
+    private:
+
+        gm::Axis selected_axis       = gm::Axis::None;
+        gm::Axis selected_plane_axis = gm::Axis::None;
 
     };
 
