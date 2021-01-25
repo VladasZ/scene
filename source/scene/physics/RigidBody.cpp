@@ -33,6 +33,8 @@ RigidBody::RigidBody(Vector3 pos, float size, float mass, RigidBody::Shape shape
     /// Create Dynamic Objects
     btTransform startTransform;
     startTransform.setIdentity();
+    pos.flip_height();
+    startTransform.setOrigin({ pos.x, pos.y, pos.z });
 
     //rigidbody is dynamic if and only if mass is non zero, otherwise static
     _is_dynamic = (mass != 0.f);
@@ -42,15 +44,11 @@ RigidBody::RigidBody(Vector3 pos, float size, float mass, RigidBody::Shape shape
         shape->calculateLocalInertia(mass, localInertia);
     }
 
-    pos.flip_height();
-
-    startTransform.setOrigin({ pos.x, pos.y, pos.z });
-
     //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
     motion_state = new btDefaultMotionState(startTransform);
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, motion_state, shape, localInertia);
     body = new btRigidBody(rbInfo);
-    body->setRestitution(0.5);
+   // body->setRestitution(0.5);
 
     physics->add_rigid_body(this);
 

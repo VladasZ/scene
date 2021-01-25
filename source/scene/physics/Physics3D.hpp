@@ -30,6 +30,8 @@ namespace scene {
 
         void add_rigid_body(RigidBody*);
 
+        void dump_all_objects() const;
+
     private:
 
 #ifdef USING_BULLET3D
