@@ -9,6 +9,7 @@
 #include "Grid.hpp"
 #include "Scene.hpp"
 #include "Input.hpp"
+#include "Touch.hpp"
 #include "Camera.hpp"
 #include "BoxModel.hpp"
 #include "Physics3D.hpp"
