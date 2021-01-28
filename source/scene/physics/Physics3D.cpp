@@ -49,8 +49,8 @@ Physics3D::~Physics3D() {
 void Physics3D::update(float interval) {
 #ifdef USING_BULLET3D
     dynamicsWorld->stepSimulation(interval, 10);
-    dump_all_objects();
-    Log << "Hello";
+//    dump_all_objects();
+//    Log << "Hello";
 #endif
 }
 
