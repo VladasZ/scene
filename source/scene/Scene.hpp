@@ -56,7 +56,7 @@ namespace scene {
 
         void add_box(const gm::Vector3&, const gm::Box&, const gm::Color& color = gm::Color::green);
 
-        void update(float frame_time);
+        virtual void update(float frame_time);
         void draw();
 
         gm::Axis select_axis(const gm::Ray&);

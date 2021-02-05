@@ -9,8 +9,10 @@
 #include "Mesh.hpp"
 #include "VectorModel.hpp"
 
+
 using namespace gm;
 using namespace scene;
+
 
 static Mesh* create_mesh() {
     return new Mesh {
