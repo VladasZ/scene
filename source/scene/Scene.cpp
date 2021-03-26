@@ -62,8 +62,8 @@ void Scene::add_light(PointLight* light) {
 }
 
 void Scene::remove_object(Object* object) {
-    cu::array::remove(_models, object);
-    cu::array::remove(_objects, object);
+    cu::container::remove(_models, object);
+    cu::container::remove(_objects, object);
     delete object;
 }
 
@@ -103,8 +103,8 @@ gm::Axis Scene::select_axis(const gm::Ray& ray) {
     return gm::Axis::None;
 }
 
-gm::Axis Scene::select_plane(const gm::Ray& ray) {
-    if (position_manipulator->is_hidden) return gm::Axis::None;
+gm::Axis Scene::select_plane(const Ray& ray) const {
+    if (position_manipulator->is_hidden) return Axis::None;
     for (auto arrow : position_manipulator->planes) {
         if (auto hit = arrow->intersecting_ray(ray)) {
             return position_manipulator->get_plane(hit);

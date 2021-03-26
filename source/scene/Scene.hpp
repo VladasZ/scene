@@ -13,9 +13,7 @@
 #include "View.hpp"
 #include "Model.hpp"
 #include "Camera.hpp"
-#include "Matrix4.hpp"
 #include "PointLight.hpp"
-#include "SceneConfig.hpp"
 #include "BulletInclude.hpp"
 #include "PositionManipulator.hpp"
 
@@ -60,7 +58,7 @@ namespace scene {
         void draw();
 
         gm::Axis select_axis(const gm::Ray&);
-        gm::Axis select_plane(const gm::Ray&);
+        gm::Axis select_plane(const gm::Ray&) const;
         Model* select_model(const gm::Ray&);
 
         void add_ray(const gm::Ray&);
